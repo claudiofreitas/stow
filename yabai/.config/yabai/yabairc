@@ -50,5 +50,6 @@ yabai -m rule --add app="^Finder$" manage=off
 yabai -m rule --add app="^Spotify$" manage=off
 yabai -m rule --add app="^Karabiner-Elements$" manage=off
 yabai -m rule --add app="^Karabiner-EventViewer$" manage=off
+yabai -m rule --add app="^Disk Utility$" manage=off
 
 echo "yabai configuration loaded..."
