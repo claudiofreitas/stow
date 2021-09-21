@@ -100,6 +100,9 @@
 #                   yabai -m window --space "${index}" && \
 #                   yabai -m space --focus "${index}"
 
+alt + m : yabai -m window --grid 1:1:0:0:1:1
+hyper + m : yabai -m window --grid 1:1:0:0:1:1
+
 # fast focus desktop
 # cmd + alt - x : yabai -m space --focus recent
 # cmd + alt - 1 : yabai -m space --focus 1
@@ -133,7 +136,7 @@
 
 # toggle window zoom
 # alt - d : yabai -m window --toggle zoom-parent
-# alt - f : yabai -m window --toggle zoom-fullscreen
+alt - f : yabai -m window --toggle zoom-fullscreen
 
 # toggle window split type
 # alt - e : yabai -m window --toggle split
