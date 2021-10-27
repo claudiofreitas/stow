@@ -13,27 +13,27 @@ spacebar -m config foreground_color     0xffa8a8a8
 
 spacebar -m config title                off
 
-spacebar -m config power                on
-spacebar -m config power_icon_strip     🔋 🔌
-spacebar -m config power_icon_color     0xffcd950c
-spacebar -m config battery_icon_color   0xffd75f5f
-
 spacebar -m config spaces               on
-spacebar -m config space_icon_strip     1 2 3 4 5 6 7 8 9 10 11
+spacebar -m config space_icon_strip     web term code 4 5 6 7 8 9 10
 spacebar -m config space_icon           
 spacebar -m config space_icon_color     0xff458588
 
-spacebar -m config dnd                  on
-spacebar -m config dnd_icon             🔕
-spacebar -m config dnd_icon_color       0xffa8a8a8
-
-spacebar -m config clock                on
-spacebar -m config clock_icon           🕓
-spacebar -m config clock_format         "%Y年%m月%d日 %R"
-spacebar -m config clock_icon_color     0xffa8a8a8
-
 spacebar -m config right_shell          off
 spacebar -m config right_shell_icon     
-spacebar -m config right_shell_command  "whoami"
+spacebar -m config right_shell_command  "date"
+
+spacebar -m config dnd                  on
+spacebar -m config dnd_icon             
+spacebar -m config dnd_icon_color       0xffa8a8a8
+
+spacebar -m config power                on
+spacebar -m config power_icon_strip      
+spacebar -m config power_icon_color     0xffcd950c
+spacebar -m config battery_icon_color   0xffd75f5f
+
+spacebar -m config clock                on
+spacebar -m config clock_icon           
+spacebar -m config clock_format         "%Y-%m-%d（%a） %R"
+spacebar -m config clock_icon_color     0xffa8a8a8
 
 echo "spacebar configuration loaded..."
