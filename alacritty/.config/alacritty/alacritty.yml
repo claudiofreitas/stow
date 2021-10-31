@@ -5,9 +5,9 @@ window:
   padding:
     x: 0
     y: 0
-  dynamic_padding: true
+    #dynamic_padding: true
   decorations: none
-  startup_mode: Maximized
+  #startup_mode: Maximized
 
 font:
   normal:
