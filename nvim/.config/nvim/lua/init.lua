@@ -18,6 +18,8 @@ vim.api.nvim_set_keymap("n", "<F5>", ":lua Reload_all_requires()<CR>:source ~/.c
 -- vim.api.nvim_command('colorscheme claudio-darker')
 vim.api.nvim_command('colorscheme kikwis')
 
+
+
 -- LSP
 local lspconfig = require('lspconfig')
 lspconfig.util.default_config = vim.tbl_extend (
@@ -25,9 +27,6 @@ lspconfig.util.default_config = vim.tbl_extend (
   lspconfig.util.default_config,
   { log_level = vim.lsp.protocol.MessageType.Error }
 )
---lspconfig.tsserver.setup {
---  on_attach = require'completion'.on_attach
---}
 
 
 
