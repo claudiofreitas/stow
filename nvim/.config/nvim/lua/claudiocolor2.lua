@@ -1,0 +1,292 @@
+local Color, colors, Group, groups, styles = require('colorbuddy').setup()
+
+Color.new('background', '#ff0000')
+Color.new('red',         '#cc6666')
+Color.new('green',       '#99cc99')
+Color.new('yellow',      '#f0c674')
+
+
+Group.new('Function', colors.yellow, colors.background, styles.bold)
+Group.new('luaFunctionCall' , groups.Function    , groups.Function   , groups.Function)
+
+Group.new('Error'           , colors.red:light() , nil               , styles.bold)
+
+vim.g.colors_name = 'claudiocolor'
+
+-- 
+-- -- "runtime ~/.local/share/nvim/plugged/equinusocio-material.vim/autoload/equinusocio_material.vim
+-- 
+-- set background=dark
+-- highlight clear
+-- if exists("syntax_on")
+--   syntax reset
+-- endif
+-- let g:colors_name = "mine"
+-- 
+-- " :so $VIMRUNTIME/syntax/hitest.vim
+-- 
+-- " Color Definitions: https://www.material-theme.com/docs/reference/color-palette/
+-- 
+-- let s:colors = {
+-- \ 'none': 'none',
+-- \ 'background': '#212121',
+-- \ 'foreground': '#B0BEC5',
+-- \ 'text': '#727272',
+-- \ 'selectionBackground': '#353535',
+-- \ 'selectionForeground': '#ffffff',
+-- \ 'Buttons': '#2A2A2A',
+-- \ 'secondBackground': '#292929',
+-- \ 'disabled': '#474747',
+-- \ 'contrast': '#1A1A1A',
+-- \ 'active': '#323232',
+-- \ 'border': '#292929',
+-- \ 'highlight': '#3F3F3F',
+-- \ 'tree': '#323232',
+-- \ 'notifications': '#1A1A1A',
+-- \ 'accent': '#FF9800',
+-- \ 'excludedFiles': '#323232',
+-- \ 'comments': '#616161',
+-- \ 'links': '#80cbc4',
+-- \ 'functions': '#82aaff',
+-- \ 'keywords': '#c792ea',
+-- \ 'tags': '#f07178',
+-- \ 'strings': '#c3e88d',
+-- \ 'operators': '#89ddff',
+-- \ 'attributes': '#ffcb6b',
+-- \ 'numbers': '#f78c6c',
+-- \ 'parameters': '#f78c6c',
+-- \ }
+-- 
+-- " --- Attributes -----------------------
+-- let s:attrs = {
+-- \ 'none': 'none',
+-- \ 'underline': 'underline',
+-- \ 'undercurl': 'undercurl',
+-- \ 'bold': 'bold',
+-- \ 'inverse': 'inverse',
+-- \ }
+-- 
+-- " --- Interface ------------------------
+-- let s:colors.lineNumber = '#424242'
+-- let s:colors.cursorLineNumber = '#a4a3a3'
+-- 
+-- let s:colors.black_br = '#747474'
+-- let s:colors.background_lighter = '#2f2f2f'
+-- let s:colors.cursorLine = '#181818'
+-- let s:colors.selection = '#454545'
+-- let s:colors.indentLine = '#424242'
+-- 
+-- let s:colors.menu_bg = '#414141'
+-- let s:colors.black = '#000000'
+-- let s:colors.red = '#ff5370'
+-- let s:colors.green = '#c3e88d'
+-- let s:colors.yellow = '#ffcb6b'
+-- let s:colors.orange = '#f78c6c'
+-- let s:colors.blue = '#82aaff'
+-- let s:colors.magenta = '#c792ea'
+-- let s:colors.cyan = '#89ddff'
+-- let s:colors.white = '#eeffff'
+-- 
+-- let s:colors.foreground = '#eeffff'
+-- let s:colors.caret = '#ffcc00'
+-- let s:colors.float_bg = '#000000'
+-- let s:colors.comment = s:colors.black_br
+-- 
+-- let s:colors.pure_black = '#000000'
+-- let s:colors.vertsplit = s:colors.cursorLine
+-- "if get(g:, 'equinusocio_material_hide_vertsplit', 0) == 1
+-- let s:colors.vertsplit = s:colors.background
+-- "endif
+-- 
+-- 
+-- function! s:hl(group, fg, bg, attr)
+--   execute 'highlight! ' . a:group . ' ctermfg=NONE'
+--   execute 'highlight! ' . a:group . ' ctermbg=NONE'
+--   execute 'highlight! ' . a:group . ' cterm=NONE'
+-- 
+--   if !empty(a:fg)
+--     execute 'highlight! ' . a:group . ' guifg=' . a:fg
+--   else
+--     execute 'highlight! ' . a:group . ' guifg=NONE'
+--   endif
+-- 
+--   if !empty(a:bg)
+--     execute 'highlight! ' . a:group . ' guibg=' . a:bg
+--   else
+--     execute 'highlight! ' . a:group . ' guibg=NONE'
+--   endif
+-- 
+--   if !empty(a:attr)
+--     execute 'highlight! ' . a:group . ' gui=' . a:attr
+--   else
+--     execute 'highlight! ' . a:group . ' gui=NONE'
+--   endif
+-- endfunction
+-- 
+-- function! s:link(group, parentGroup)
+--   execute 'highlight! link ' . a:group . ' ' . a:parentGroup
+-- endfunction
+-- 
+-- 
+-- 
+-- " ====================================================
+-- " editor color scheme
+-- " ----------------------------------------------------
+-- call s:hl('Normal', s:colors.foreground, s:colors.background, 'italic') " base color
+-- call s:hl('LineNr', s:colors.lineNumber, s:colors.background, s:colors.none) " Line number w/out focus
+-- call s:hl('CursorLine', s:colors.none, s:colors.cursorLine, s:colors.none) " Line where the cursor is located
+-- call s:hl('CursorLineNr', s:colors.cursorLineNumber, s:colors.cursorLine, s:colors.none) " The line number with focus
+-- 
+-- call s:hl('NonText', s:colors.indentLine, s:colors.none, s:colors.none)
+-- call s:hl('Conceal', s:colors.blue, s:colors.none, s:colors.none)
+-- call s:hl('Cursor', s:colors.black, s:colors.caret, s:colors.none)
+-- call s:hl('CursorIM', s:colors.black, s:colors.caret, s:colors.none)
+-- call s:hl('ColorColumn', s:colors.none, s:colors.cursorLine, s:colors.none)
+-- call s:hl('VertSplit', s:colors.lineNumber, s:colors.none, s:colors.none)
+-- call s:hl('CursorColumn', s:colors.none, s:colors.none, s:colors.none)
+-- call s:hl('EndOfBuffer', s:colors.background, s:colors.none, s:colors.none)
+-- " ----------------------------------------------------
+-- call s:hl('Folded', s:colors.foreground, s:colors.black_br, s:colors.none)
+-- call s:hl('FoldColumn', s:colors.foreground, s:colors.none, s:colors.none)
+-- call s:hl('Directory', s:colors.cyan, s:colors.none, s:colors.none)
+-- " ----------------------------------------------------
+-- call s:hl('DiffAdd', s:colors.green, s:colors.none, s:colors.none)
+-- call s:hl('DiffChange', s:colors.yellow, s:colors.none, s:colors.none)
+-- call s:hl('DiffDelete', s:colors.red, s:colors.none, s:colors.none)
+-- call s:hl('DiffText', s:colors.magenta, s:colors.none, s:colors.none)
+-- " ----------------------------------------------------
+-- " ----------------------------------------------------
+-- call s:hl('ErrorMsg', s:colors.red, s:colors.none, s:colors.none)
+-- " ----------------------------------------------------
+-- " ----------------------------------------------------
+-- call s:hl('IncSearch', s:colors.black, s:colors.magenta, s:colors.none)
+-- call s:hl('MatchParen', s:colors.black, s:colors.red, s:colors.none)
+-- " ----------------------------------------------------
+-- call s:hl('ModeMsg', s:colors.foreground, s:colors.accent, s:colors.none)
+-- call s:hl('MsgArea', s:colors.foreground, '#1b1b1b', s:colors.none)
+-- call s:hl('MoreMsg', s:colors.red, s:colors.none, s:colors.none)
+-- " ----------------------------------------------------
+-- call s:hl('Pmenu', s:colors.foreground, s:colors.menu_bg, s:colors.none)
+-- call s:hl('PmenuSel', s:colors.cyan, s:colors.black, s:colors.none)
+-- call s:hl('PmenuSbar', s:colors.none, s:colors.menu_bg, s:colors.none)
+-- call s:hl('PmenuThumb', s:colors.none, s:colors.foreground, s:colors.none)
+-- " ----------------------------------------------------
+-- call s:hl('Question', s:colors.red, s:colors.none, s:colors.none)
+-- call s:hl('QuickFixLine', s:colors.foreground, s:colors.background, s:colors.none) " link it to normal
+-- call s:hl('Search', s:colors.black, s:colors.magenta, s:colors.none)
+-- call s:hl('SpecialKey', s:colors.black_br, s:colors.none, s:colors.none)
+-- " ----------------------------------------------------
+-- call s:hl('SpellBad', s:colors.none, s:colors.none, s:attrs.underline)
+-- call s:hl('SpellCap', s:colors.none, s:colors.none, s:attrs.underline)
+-- call s:hl('SpellLocal', s:colors.none, s:colors.none, s:attrs.underline)
+-- call s:hl('SpellRare', s:colors.none, s:colors.none, s:attrs.underline)
+-- " ----------------------------------------------------
+-- call s:hl('StatusLine', s:colors.foreground, '#1b1b1b', s:colors.none)
+-- call s:hl('StatusLineNC', s:colors.black_br, '#1b1b1b', s:colors.none)
+-- call s:hl('StatusLineTerm', s:colors.foreground, s:colors.none, s:colors.none)
+-- call s:hl('StatusLineTermNC', s:colors.black_br, s:colors.none, s:colors.none)
+-- " ----------------------------------------------------
+-- call s:hl('TabLine', s:colors.foreground, '#1b1b1b', s:colors.none)
+-- call s:hl('TabLineFill', s:colors.none, '#1b1b1b', s:colors.none)
+-- call s:hl('TabLineSel', s:colors.background, s:colors.green, s:colors.none)
+-- call s:hl('Terminal', s:colors.foreground, s:colors.background, s:colors.none)
+-- call s:hl('Title', s:colors.red, s:colors.none, s:colors.none)
+-- call s:hl('Visual', s:colors.foreground, s:colors.selection, s:colors.none)
+-- call s:hl('VisualNOS', s:colors.foreground, s:colors.selection, s:colors.none)
+-- call s:hl('WarningMsg', s:colors.red, s:colors.none, s:colors.none)
+-- call s:hl('WildMenu', s:colors.black, s:colors.cyan, s:colors.none)
+-- " ====================================================
+-- 
+-- 
+-- " ====================================================
+-- " standard syntax
+-- " ----------------------------------------------------
+-- call s:hl('Comment', s:colors.comment, s:colors.none, s:colors.none)
+-- " ----------------------------------------------------
+-- call s:hl('Constant', s:colors.foreground, s:colors.none, s:colors.none)
+-- call s:hl('String', s:colors.green, s:colors.none, s:colors.none)
+-- call s:hl('Number', s:colors.orange, s:colors.none, s:colors.none)
+-- call s:hl('Boolean', s:colors.orange, s:colors.none, s:colors.none)
+-- call s:hl('Float', s:colors.orange, s:colors.none, s:colors.none)
+-- " ----------------------------------------------------
+-- call s:hl('Identifier', s:colors.yellow, s:colors.none, s:colors.none)
+-- call s:hl('Function', s:colors.blue, s:colors.none, s:colors.none)
+-- " ----------------------------------------------------
+-- call s:hl('Statement', s:colors.magenta, s:colors.none, s:colors.none)
+-- call s:hl('Conditional', s:colors.cyan, s:colors.none, s:colors.none)
+-- call s:hl('Repeat', s:colors.cyan, s:colors.none, s:colors.none)
+-- call s:hl('Operator', s:colors.magenta, s:colors.none, s:colors.none)
+-- call s:hl('Keyword', s:colors.magenta, s:colors.none, s:colors.none)
+-- call s:hl('Exception', s:colors.cyan, s:colors.none, s:colors.none)
+-- " ----------------------------------------------------
+-- call s:hl('PreProc', s:colors.cyan, s:colors.none, s:colors.none)
+-- call s:hl('Include', s:colors.cyan, s:colors.none, s:colors.none)
+-- call s:hl('Define', s:colors.blue, s:colors.none, s:colors.none)
+-- call s:hl('Macro', s:colors.blue, s:colors.none, s:colors.none)
+-- call s:hl('PreCondit', s:colors.yellow, s:colors.none, s:colors.none)
+-- " ----------------------------------------------------
+-- call s:hl('Type', s:colors.yellow, s:colors.none, s:colors.none)
+-- call s:hl('StorageClass', s:colors.yellow, s:colors.none, s:colors.none)
+-- call s:hl('Structure', s:colors.magenta, s:colors.none, s:colors.none)
+-- call s:hl('Typedef', s:colors.yellow, s:colors.none, s:colors.none)
+-- " ----------------------------------------------------
+-- call s:hl('Special', s:colors.cyan, s:colors.none, s:colors.none)
+-- " ----------------------------------------------------
+-- call s:hl('Underlined', s:colors.none, s:colors.none, s:attrs.underline)
+-- call s:hl('Ignore', s:colors.none, s:colors.none, s:colors.none)
+-- call s:hl('Error', s:colors.red, s:colors.none, s:colors.none)
+-- call s:hl('Todo', s:colors.orange, s:colors.none, s:colors.none)
+-- " ====================================================
+-- 
+-- 
+-- " ====================================================
+-- " vim-lsp
+-- " ----------------------------------------------------
+-- call s:hl('SignColumn', s:colors.foreground, '#1b1b1b', s:colors.none)
+-- call s:hl('LspDiagnosticsErrorSign', s:colors.red, '#1b1b1b', s:attrs.none)
+-- call s:hl('LspDiagnosticsHintSign', s:colors.green, '#1b1b1b', s:attrs.none)
+-- 
+-- call s:hl('LspErrorText', s:colors.red, s:colors.none, s:colors.none)
+-- call s:hl('LspWarningText', s:colors.yellow, s:colors.none, s:colors.none)
+-- call s:hl('LspInformationText', s:colors.orange, s:colors.none, s:colors.none)
+-- call s:hl('LspHintText', s:colors.cyan, s:colors.none, s:colors.none)
+-- 
+-- call s:hl('LspErrorHighlight', s:colors.red, s:colors.none, s:attrs.underline)
+-- call s:hl('LspWarningHighlight', s:colors.none, s:colors.none, s:attrs.underline)
+-- call s:hl('LspInformationHighlight', s:colors.none, s:colors.none, s:attrs.underline)
+-- call s:hl('LspHintHighlight', s:colors.none, s:colors.none, s:attrs.none)
+-- " ====================================================
+-- 
+-- 
+-- " ---- TypescriptSpecific ----------------------------
+-- 
+-- let s:keywords = [
+--   \ 'typescriptClassKeyword', 
+--   \ 'typescriptClassStatic', 
+--   \ 'typescriptDefault', 
+--   \ 'typescriptIdentifierName'
+-- \ ]
+-- for item in s:keywords
+--   call s:hl(item, s:colors.keywords, s:colors.none, s:colors.none)
+-- endfor
+-- 
+-- 
+-- let s:attributes = [
+--   \ 'typescriptClassName'
+-- \]
+-- for item in s:attributes
+--   call s:hl(item, s:colors.attributes, s:colors.none, s:colors.none)
+-- endfor
+-- 
+-- let s:functions = [
+--  \ 'vimFunction',
+--  \ 'vimUserFunc',
+-- \]
+-- for item in s:functions
+--   call s:hl(item, s:colors.functions, s:colors.none, s:attrs.none)
+-- endfor
+-- 
+-- "hi! link vimFunction functions
+-- 
+-- "call s:hl('NERDTreeHelp', s:colors.strings, '#000000', s:colors.none)
+-- 
