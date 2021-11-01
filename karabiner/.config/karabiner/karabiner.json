@@ -22,13 +22,19 @@
                 "from": {
                   "key_code": "caps_lock",
                   "modifiers": {
-                    "optional": ["any"]
+                    "optional": [
+                      "any"
+                    ]
                   }
                 },
                 "to": [
                   {
                     "key_code": "left_shift",
-                    "modifiers": ["left_command", "left_control", "left_option"]
+                    "modifiers": [
+                      "left_command",
+                      "left_control",
+                      "left_option"
+                    ]
                   }
                 ],
                 "type": "basic"
@@ -39,19 +45,39 @@
             "manipulators": [
               {
                 "type": "basic",
-
                 "description": "Cmd + m calls yabai fullscreen",
-
                 "from": {
                   "key_code": "m",
                   "modifiers": {
-                    "mandatory": ["command"]
+                    "mandatory": [
+                      "command"
+                    ]
                   }
                 },
-
                 "to": [
                   {
                     "shell_command": "/usr/local/bin/yabai -m window --grid 1:1:0:0:1:1"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "manipulators": [
+              {
+                "type": "basic",
+                "description": "Shift + Cmd + Space calls launcher",
+                "from": {
+                  "key_code": "spacebar",
+                  "modifiers": {
+                    "mandatory": [
+                      "option"
+                    ]
+                  }
+                },
+                "to": [
+                  {
+                    "shell_command": "~/.local/bin/popup ~/.local/bin/launcher"
                   }
                 ]
               }

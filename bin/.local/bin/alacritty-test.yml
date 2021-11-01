@@ -1,24 +1,33 @@
 env:
   TERM: xterm-256color
 
+
 window:
+  title: ALACRITTY_POPUP_TEST
+  dynamic_title: false
+  position:
+    x: 1040
+    y: 420
+  dimensions:
+    columns: 21
+    lines: 4
   padding:
     x: 0
     y: 0
-    #dynamic_padding: true
-  decorations: none
-  #startup_mode: Maximized
+  dynamic_padding: true
+  decorations: full
+  startup_mode: Maximized
 
 font:
   normal:
     family: 'SauceCodePro Nerd Font'
   size: 12.0
-  use_thin_strokes: true
+  use_thin_strokes: false
 
 cursor:
   style: Beam
 
-background_opacity: 0.97
+background_opacity: 1
 
 live_config_reload: true
 
