@@ -47,3 +47,5 @@ require('nlua.lsp.nvim').setup(require('lspconfig'), {
     "vim"
   }
 })
+
+lspconfig.tsserver.setup({})
