@@ -1,6 +1,7 @@
 
 #cmd + shift - space : /Users/claudio/.local/bin/popup /Users/claudio/.local/bin/launcher
 cmd + shift - space : /Users/claudio/.local/bin/popup2.sh /Users/claudio/.local/bin/launcher.sh
+cmd + shift - 1 : screencapture -x -m "/Users/claudio/Screenshots/Screenshots/$(date "+%Y-%m-%d--%H.%M.%S").png"
 
 # ################################################################ #
 # THE FOLLOWING IS AN EXPLANATION OF THE GRAMMAR THAT SKHD PARSES. #
