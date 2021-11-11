@@ -1,5 +1,11 @@
+local opt = vim.opt
+
 -- Show line numbers
 vim.wo.number = true
+
+-- Character to fill end of buffer
+vim.opt.fillchars['eob'] = ' '
+vim.opt.fillchars['vert'] = '|'
 
 -- Relative line numbers
 vim.wo.relativenumber = true
