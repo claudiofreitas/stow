@@ -17,8 +17,8 @@ end
 vim.api.nvim_set_keymap("n", "<F5>", ":lua Reload_all_requires()<CR>:source ~/.config/nvim/lua/init.lua<CR>:echo \"nvim config reloaded\"<CR>", {})
 
 -- Setup Theme
--- vim.api.nvim_command('colorscheme claudio-darker')
-vim.api.nvim_command('colorscheme kikwis')
+vim.api.nvim_command('colorscheme claudio-darker')
+---vim.api.nvim_command('colorscheme kikwis')
 
 
 
