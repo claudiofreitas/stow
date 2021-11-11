@@ -44,5 +44,7 @@ require('packer').startup(
 
     use 'kyazdani42/nvim-web-devicons'
 
+    use 'tpope/vim-fugitive'
+
   end
 )
