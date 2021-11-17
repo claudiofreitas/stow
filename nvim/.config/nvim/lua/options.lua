@@ -50,11 +50,15 @@ vim.o.scrolloff = 8
 -- 2 = Always show tabs, 0 = never, 1 = only when there are at least 2 tabs
 vim.o.showtabline = 2
 
+-- Default: ""
+-- vim.o.tabline = "%-0F"
+vim.o.tabline = ""
+
 -- Faster completion (default: 4000ms)
 vim.o.updatetime = 150
 
 -- Time in miliseconds to wait for a mapped sequence to complete (Default: 1000)
-vim.o.timeoutlen = 210
+vim.o.timeoutlen = 300
 
 -- set formatoptions-=cro                  " Stop newline continution of comments
 
