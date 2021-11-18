@@ -16,6 +16,8 @@ vim.api.nvim_set_keymap("n", "<leader><cr>", "<cmd>lua require('telescope.builti
 -- Actually the keymap below is CTRL+/, but I don't know why it should be mapped as _
 vim.api.nvim_set_keymap("n", "<C-_>", ":Telescope current_buffer_fuzzy_find <CR>", {})
 
+-- Git Fugitive
+vim.api.nvim_set_keymap("n", "<C-g>", ":G <CR>", {})
 
 vim.api.nvim_command('nmap <F7> :TSHighlightCapturesUnderCursor<CR>')
 
