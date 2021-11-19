@@ -87,4 +87,15 @@ for _, server in ipairs(servers) do
 end
 
 
+
+
+-- JSON (jsonls)
+
+require('lspconfig').jsonls.setup({
+})
+
+
+
+
+
 print("loaded setup-lspconfig.lua")
