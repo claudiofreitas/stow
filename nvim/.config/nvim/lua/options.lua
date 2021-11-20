@@ -22,6 +22,8 @@ opt.fillchars = {
   eob = ' ',
 }
 
+opt.foldenable = false
+
 -- Relative line numbers
 vim.wo.relativenumber = true
 
