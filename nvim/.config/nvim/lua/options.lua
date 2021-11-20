@@ -4,7 +4,7 @@ local opt = vim.opt
 vim.wo.number = true
 
 -- Default: 'internal,filler,closeoff'
-opt.diffopt = 'internal,filler,closeoff,vertical'
+opt.diffopt = 'internal,filler,closeoff,vertical,context:99999'
 
 -- Default: 'auto'
 opt.signcolumn = 'yes'
