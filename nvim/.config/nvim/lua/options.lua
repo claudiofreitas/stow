@@ -3,6 +3,12 @@ local opt = vim.opt
 -- Show line numbers
 vim.wo.number = true
 
+-- Default: 'internal,filler,closeoff'
+vim.opt.diffopt = 'internal,filler,closeoff,vertical'
+
+-- Default: 'auto'
+vim.opt.signcolumn = 'yes'
+
 -- Character to fill end of buffer
 vim.opt.fillchars['eob'] = ' '
 vim.opt.fillchars['vert'] = '|'
