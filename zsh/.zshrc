@@ -25,6 +25,7 @@ export NVM_DIR="$HOME/.nvm"
 export FIREFOX_BIN="/Applications/Firefox Developer Edition.app/Contents/MacOS/firefox"
 export MANPAGER="sh -c 'col -bx | bat --color=always --decorations=always --style=grid --language=man'"
 export AWS_PAGER="cat"
+export GPG_TTY=$(tty)
 ZSH_THEME="claudio"
 DISABLE_UPDATE_PROMPT="true"
 
