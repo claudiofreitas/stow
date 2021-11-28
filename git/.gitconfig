@@ -79,3 +79,6 @@
 [interactive]
   diffFilter = delta --features diff-filter
 
+[gpg]
+	program = /usr/local/bin/gpg
+
