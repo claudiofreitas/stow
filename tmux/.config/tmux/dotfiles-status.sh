@@ -1,0 +1,16 @@
+print_status() {
+  local STATUS
+  STATUS=$(git --git-dir=/Users/claudio/repos/dotfiles/ --work-tree=/Users/claudio status --porcelain --ignore-submodules 2> /dev/null | tail -n1)
+  if [[ -n $STATUS ]]
+  then
+    echo '#[fg=#282c34,bg=#e06c75]  '
+  else
+    echo '#[fg=#282c34,bg=#98c379]  '
+  fi
+}
+
+print_status
+
+#set -g @online_icon  "#[fg=#282c34,bg=#98c379]"
+#set -g @offline_icon "#[fg=#282c34,bg=#e06c75]"
+
