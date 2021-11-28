@@ -5,6 +5,7 @@ path+=(
   "$HOME/.vimpkg/bin"
   "$HOME/repos/lua-language-server/bin/macOS"
   "$HOME/.local/bin"
+  "$HOME/.local/n/bin"
   "/usr/local/opt/node@10/bin"
   "/usr/local/bin"
   "/usr/bin"
