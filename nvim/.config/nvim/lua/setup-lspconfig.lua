@@ -56,7 +56,16 @@ require('nlua.lsp.nvim').setup(require('lspconfig'), {
 
 
 
-lspconfig.tsserver.setup({})
+lspconfig.tsserver.setup({
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx"
+  },
+})
 
 
 local on_attach = function(_, bufnr)
@@ -91,6 +100,17 @@ for _, server in ipairs(servers) do
     }
   })
 end
+
+
+
+
+-- JSON (jsonls)
+
+require('lspconfig').jsonls.setup({
+})
+
+
+
 
 
 print("loaded setup-lspconfig.lua")

@@ -1,6 +1,21 @@
 
 #cmd + shift - space : /Users/claudio/.local/bin/popup /Users/claudio/.local/bin/launcher
-cmd + shift - space : /Users/claudio/.local/bin/popup2.sh /Users/claudio/.local/bin/launcher.sh
+#cmd + shift - space : /Users/claudio/.local/bin/popup2.sh /Users/claudio/.local/bin/launcher.sh
+
+# Save screenshot and play sound -- Use with control key to recover previous Mac behavior (saved to 4 to be able to use Print Screen key of Keychron)
+cmd + shift - 4 : screencapture -x -m "/Users/claudio/Screenshots/Screenshots/$(yabai -m query --windows --window | jq --raw-output .title)-$(date "+%Y-%m-%d--%H.%M.%S").png" && afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/Collaboration.wav --volume 3
+
+# ctrl + alt + cmd - left
+#hyper - up : yabai -m window --display north && yabai -m display --focus north
+# hyper - up : yabai -m window --display north && yabai -m window --focus
+#hyper - down : yabai -m window --display south && yabai -m display --focus south
+# hyper - down : yabai -m window --display south && yabai -m window --focus
+
+hyper - t : /Applications/kitty.app/Contents/MacOS/kitty
+
+hyper - left  : yabai -m window --grid 2:2:0:0:1:2
+hyper - right : yabai -m window --grid 2:2:1:0:1:2
+hyper - m : yabai -m window --grid 1:1:0:0:1:1
 
 # ################################################################ #
 # THE FOLLOWING IS AN EXPLANATION OF THE GRAMMAR THAT SKHD PARSES. #
@@ -104,8 +119,6 @@ cmd + shift - space : /Users/claudio/.local/bin/popup2.sh /Users/claudio/.local/
 #                   yabai -m window --space "${index}" && \
 #                   yabai -m space --focus "${index}"
 
-alt - m : yabai -m window --grid 1:1:0:0:1:1
-hyper - m : yabai -m window --grid 1:1:0:0:1:1
 
 # fast focus desktop
 # cmd + alt - x : yabai -m space --focus recent
@@ -140,7 +153,7 @@ hyper - m : yabai -m window --grid 1:1:0:0:1:1
 
 # toggle window zoom
 # alt - d : yabai -m window --toggle zoom-parent
-alt - f : yabai -m window --toggle zoom-fullscreen
+# alt - f : yabai -m window --toggle zoom-fullscreen
 
 # toggle window split type
 # alt - e : yabai -m window --toggle split

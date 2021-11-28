@@ -3,6 +3,7 @@ require("plugins")
 require("setup-treesitter")
 require("setup-telescope")
 require("setup-lspconfig")
+require("setup-gitsigns")
 require("keymaps")
 
 -- Refresh
@@ -12,13 +13,14 @@ Reload_all_requires = function()
   package.loaded["setup-treesitter"] = nil
   package.loaded["setup-telescope"] = nil
   package.loaded["setup-lspconfig"] = nil
+  package.loaded["setup-gitsigns"] = nil
   package.loaded["keymaps"] = nil
 end
-vim.api.nvim_set_keymap("n", "<F5>", ":lua Reload_all_requires()<CR>:source ~/.config/nvim/lua/init.lua<CR>:echo \"nvim config reloaded\"<CR>", {})
+vim.api.nvim_set_keymap("n", "<F5>", ":lua Reload_all_requires()<CR>:source ~/.config/nvim/init.lua<CR>:echo \"nvim config reloaded\"<CR>", {})
 
 -- Setup Theme
--- vim.api.nvim_command('colorscheme claudio-darker')
-vim.api.nvim_command('colorscheme kikwis')
+vim.api.nvim_command('colorscheme claudio-darker')
+---vim.api.nvim_command('colorscheme kikwis')
 
 
 

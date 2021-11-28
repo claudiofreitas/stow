@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-session=$(find ~ ~/repos -mindepth 1 -maxdepth 1 -type d | fzf)
+if [[ -z $1 ]]; then
+  session=$(find ~ ~/repos -mindepth 1 -maxdepth 1 -type d | fzf)
+else
+  session=$1
+fi
 
 if [[ -z $session ]]; then
   exit 0
