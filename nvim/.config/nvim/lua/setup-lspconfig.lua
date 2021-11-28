@@ -8,33 +8,39 @@ lspconfig.util.default_config = vim.tbl_extend(
 
 
 -- Lua Language Server (sumneko)
-local sumneko_binary_path = vim.fn.exepath('lua-language-server')
-local sumneko_root_path = vim.fn.fnamemodify(sumneko_binary_path, ':h:h:h')
+-- local sumneko_binary_path = vim.fn.exepath('lua-language-server')
+local sumneko_binary_path = '/Users/claudio/repos/lua-language-server/bin/macOS/lua-language-server'
+local sumneko_root_path = '/Users/claudio/repos/lua-language-server'
 
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, "lua/?.lua")
-table.insert(runtime_path, "lua/?/init.lua")
+--local runtime_path = vim.split(package.path, ';')
+--table.insert(runtime_path, "lua/?.lua")
+--table.insert(runtime_path, "lua/?/init.lua")
 
-lspconfig.sumneko_lua.setup({
-  cmd = {sumneko_binary_path, "-E", sumneko_root_path .. "/main.lua"},
+local sumneko_lua_config = {
+  cmd = { sumneko_binary_path, "-E", sumneko_root_path .. "/main.lua" },
   settings = {
     Lua = {
       runtime = {
         version = "LuaJIT",
-        path = runtime_path,
+        path = vim.split(package.path, ";"), -- runtime_path,
       },
       diagnostics = {
         globals = {'vim'},
       },
       workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
+        library = {
+          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+          [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+        }, --vim.api.nvim_get_runtime_file("", true),
       },
       telemetry = {
         enable = false,
       },
     }
   }
-})
+}
+
+-- lspconfig.sumneko_lua.setup(sumneko_lua_config)
 
 
 
