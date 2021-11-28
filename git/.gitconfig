@@ -1,0 +1,81 @@
+# This is Git's per-user configuration file.
+
+[core]
+  pager = delta
+  excludesFile = ~/.gitignore
+
+[user]
+	name = Claudio Freitas
+	email = claudiofreitas3@gmail.com
+
+[alias]
+	s = !git status -s
+	l = !git log --pretty=format:'%C(blue)%h%C(red)%d %C(white)%s - %C(cyan)%cn, %C(green)%cr'
+
+[delta "defaults"]
+	side-by-side = true
+
+  # Minus/Removed
+	#minus-style = "#ffff00" "#ffff00"
+	minus-style = syntax auto
+	minus-non-emph-style = syntax "#370103"
+	minus-emph-style = syntax "#901011"
+	line-numbers-minus-style = "#be2627" normal
+	minus-empty-line-marker-style = normal "#00f"
+	# Plus/Added
+	#plus-style = "#ffff00" "#ffff00"
+	plus-non-emph-style = syntax "#002800"
+	plus-emph-style = syntax "#006900"
+	line-numbers-plus-style = "#4c8031" normal
+	plus-empty-line-marker-style = normal "#00f"
+
+  # Line Numbers
+	line-numbers-left-style = "#3a3a3a"
+	line-numbers-right-style = "#3a3a3a"
+  line-numbers-left-format = ""
+  line-numbers-right-format = "│{nm:^4}│{np:^4}│"
+
+	zero-style = syntax dim normal
+  file-style = "#f79e34" normal
+  file-decoration-style = ol "#3a3a3a"
+  hunk-header-style = omit syntax normal
+  hunk-header-decoration-style = ul "#3a3a3a"
+  file-added-label = (new file)
+  file-removed-label = (deleted)
+  file-renamed-label = (renamed)
+
+  syntax-theme = OneHalfDark
+
+  word-diff-regex = .
+
+[delta]
+  features = defaults
+
+[delta "diff-filter"]
+  features = defaults
+  color-only = true
+
+[commit]
+	template = /Users/claudio/.stCommitMsg
+
+[merge]
+	tool = vimdiff
+
+[mergetool "vimdiff"]
+	path = nvim
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = false
+
+[push]
+  default = current
+
+#[diff]
+#  mnemonicPrefix = true
+
+[interactive]
+  diffFilter = delta --features diff-filter
+
