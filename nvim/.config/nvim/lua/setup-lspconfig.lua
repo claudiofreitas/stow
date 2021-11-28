@@ -50,7 +50,16 @@ require('nlua.lsp.nvim').setup(require('lspconfig'), {
 
 
 
-lspconfig.tsserver.setup({})
+lspconfig.tsserver.setup({
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx"
+  },
+})
 
 
 local on_attach = function(_, bufnr)
