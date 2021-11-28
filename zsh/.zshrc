@@ -62,6 +62,8 @@ alias dirsize="du -sh * 2> /dev/null | gsort -h"
 alias tmuxconf="$EDITOR $HOME/.tmux.conf"
 alias zshrc="$EDITOR $HOME/.zshrc"
 alias yabairc="$EDITOR $HOME/stow/yabai/.config/yabai/yabairc"
+alias skhdrc="$EDITOR $HOME/stow/skhd/.config/skhd/skhdrc"
+alias kittyconf="$EDITOR $HOME/stow/kitty/.config/kitty/kitty.conf"
 
 
 fbr() {
