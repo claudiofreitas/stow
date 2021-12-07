@@ -8,6 +8,7 @@ path+=(
   "$HOME/.local/n/bin"
   "/usr/local/opt/node@10/bin"
   "/usr/local/bin"
+  "/usr/local/sbin"
   "/usr/bin"
   "/bin"
   "/usr/sbin"
@@ -66,6 +67,8 @@ alias yabairc="$EDITOR $HOME/stow/yabai/.config/yabai/yabairc"
 alias skhdrc="$EDITOR $HOME/stow/skhd/.config/skhd/skhdrc"
 alias kittyconf="$EDITOR $HOME/stow/kitty/.config/kitty/kitty.conf"
 alias vimrc="$EDITOR $HOME/stow/nvim/.config/nvim/init.lua"
+alias hammerspoonrc="$EDITOR $HOME/stow/hammerspoon/.hammerspoon/init.lua"
+alias hsrc="hammerspoonrc"
 
 
 fbr() {
