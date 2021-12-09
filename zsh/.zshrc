@@ -69,6 +69,7 @@ alias kittyconf="$EDITOR $HOME/stow/kitty/.config/kitty/kitty.conf"
 alias vimrc="$EDITOR $HOME/stow/nvim/.config/nvim/init.lua"
 alias hammerspoonrc="$EDITOR $HOME/stow/hammerspoon/.hammerspoon/init.lua"
 alias hsrc="hammerspoonrc"
+alias tf="terraform"
 
 
 fbr() {
