@@ -110,6 +110,8 @@ require('lspconfig').jsonls.setup({
 })
 
 
+require('lspconfig').terraformls.setup({
+})
 
 
 
