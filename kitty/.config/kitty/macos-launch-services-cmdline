@@ -1,1 +1,1 @@
-/bin/zsh -c "tmux attach"
+/bin/zsh -c "${HOME}/.local/bin/tmux-nav.sh /tmp"
