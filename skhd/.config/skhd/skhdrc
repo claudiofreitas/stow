@@ -3,7 +3,6 @@
 #cmd + shift - space : /Users/claudio/.local/bin/popup2.sh /Users/claudio/.local/bin/launcher.sh
 
 # Save screenshot and play sound -- Use with control key to recover previous Mac behavior (saved to 4 to be able to use Print Screen key of Keychron)
-cmd + shift - 4 : screencapture -x -m "/Users/claudio/Screenshots/Screenshots/$(yabai -m query --windows --window | jq --raw-output .title)-$(date "+%Y-%m-%d--%H.%M.%S").png" && afplay /System/Library/PrivateFrameworks/ScreenReader.framework/Versions/A/Resources/Sounds/Collaboration.wav --volume 3
 
 # ctrl + alt + cmd - left
 #hyper - up : yabai -m window --display north && yabai -m display --focus north
