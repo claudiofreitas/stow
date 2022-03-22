@@ -16,6 +16,8 @@ local sumneko_root_path = '/Users/claudio/repos/lua-language-server'
 --table.insert(runtime_path, "lua/?.lua")
 --table.insert(runtime_path, "lua/?/init.lua")
 
+local a
+
 local sumneko_lua_config = {
   cmd = { sumneko_binary_path, "-E", sumneko_root_path .. "/main.lua" },
   settings = {
@@ -37,22 +39,23 @@ local sumneko_lua_config = {
         enable = false,
       },
     }
-  }
+  },
+  capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
 }
 
--- lspconfig.sumneko_lua.setup(sumneko_lua_config)
+lspconfig.sumneko_lua.setup(sumneko_lua_config)
 
 
 
 
 -- Lua Language Server (tjdevries)
-local custom_nvim_lspconfig_attach = function() end
-require('nlua.lsp.nvim').setup(require('lspconfig'), {
-  on_attach = custom_nvim_lspconfig_attach,
-  globals = {
-    "vim"
-  }
-})
+--local custom_nvim_lspconfig_attach = function() end
+--require('nlua.lsp.nvim').setup(require('lspconfig'), {
+--  on_attach = custom_nvim_lspconfig_attach,
+--  globals = {
+--    "vim"
+--  }
+--})
 
 
 
