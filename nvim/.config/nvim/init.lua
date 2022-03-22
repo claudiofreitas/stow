@@ -43,10 +43,10 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 )
 
 vim.api.nvim_exec([[
-  sign define DiagnosticSignWarn  text= linehl= numhl= texthl=DiagnosticSignWarn
-  sign define DiagnosticSignInfo  text= linehl= numhl= texthl=DiagnosticSignInfo
-  sign define DiagnosticSignHint  text= linehl= numhl= texthl=DiagnosticSignHint
-  sign define DiagnosticSignError text= linehl= numhl= texthl=DiagnosticSignError
+  sign define DiagnosticSignError text= linehl= numhl= texthl=DiagnosticSignError
+  sign define DiagnosticSignWarn  text= linehl= numhl= texthl=DiagnosticSignWarn
+  sign define DiagnosticSignInfo  text= linehl= numhl= texthl=DiagnosticSignInfo
+  sign define DiagnosticSignHint  text= linehl= numhl= texthl=DiagnosticSignHint
 ]], false)
 
 
