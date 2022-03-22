@@ -77,29 +77,27 @@ end
 
 
 
--- 1080 Screen Menu -------------------------------------------------
+-- 2304 x 960 Screen Menu -------------------------------------------------
 local isOriginalResolution = true
-local switch1080pMenu = hs.menubar.new()
+local switch960pMenu = hs.menubar.new()
 local function toggleScreenResolution()
   if isOriginalResolution then
-    -- set 1080
-    wideScreen:setMode(1920, 1080, 1, 60, 8)
+    -- set 960
+    --local worked = wideScreen:setMode(2304, 960, 2, 60, 7)
+    --print('worked:', worked)
     isOriginalResolution = false
   else
     -- set original
-    wideScreen:setMode(2560, 1080, 1, 60, 8)
+    wideScreen:setMode(3840, 1600, 1, 60, 7)
     isOriginalResolution = true
   end
 end
 
-if switch1080pMenu then
-  switch1080pMenu:setTitle("📽")
-  switch1080pMenu:setClickCallback(toggleScreenResolution)
+if switch960pMenu then
+  switch960pMenu:setTitle("🎮")
+  switch960pMenu:setClickCallback(toggleScreenResolution)
 end
 ---------------------------------------------------------------------
-
-
-
 
 --print('macScreen: ', macScreen)
 --print('wideScreen: ', wideScreen)
