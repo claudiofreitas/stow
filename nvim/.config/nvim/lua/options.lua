@@ -67,6 +67,9 @@ opt.scrolloff = 8
 -- 2 = Always show tabs, 0 = never, 1 = only when there are at least 2 tabs
 opt.showtabline = 2
 
+-- 3 = Global status line
+opt.laststatus = 3
+
 -- Default: ""
 -- opt.tabline = "%-0F"
 opt.tabline = ""
