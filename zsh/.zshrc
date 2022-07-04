@@ -14,7 +14,11 @@ path+=(
   "/usr/sbin"
   "/sbin"
   "/usr/local/opt/ruby/bin"
+  "/usr/local/go/bin"
 )
+
+# Prepend to $PATH
+export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 # Exports
 export LC_ALL=en_US.UTF-8
@@ -29,6 +33,12 @@ export AWS_PAGER="cat"
 export GPG_TTY=$(tty)
 ZSH_THEME="claudio"
 DISABLE_UPDATE_PROMPT="true"
+
+# Disable telemetry for dotnet
+export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+# Disable telemetry for Next.js
+export NEXT_TELEMETRY_DISABLED=1
 
 
 plugins=(
@@ -89,4 +99,6 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C $HOME/.local/bin/terraform terraform
 
 # print "Loaded zshrc"
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
