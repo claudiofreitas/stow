@@ -72,7 +72,7 @@ opt.laststatus = 3
 
 -- Default: ""
 -- opt.tabline = "%-0F"
-opt.tabline = ""
+opt.tabline = "%-0F"
 
 -- Faster completion (default: 4000ms)
 opt.updatetime = 150
