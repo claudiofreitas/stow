@@ -9,6 +9,7 @@ declare -a folders=(
   "karabiner"
   "kitty"
   "nvim"
+  "ranger"
   "skhd"
   "spacebar"
   "tmux"
