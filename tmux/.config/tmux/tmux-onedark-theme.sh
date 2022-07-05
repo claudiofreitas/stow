@@ -86,7 +86,7 @@ date_format=$(get "@onedark_date_format" "%d/%m/%Y")
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 set "status-left"  "#[fg=$onedark_green,bg=$onedark_black,nobold,nounderscore,noitalics] [#S] "
-set "status-right" "#{prefix_highlight}#[fg=$onedark_black,bg=$onedark_green,bold]  ${date_format}   ${time_format}  #{online_status} #($CURRENT_DIR/dotfiles-status.sh)"
+set "status-right" "#{prefix_highlight}#[fg=$onedark_black,bg=$onedark_green,bold]  ${date_format}   ${time_format}  #{online_status}  #($CURRENT_DIR/dotfiles-status.sh)"
 
 # window-status-format is for all the windows, window-status-current-format is for the active one.
 set "window-status-current-format" "#[fg=$onedark_black,bg=$onedark_green,nobold] #{?window_zoomed_flag,,} #I. #W "
