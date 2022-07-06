@@ -1,6 +1,6 @@
 print_status() {
   local STATUS
-  STATUS=$(git --work-tree=/Users/claudio/stow status --porcelain --ignore-submodules 2> /dev/null | tail -n1)
+  STATUS=$(git --git-dir=/Users/claudio/stow/.git --work-tree=/Users/claudio/stow status --porcelain --ignore-submodules 2> /dev/null | tail -n1)
   if [[ -n $STATUS ]]
   then
     echo '#[fg=#282c34,bg=#e06c75] Stow:  '
