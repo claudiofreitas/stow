@@ -17,8 +17,13 @@ path+=(
   "/usr/local/go/bin"
 )
 
+function prependToPath {
+  export PATH="$1:$PATH"
+}
+
 # Prepend to $PATH
-export PATH="/usr/local/opt/ruby/bin:$PATH"
+# export PATH="/usr/local/opt/ruby/bin:$PATH"
+prependToPath "/usr/local/opt/ruby/bin"
 
 # Exports
 export LC_ALL=en_US.UTF-8
@@ -56,6 +61,7 @@ sourceIfExists "$NVM_DIR/bash_completion"
 sourceIfExists "$HOME/.fzf.zsh"
 sourceIfExists "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 sourceIfExists "/etc/grc.zsh" # Generic colorizer
+sourceIfExists "$HOME/.bun/_bun" # bun completions
 
 
 # Aliases
@@ -102,4 +108,9 @@ complete -o nospace -C $HOME/.local/bin/terraform terraform
 # print "Loaded zshrc"
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+# export PATH="$BUN_INSTALL/bin:$PATH"
+prependToPath "$BUN_INSTALL/bin"
 
