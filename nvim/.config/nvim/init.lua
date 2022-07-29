@@ -51,8 +51,12 @@ vim.api.nvim_exec([[
 
 
 
-
-
-
-
+-- Fix indent behavior on yaml files
+vim.cmd([[
+    filetype plugin indent on
+    augroup FixIndentYaml
+        autocmd!
+        autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab indentkeys-=0# indentkeys-=<:>
+    augroup END
+]])
 
