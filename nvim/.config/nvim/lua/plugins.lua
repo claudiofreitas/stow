@@ -60,7 +60,14 @@ require('packer').startup(
     use('hrsh7th/cmp-cmdline')
     use('hrsh7th/nvim-cmp')
 
-    use('ms-jpq/chadtree')
+    use({
+      'ms-jpq/chadtree',
+      branch = 'chad',
+      run = {
+        'python3 -m chadtree deps',
+        ':CHADdeps',
+      },
+    })
 
   end
 )
