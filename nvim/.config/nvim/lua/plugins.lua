@@ -13,6 +13,7 @@ require('packer').startup(
 
     -- Legend of Zelda theme
     use('lucastrvsn/kikwis')
+    use('folke/tokyonight.nvim')
 
     -- Sumneko in my repo:
     -- use('claudiofreitas/nlua.nvim')
