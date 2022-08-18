@@ -17,6 +17,11 @@ path+=(
   "/usr/local/go/bin"
 )
 
+# Rancher (Docker)
+path+=(
+  "$HOME/.rd/bin"
+)
+
 function prependToPath {
   export PATH="$1:$PATH"
 }
@@ -27,7 +32,7 @@ prependToPath "/usr/local/opt/ruby/bin"
 
 # Exports
 export LC_ALL=en_US.UTF-8
-export ZSH="/Users/claudio/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 export EDITOR='nvim'
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export N_PREFIX="$HOME/.local/n"
