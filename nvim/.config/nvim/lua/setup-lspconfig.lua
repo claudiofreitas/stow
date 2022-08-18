@@ -13,6 +13,7 @@ local function custom_config(_config)
       capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
       on_attach = function() --> signature: function(client, bufnr)
         nnoremap('<leader>vd', function() vim.diagnostic.open_float() end)
+        nnoremap('<leader><cr>', function() vim.lsp.buf.code_action() end)
       end,
     },
     _config or {}

@@ -46,6 +46,8 @@ require('packer').startup(
       requires = { 'nvim-lua/plenary.nvim' },
     })
 
+    use('nvim-telescope/telescope-ui-select.nvim')
+
     use('kyazdani42/nvim-web-devicons')
 
     use('tpope/vim-fugitive')
