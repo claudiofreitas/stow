@@ -1,25 +1,40 @@
 local lspconfig = require('lspconfig')
+
+-- My experiments
+local function nnoremap(lhs, rhs, options)
+  vim.keymap.set('n', lhs, rhs, options)
+end
+
+
+local function custom_config(_config)
+  return vim.tbl_deep_extend(
+    "force",
+    {
+      capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+      on_attach = function() --> signature: function(client, bufnr)
+        nnoremap('<leader>vd', function() vim.diagnostic.open_float() end)
+      end,
+    },
+    _config or {}
+  )
+end
+
 lspconfig.util.default_config = vim.tbl_extend(
   "force",
   lspconfig.util.default_config,
-  { log_level = vim.lsp.protocol.MessageType.Error }
+  {
+    log_level = vim.lsp.protocol.MessageType.Error,
+  }
 )
 
-
-
 -- Lua Language Server (sumneko)
--- local sumneko_binary_path = vim.fn.exepath('lua-language-server')
 local sumneko_binary_path = '/Users/claudio/repos/lua-language-server/bin/macOS/lua-language-server'
-local sumneko_root_path = '/Users/claudio/repos/lua-language-server'
-
---local runtime_path = vim.split(package.path, ';')
---table.insert(runtime_path, "lua/?.lua")
---table.insert(runtime_path, "lua/?/init.lua")
+local sumneko_root_path = '/Users/claudio/repos/lua-language-server/main.lua'
 
 local a
 
-local sumneko_lua_config = {
-  cmd = { sumneko_binary_path, "-E", sumneko_root_path .. "/main.lua" },
+lspconfig.sumneko_lua.setup(custom_config({
+  cmd = { sumneko_binary_path, "-E", sumneko_root_path },
   settings = {
     Lua = {
       runtime = {
@@ -41,11 +56,14 @@ local sumneko_lua_config = {
     }
   },
   capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+}))
+
+local rust_config = {
+  cmd = { "rustup", "run", "nightly", "rust-analyzer" },
 }
 
-lspconfig.sumneko_lua.setup(sumneko_lua_config)
-
-
+--lspconfig.rust_analyzer.setup(rust_config)
+lspconfig.rust_analyzer.setup(custom_config({}))
 
 
 -- Lua Language Server (tjdevries)
