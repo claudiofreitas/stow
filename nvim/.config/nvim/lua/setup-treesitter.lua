@@ -1,28 +1,16 @@
 
 -- Tree Sitter Configuration
-require('nvim-treesitter.configs').setup ({
+-- https://github.com/nvim-treesitter/nvim-treesitter#modules
+
+-- Each key inside the table is a module
+
+require('nvim-treesitter.configs').setup({
   ensure_installed = "all", -- either "all" or a list of languages
   ignore_install = {}, -- List of parsers to ignore installing
 
   -- Highlight settings
   highlight = {
-    enable = true,              -- false will disable the whole extension
-    disable = {},  -- list of language that will be disabled
-    custom_captures = {
-      --["foo.bar"] = "Identifier",
-    },
-    additional_vim_regex_highlighting = true, -- true, false or list of languages (can cause some problems, check https://github.com/nvim-treesitter/nvim-treesitter#modules)
-  },
-
-  -- Incremental selection
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "gnn",
-      node_incremental = "grn",
-      scope_incremental = "grc",
-      node_decremental = "grm",
-    },
+    enable = true,              -- false will disable the whole module
   },
 
   -- Playground
@@ -45,10 +33,10 @@ require('nvim-treesitter.configs').setup ({
     },
   },
 
-  -- Indent
-  indent = {
-    enable = true
-  },
+  -- Indent (experimental) https://github.com/nvim-treesitter/nvim-treesitter#indentation
+  --indent = {
+  --  enable = true
+  --},
 
 })
 
