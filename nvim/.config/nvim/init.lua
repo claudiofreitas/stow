@@ -20,6 +20,19 @@ vim.api.nvim_set_keymap("n", "<F5>", ":lua Reload_all_requires()<CR>:source ~/.c
 
 -- Setup Theme
 vim.api.nvim_command('colorscheme claudio-darker')
+
+
+vim.api.nvim_command('colorscheme tokyonight')
+vim.api.nvim_set_hl(0, 'Normal', { bg = 'None' })
+vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'None' })
+vim.api.nvim_set_hl(0, 'CursorLineNr', { bg = 'None' })
+vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#555555', ctermbg = 0 })
+vim.api.nvim_set_hl(0, 'LineNr', { fg = '#5eacd3' })
+vim.api.nvim_set_hl(0, 'netrwDir', { fg = '#5eacd3' })
+
+
+
+
 ---vim.api.nvim_command('colorscheme kikwis')
 
 
@@ -56,7 +69,7 @@ vim.cmd([[
     filetype plugin indent on
     augroup FixIndentYaml
         autocmd!
-        autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab indentkeys-=0# indentkeys-=<:>
+        autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab indentkeys-=0# indentkeys-=<:> indentkeys-=0-
     augroup END
 ]])
 
