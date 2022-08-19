@@ -45,8 +45,10 @@ require('packer').startup(
       'nvim-telescope/telescope.nvim',
       requires = { 'nvim-lua/plenary.nvim' },
     })
-
     use('nvim-telescope/telescope-ui-select.nvim')
+    use({
+      'nvim-telescope/telescope-file-browser.nvim',
+    })
 
     use('kyazdani42/nvim-web-devicons')
 
@@ -63,13 +65,18 @@ require('packer').startup(
     use('hrsh7th/cmp-cmdline')
     use('hrsh7th/nvim-cmp')
 
+    --use({
+    --  'ms-jpq/chadtree',
+    --  branch = 'chad',
+    --  run = {
+    --    'python3 -m chadtree deps',
+    --    ':CHADdeps',
+    --  },
+    --})
+
     use({
-      'ms-jpq/chadtree',
-      branch = 'chad',
-      run = {
-        'python3 -m chadtree deps',
-        ':CHADdeps',
-      },
+      'glepnir/lspsaga.nvim',
+      branch = 'main',
     })
 
   end
