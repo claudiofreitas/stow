@@ -65,15 +65,16 @@ require('packer').startup(
     use('hrsh7th/cmp-cmdline')
     use('hrsh7th/nvim-cmp')
 
-    --use({
-    --  'ms-jpq/chadtree',
-    --  branch = 'chad',
-    --  run = {
-    --    'python3 -m chadtree deps',
-    --    ':CHADdeps',
-    --  },
-    --})
+    -- https://github.com/numToStr/Comment.nvim
+    -- Demo: https://www.youtube.com/watch?v=-InmtHhk2qM
+    use({
+      'numToStr/Comment.nvim',
+      config = function()
+        require('Comment').setup()
+      end
+    })
 
+    -- https://github.com/glepnir/lspsaga.nvim
     use({
       'glepnir/lspsaga.nvim',
       branch = 'main',
