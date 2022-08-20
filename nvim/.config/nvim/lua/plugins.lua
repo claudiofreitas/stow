@@ -11,9 +11,19 @@ require('packer').startup(
 
     use('nvim-treesitter/playground')
 
-    -- Legend of Zelda theme
+    -- Color schemes
     use('lucastrvsn/kikwis')
     use('folke/tokyonight.nvim')
+    use({
+      '~/repos/claudio-darker.lua',
+      -- config = "vim.cmd('colorscheme claudio-darker')",
+    })
+    use({
+      'marko-cerovac/material.nvim',
+      config = function ()
+        vim.g.material_style = 'darker'
+      end
+    })
 
     -- Sumneko in my repo:
     -- use('claudiofreitas/nlua.nvim')
@@ -35,10 +45,6 @@ require('packer').startup(
     --use '~/.config/nvim/pack/claudiocolor'
     --use 'marko-cerovac/material.nvim'
     use('rktjmp/lush.nvim')
-    use({
-      '~/repos/claudio-darker.lua',
-      -- config = "vim.cmd('colorscheme claudio-darker')",
-    })
 
     -- Telescope
     use({

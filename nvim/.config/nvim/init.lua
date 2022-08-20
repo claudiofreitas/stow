@@ -23,16 +23,30 @@ end
 vim.api.nvim_set_keymap("n", "<F5>", ":lua Reload_all_requires()<CR>:source ~/.config/nvim/init.lua<CR>:echo \"nvim config reloaded\"<CR>", {})
 
 -- Setup Theme
-vim.api.nvim_command('colorscheme claudio-darker')
+-- vim.api.nvim_command('colorscheme claudio-darker')
+
+vim.g.material_style = 'darker'
+require('material').setup({
+  high_visibility = {
+		lighter = false,
+		darker = true,
+	},
+
+  disable = {
+    colored_cursor = true,
+    background = false,
+  },
+})
+vim.api.nvim_command('colorscheme material')
 
 
-vim.api.nvim_command('colorscheme tokyonight')
-vim.api.nvim_set_hl(0, 'Normal', { bg = 'None' })
-vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'None' })
-vim.api.nvim_set_hl(0, 'CursorLineNr', { bg = 'None' })
-vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#555555', ctermbg = 0 })
-vim.api.nvim_set_hl(0, 'LineNr', { fg = '#5eacd3' })
-vim.api.nvim_set_hl(0, 'netrwDir', { fg = '#5eacd3' })
+-- vim.api.nvim_command('colorscheme tokyonight')
+-- vim.api.nvim_set_hl(0, 'Normal', { bg = 'None' })
+-- vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'None' })
+-- vim.api.nvim_set_hl(0, 'CursorLineNr', { bg = 'None' })
+-- vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#555555', ctermbg = 0 })
+-- vim.api.nvim_set_hl(0, 'LineNr', { fg = '#5eacd3' })
+-- vim.api.nvim_set_hl(0, 'netrwDir', { fg = '#5eacd3' })
 
 
 
