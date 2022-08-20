@@ -1,15 +1,38 @@
 
+local telescope_config = require('telescope.config')
+
+local vimgrep_arguments = {
+  unpack(telescope_config.values.vimgrep_arguments),
+}
+table.insert(vimgrep_arguments, '--hidden')
+table.insert(vimgrep_arguments, '--glob')
+table.insert(vimgrep_arguments, '!.git/*')
+
+
+
 -- Telescope
 require('telescope').setup({
   defaults = {
     prompt_prefix = '🔎 ',
     winblend = 0,
     sorting_strategy = 'ascending',
+    anchor = 'CENTER',
     layout_config = {
-      anchor = 'CENTER',
       prompt_position = 'top',
     },
     color_devicons = true,
+  },
+
+  pickers = {
+    defaults = {
+      vimgrep_arguments = vimgrep_arguments,
+    },
+
+    find_files = {
+      find_command = {
+        'rg', '--files', '--hidden', '--glob', '!.git/*',
+      },
+    },
   },
 
   extensions = {
@@ -22,6 +45,7 @@ require('telescope').setup({
     file_browser = {
       -- theme = 'dropdown',
       -- hijack_netrw = true,
+      hidden = true,
     }
   },
 })

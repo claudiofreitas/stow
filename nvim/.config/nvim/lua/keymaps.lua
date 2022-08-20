@@ -1,6 +1,6 @@
 -- General
-vim.api.nvim_set_keymap('i', '<Tab>',   '"\\<C-n>"', {expr = true})
-vim.api.nvim_set_keymap('i', '<S-Tab>', '"\\<C-p>"', {expr = true})
+-- vim.api.nvim_set_keymap('i', '<Tab>',   '"\\<C-n>"', {expr = true})
+-- vim.api.nvim_set_keymap('i', '<S-Tab>', '"\\<C-p>"', {expr = true})
 vim.api.nvim_set_keymap("n", "<F1>", ':lua vim.lsp.buf.signature_help() <CR>', {})
 vim.api.nvim_set_keymap("n", "<S-PageUp>", '5zh', {})
 vim.api.nvim_set_keymap("n", "<S-PageDown>", '5zl', {})
@@ -22,11 +22,6 @@ vim.api.nvim_set_keymap("n", "<leader>fb", "<cmd>lua require('telescope').extens
 
 -- Fugitive
 vim.api.nvim_set_keymap("n", "<C-g>", ":G <CR>", {})
-
-
-
--- CHADtree
-vim.api.nvim_set_keymap("n", "<Leader>1", ":CHADopen <CR>", {})
 
 
 

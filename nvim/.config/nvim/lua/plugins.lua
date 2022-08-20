@@ -59,11 +59,20 @@ require('packer').startup(
       requires = { 'nvim-lua/plenary.nvim' },
     })
 
-    use('hrsh7th/cmp-nvim-lsp')
+    -- https://github.com/L3MON4D3/LuaSnip
+    -- Demo: https://www.youtube.com/watch?v=Dn800rlPIho
+    use('L3MON4D3/LuaSnip')
+
+    use('hrsh7th/nvim-cmp')
     use('hrsh7th/cmp-buffer')
+    use('hrsh7th/cmp-nvim-lsp')
+    use('hrsh7th/cmp-nvim-lua')
     use('hrsh7th/cmp-path')
     use('hrsh7th/cmp-cmdline')
-    use('hrsh7th/nvim-cmp')
+
+    use('saadparwaiz1/cmp_luasnip')
+
+    use('onsails/lspkind.nvim')
 
     -- https://github.com/numToStr/Comment.nvim
     -- Demo: https://www.youtube.com/watch?v=-InmtHhk2qM
