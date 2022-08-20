@@ -25,6 +25,10 @@ require('packer').startup(
       end
     })
 
+    use({
+      'nvim-lualine/lualine.nvim',
+    })
+
     -- Sumneko in my repo:
     -- use('claudiofreitas/nlua.nvim')
 
