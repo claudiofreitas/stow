@@ -1,8 +1,8 @@
 -- https://github.com/nvim-lualine/lualine.nvim
 require('lualine').setup({
-  options = {
-    theme = 'material',
-  },
+  -- options = {
+  --   theme = 'material',
+  -- },
 
   -- https://github.com/nvim-lualine/lualine.nvim#general-component-options
   -- sections = {

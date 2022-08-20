@@ -3,6 +3,9 @@ local opt = vim.opt
 -- Show line numbers
 vim.wo.number = true
 
+-- Relative line numbers
+vim.wo.relativenumber = false
+
 -- Default: 'internal,filler,closeoff'
 opt.diffopt = 'internal,filler,closeoff,vertical,context:99999'
 
@@ -23,9 +26,6 @@ opt.fillchars = {
 }
 
 opt.foldenable = false
-
--- Relative line numbers
-vim.wo.relativenumber = true
 
 -- Keep everything in the same line
 vim.wo.wrap = false
