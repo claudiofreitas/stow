@@ -24,6 +24,7 @@ require('packer').startup(
         vim.g.material_style = 'darker'
       end
     })
+    use('sainnhe/sonokai')
 
     use({
       'nvim-lualine/lualine.nvim',

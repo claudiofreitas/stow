@@ -24,48 +24,13 @@ Reload_all_requires = function()
 end
 vim.api.nvim_set_keymap("n", "<F5>", ":lua Reload_all_requires()<CR>:source ~/.config/nvim/init.lua<CR>:echo \"nvim config reloaded\"<CR>", {})
 
--- Setup Theme
+
+--> [[ Setup Theme ]]
 -- vim.api.nvim_command('colorscheme claudio-darker')
-
-vim.g.material_style = 'darker'
-require('material').setup({
-  high_visibility = {
-		lighter = false,
-		darker = true,
-	},
-
-  custom_highlights = {
-    Normal = { bg = 'None' },
-    LineNr = { bg = 'None' },
-    SignColumn = { bg = 'None' },
-    CursorLineNr = { bg = 'None' },
-    GitSignsAdd = { bg = 'None', fg = '#c3e88d' },
-    GitSignsDelete = { bg = 'None', fg = '#f07178' },
-  },
-
-  disable = {
-    colored_cursor = true,
-    background = false,
-  },
-})
--- vim.api.nvim_command('colorscheme material')
-
-
--- vim.g.tokyonight_style = 'night'
-vim.api.nvim_command('colorscheme tokyonight')
-vim.api.nvim_set_hl(0, 'Normal', { bg = 'None' })
-vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'None' })
-vim.api.nvim_set_hl(0, 'CursorLineNr', { bg = 'None' })
-vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#555555', ctermbg = 0 })
-vim.api.nvim_set_hl(0, 'LineNr', { fg = '#5eacd3' })
-vim.api.nvim_set_hl(0, 'netrwDir', { fg = '#5eacd3' })
-vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = '#c3e88d', bg = 'None' })
--- vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = '#f07178', bg = 'None' })
-
-
-
-
----vim.api.nvim_command('colorscheme kikwis')
+-- vim.api.nvim_command('colorscheme kikwis')
+-- require('setup-colorscheme-material')
+-- require('setup-colorscheme-tokyonight')
+require('setup-colorscheme-sonokai')
 
 
 
