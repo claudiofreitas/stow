@@ -7,6 +7,7 @@ require("setup-gitsigns")
 require("setup-cmp")
 require("setup-lspsaga")
 require("setup-lualine")
+require("setup-nullls")
 require("keymaps")
 
 -- Refresh
@@ -21,6 +22,7 @@ Reload_all_requires = function()
   package.loaded["setup-lspsaga"] = nil
   package.loaded["setup-lualine"] = nil
   package.loaded["keymaps"] = nil
+  package.loaded["setup-nullls"] = nil
 end
 vim.api.nvim_set_keymap("n", "<F5>", ":lua Reload_all_requires()<CR>:source ~/.config/nvim/init.lua<CR>:echo \"nvim config reloaded\"<CR>", {})
 

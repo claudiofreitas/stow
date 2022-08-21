@@ -11,6 +11,8 @@ require('packer').startup(
 
     use('nvim-treesitter/playground')
 
+
+
     -- Color schemes
     use('lucastrvsn/kikwis')
     use('folke/tokyonight.nvim')
@@ -30,11 +32,11 @@ require('packer').startup(
       'nvim-lualine/lualine.nvim',
     })
 
+
+
     -- Sumneko in my repo:
     -- use('claudiofreitas/nlua.nvim')
 
-    --" (OPTIONAL): If you want to use built-in LSP (requires Neovim HEAD)
-    --"   Currently only supported LSP, but others could work in future if people send PRs :)
     use('neovim/nvim-lspconfig')
 
     --" (OPTIONAL): This is a suggested plugin to get better Lua syntax highlighting
@@ -84,6 +86,10 @@ require('packer').startup(
     use('saadparwaiz1/cmp_luasnip')
 
     use('onsails/lspkind.nvim')
+
+    use('jose-elias-alvarez/null-ls.nvim')
+
+
 
     -- https://github.com/numToStr/Comment.nvim
     -- Demo: https://www.youtube.com/watch?v=-InmtHhk2qM
