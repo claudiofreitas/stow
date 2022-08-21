@@ -12,29 +12,36 @@ local function custom_config(_config)
     "force",
     {
       capabilities = cmp_updated_capabilities,
-      on_attach = function() --> signature: function(client, bufnr)
-        nnoremap('<leader>vd', function() vim.diagnostic.open_float() end, { buffer = 0 }) -- "view diagnostics"
-        nnoremap('<leader><cr>', function() vim.lsp.buf.code_action() end, { buffer = 0 })
-        nnoremap('K', vim.lsp.buf.hover, { buffer = 0 })
-        nnoremap('<C-K>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { buffer = 0 })
-        nnoremap('gd', vim.lsp.buf.definition, { buffer = 0 }) -- "go definition"
-        nnoremap('gi', vim.lsp.buf.implementation, { buffer = 0 }) -- "go implementation"
-        -- nnoremap('gr', vim.lsp.buf.references, { buffer = 0 }) -- "go references"
-        nnoremap('gr', '<cmd>Telescope lsp_references<cr>', { buffer = 0 }) -- "go references"
-        nnoremap('<leader>re', vim.lsp.buf.rename, { buffer = 0 })
+      on_attach = function(client, bufnr) --> signature: function(client, bufnr)
+        local current_buffer_option = { buffer = bufnr }
+        nnoremap('<leader>vd', function() vim.diagnostic.open_float() end, current_buffer_option) -- "view diagnostics"
+        nnoremap('<leader><cr>', function() vim.lsp.buf.code_action() end, current_buffer_option)
+        nnoremap('K', vim.lsp.buf.hover, current_buffer_option)
+        nnoremap('<C-K>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', current_buffer_option)
+        nnoremap('gd', vim.lsp.buf.definition, current_buffer_option) -- "go definition"
+        nnoremap('gi', vim.lsp.buf.implementation, current_buffer_option) -- "go implementation"
+        -- nnoremap('gr', vim.lsp.buf.references, current_buffer_option) -- "go references"
+        nnoremap('gr', '<cmd>Telescope lsp_references<cr>', current_buffer_option) -- "go references"
+        nnoremap('<leader>re', vim.lsp.buf.rename, current_buffer_option)
+
+        if client.server_capabilities.document_highlight then
+          local lspHighlightGroup = vim.api.nvim_create_augroup('LspHighlightOnCursorHold', { clear = true })
+          vim.api.nvim_create_autocmd('CursorMoved', {
+            callback = vim.lsp.buf.document_highlight,
+            group = lspHighlightGroup,
+          })
+          vim.api.nvim_create_autocmd('CursorMoved', {
+            callback = vim.lsp.buf.clear_references,
+            group = lspHighlightGroup,
+          })
+        end
       end,
     },
     _config or {}
   )
 end
 
-lspconfig.util.default_config = vim.tbl_extend(
-  "force",
-  lspconfig.util.default_config,
-  {
-    log_level = vim.lsp.protocol.MessageType.Error,
-  }
-)
+
 
 -- Lua (sumneko)
 local sumneko_binary_path = '/Users/claudio/repos/lua-language-server/bin/macOS/lua-language-server'

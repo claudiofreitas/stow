@@ -32,8 +32,19 @@ vim.api.nvim_set_keymap("n", "<F5>", ":lua Reload_all_requires()<CR>:source ~/.c
 -- require('setup-colorscheme-tokyonight')
 require('setup-colorscheme-sonokai')
 
-
-
+-- local my_group = vim.api.nvim_create_augroup('mygroup', { clear = true })
+-- vim.api.nvim_create_autocmd(
+--   'InsertLeave',
+--   {
+--     -- command = "echo 'Hello'",
+--     callback = function ()
+--       -- print 'hi 1'
+--       -- print 'hi 2'
+--       vim.cmd('w')
+--     end,
+--     group = my_group,
+--   }
+-- )
 
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
