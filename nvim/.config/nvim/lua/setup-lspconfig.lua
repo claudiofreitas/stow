@@ -23,6 +23,7 @@ local function custom_config(_config)
         -- nnoremap('gr', vim.lsp.buf.references, current_buffer_option) -- "go references"
         nnoremap('gr', '<cmd>Telescope lsp_references<cr>', current_buffer_option) -- "go references"
         nnoremap('<leader>re', vim.lsp.buf.rename, current_buffer_option)
+        nnoremap('<leader>f', vim.lsp.buf.format, current_buffer_option)
 
         if client.server_capabilities.document_highlight then
           local lspHighlightGroup = vim.api.nvim_create_augroup('LspHighlightOnCursorHold', { clear = true })
