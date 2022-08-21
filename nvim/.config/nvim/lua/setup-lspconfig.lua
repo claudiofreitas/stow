@@ -4,16 +4,24 @@ local lspconfig = require('lspconfig')
 local function nnoremap(lhs, rhs, options)
   vim.keymap.set('n', lhs, rhs, options)
 end
-
+local vim_lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
+local cmp_updated_capabilities = require('cmp_nvim_lsp').update_capabilities(vim_lsp_capabilities)
 
 local function custom_config(_config)
   return vim.tbl_deep_extend(
     "force",
     {
-      capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+      capabilities = cmp_updated_capabilities,
       on_attach = function() --> signature: function(client, bufnr)
-        nnoremap('<leader>vd', function() vim.diagnostic.open_float() end)
-        nnoremap('<leader><cr>', function() vim.lsp.buf.code_action() end)
+        nnoremap('<leader>vd', function() vim.diagnostic.open_float() end, { buffer = 0 }) -- "view diagnostics"
+        nnoremap('<leader><cr>', function() vim.lsp.buf.code_action() end, { buffer = 0 })
+        nnoremap('K', vim.lsp.buf.hover, { buffer = 0 })
+        nnoremap('<C-K>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', { buffer = 0 })
+        nnoremap('gd', vim.lsp.buf.definition, { buffer = 0 }) -- "go definition"
+        nnoremap('gi', vim.lsp.buf.implementation, { buffer = 0 }) -- "go implementation"
+        -- nnoremap('gr', vim.lsp.buf.references, { buffer = 0 }) -- "go references"
+        nnoremap('gr', '<cmd>Telescope lsp_references<cr>', { buffer = 0 }) -- "go references"
+        nnoremap('<leader>re', vim.lsp.buf.rename, { buffer = 0 })
       end,
     },
     _config or {}
@@ -28,11 +36,9 @@ lspconfig.util.default_config = vim.tbl_extend(
   }
 )
 
--- Lua Language Server (sumneko)
+-- Lua (sumneko)
 local sumneko_binary_path = '/Users/claudio/repos/lua-language-server/bin/macOS/lua-language-server'
 local sumneko_root_path = '/Users/claudio/repos/lua-language-server/main.lua'
-
-local a
 
 lspconfig.sumneko_lua.setup(custom_config({
   cmd = { sumneko_binary_path, "-E", sumneko_root_path },
@@ -56,28 +62,12 @@ lspconfig.sumneko_lua.setup(custom_config({
       },
     }
   },
-  capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities()),
 }))
 
-local rust_config = {
-  cmd = { "rustup", "run", "nightly", "rust-analyzer" },
-}
-
---lspconfig.rust_analyzer.setup(rust_config)
+-- Rust
 lspconfig.rust_analyzer.setup(custom_config({}))
 
-
--- Lua Language Server (tjdevries)
---local custom_nvim_lspconfig_attach = function() end
---require('nlua.lsp.nvim').setup(require('lspconfig'), {
---  on_attach = custom_nvim_lspconfig_attach,
---  globals = {
---    "vim"
---  }
---})
-
-
-
+-- Typescript
 lspconfig.tsserver.setup(custom_config({
   filetypes = {
     "javascript",
@@ -89,52 +79,24 @@ lspconfig.tsserver.setup(custom_config({
   },
 }))
 
-
--- local on_attach = function(_, bufnr)
---   local function local_set_keymap(...)
---     vim.api.nvim_buf_set_keymap(bufnr, ...)
---   end
---   local function local_set_option(...)
---     vim.api.nvim_buf_set_option(bufnr, ...)
---   end
---
---   local_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
---
---   local opts = { noremap=true, silent=true }
---   -- See `:help vim.lsp.*` for documentation on any of the below functions
---   -- https://github.com/neovim/nvim-lspconfig
---   local_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
---   local_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
---   local_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
---   local_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
---   local_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
---   local_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
---   local_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
---   local_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
--- end
-
--- local servers = { 'tsserver' }
--- for _, server in ipairs(servers) do
---   lspconfig[server].setup({
---     on_attach = on_attach,
---     flags = {
---       debounce_text_changes = 150, -- <- What does this do?
---     }
---   })
--- end
-
-
-
-
 -- JSON (jsonls)
+lspconfig.jsonls.setup(custom_config({}))
 
-require('lspconfig').jsonls.setup({
-})
+-- Terraform
+lspconfig.terraformls.setup(custom_config({}))
 
-
-require('lspconfig').terraformls.setup({
-})
-
-
+-- HTML
+lspconfig.html.setup(custom_config({
+  capabilities = {
+    textDocument = {
+      completion = {
+        completionItem = {
+          snippetSupport = true,
+        }
+      }
+    }
+  },
+}))
 
 print("loaded setup-lspconfig.lua")
+

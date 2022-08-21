@@ -1,4 +1,5 @@
 local cmp = require('cmp')
+local luasnip = require('luasnip')
 
 -- https://github.com/onsails/lspkind.nvim
 local lspkind = require('lspkind')
@@ -7,7 +8,7 @@ local lspkind = require('lspkind')
 cmp.setup({
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)
+      luasnip.lsp_expand(args.body)
     end
   },
 
@@ -33,7 +34,7 @@ cmp.setup({
   -- Add sources in order of priority
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'nvim_lua' },
-    { name = 'luasnip' },
+    -- { name = 'nvim_lua' },
+    -- { name = 'luasnip' },
   })
 })
