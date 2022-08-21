@@ -27,6 +27,14 @@ opt.fillchars = {
 
 opt.foldenable = false
 
+-- listchars
+vim.opt.listchars = {
+  tab = ' ',
+  -- tab = '⟶ ',
+  space = '⋅',
+  eol = '↙',
+}
+
 -- Keep everything in the same line
 vim.wo.wrap = false
 
