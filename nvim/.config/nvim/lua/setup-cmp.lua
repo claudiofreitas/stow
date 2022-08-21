@@ -18,7 +18,7 @@ cmp.setup({
       menu = ({
         -- buffer = '[buf]',
         nvim_lsp = '[LSP]',
-        nvim_lua = '[n-lua]',
+        nvim_lua = '🌙',
         luasnip = '[luasnip]',
       }),
     })
@@ -34,7 +34,7 @@ cmp.setup({
   -- Add sources in order of priority
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    -- { name = 'nvim_lua' },
+    { name = 'nvim_lua' },
     -- { name = 'luasnip' },
   })
 })
