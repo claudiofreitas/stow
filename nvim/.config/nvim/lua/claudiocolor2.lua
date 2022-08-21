@@ -1,32 +1,31 @@
 local Color, colors, Group, groups, styles = require('colorbuddy').setup()
 
 Color.new('background', '#ff0000')
-Color.new('red',         '#cc6666')
-Color.new('green',       '#99cc99')
-Color.new('yellow',      '#f0c674')
-
+Color.new('red', '#cc6666')
+Color.new('green', '#99cc99')
+Color.new('yellow', '#f0c674')
 
 Group.new('Function', colors.yellow, colors.background, styles.bold)
-Group.new('luaFunctionCall' , groups.Function    , groups.Function   , groups.Function)
+Group.new('luaFunctionCall', groups.Function, groups.Function, groups.Function)
 
-Group.new('Error'           , colors.red:light() , nil               , styles.bold)
+Group.new('Error', colors.red:light(), nil, styles.bold)
 
 vim.g.colors_name = 'claudiocolor'
 
--- 
+--
 -- -- "runtime ~/.local/share/nvim/plugged/equinusocio-material.vim/autoload/equinusocio_material.vim
--- 
+--
 -- set background=dark
 -- highlight clear
 -- if exists("syntax_on")
 --   syntax reset
 -- endif
 -- let g:colors_name = "mine"
--- 
+--
 -- " :so $VIMRUNTIME/syntax/hitest.vim
--- 
+--
 -- " Color Definitions: https://www.material-theme.com/docs/reference/color-palette/
--- 
+--
 -- let s:colors = {
 -- \ 'none': 'none',
 -- \ 'background': '#212121',
@@ -56,7 +55,7 @@ vim.g.colors_name = 'claudiocolor'
 -- \ 'numbers': '#f78c6c',
 -- \ 'parameters': '#f78c6c',
 -- \ }
--- 
+--
 -- " --- Attributes -----------------------
 -- let s:attrs = {
 -- \ 'none': 'none',
@@ -65,17 +64,17 @@ vim.g.colors_name = 'claudiocolor'
 -- \ 'bold': 'bold',
 -- \ 'inverse': 'inverse',
 -- \ }
--- 
+--
 -- " --- Interface ------------------------
 -- let s:colors.lineNumber = '#424242'
 -- let s:colors.cursorLineNumber = '#a4a3a3'
--- 
+--
 -- let s:colors.black_br = '#747474'
 -- let s:colors.background_lighter = '#2f2f2f'
 -- let s:colors.cursorLine = '#181818'
 -- let s:colors.selection = '#454545'
 -- let s:colors.indentLine = '#424242'
--- 
+--
 -- let s:colors.menu_bg = '#414141'
 -- let s:colors.black = '#000000'
 -- let s:colors.red = '#ff5370'
@@ -86,49 +85,49 @@ vim.g.colors_name = 'claudiocolor'
 -- let s:colors.magenta = '#c792ea'
 -- let s:colors.cyan = '#89ddff'
 -- let s:colors.white = '#eeffff'
--- 
+--
 -- let s:colors.foreground = '#eeffff'
 -- let s:colors.caret = '#ffcc00'
 -- let s:colors.float_bg = '#000000'
 -- let s:colors.comment = s:colors.black_br
--- 
+--
 -- let s:colors.pure_black = '#000000'
 -- let s:colors.vertsplit = s:colors.cursorLine
 -- "if get(g:, 'equinusocio_material_hide_vertsplit', 0) == 1
 -- let s:colors.vertsplit = s:colors.background
 -- "endif
--- 
--- 
+--
+--
 -- function! s:hl(group, fg, bg, attr)
 --   execute 'highlight! ' . a:group . ' ctermfg=NONE'
 --   execute 'highlight! ' . a:group . ' ctermbg=NONE'
 --   execute 'highlight! ' . a:group . ' cterm=NONE'
--- 
+--
 --   if !empty(a:fg)
 --     execute 'highlight! ' . a:group . ' guifg=' . a:fg
 --   else
 --     execute 'highlight! ' . a:group . ' guifg=NONE'
 --   endif
--- 
+--
 --   if !empty(a:bg)
 --     execute 'highlight! ' . a:group . ' guibg=' . a:bg
 --   else
 --     execute 'highlight! ' . a:group . ' guibg=NONE'
 --   endif
--- 
+--
 --   if !empty(a:attr)
 --     execute 'highlight! ' . a:group . ' gui=' . a:attr
 --   else
 --     execute 'highlight! ' . a:group . ' gui=NONE'
 --   endif
 -- endfunction
--- 
+--
 -- function! s:link(group, parentGroup)
 --   execute 'highlight! link ' . a:group . ' ' . a:parentGroup
 -- endfunction
--- 
--- 
--- 
+--
+--
+--
 -- " ====================================================
 -- " editor color scheme
 -- " ----------------------------------------------------
@@ -136,7 +135,7 @@ vim.g.colors_name = 'claudiocolor'
 -- call s:hl('LineNr', s:colors.lineNumber, s:colors.background, s:colors.none) " Line number w/out focus
 -- call s:hl('CursorLine', s:colors.none, s:colors.cursorLine, s:colors.none) " Line where the cursor is located
 -- call s:hl('CursorLineNr', s:colors.cursorLineNumber, s:colors.cursorLine, s:colors.none) " The line number with focus
--- 
+--
 -- call s:hl('NonText', s:colors.indentLine, s:colors.none, s:colors.none)
 -- call s:hl('Conceal', s:colors.blue, s:colors.none, s:colors.none)
 -- call s:hl('Cursor', s:colors.black, s:colors.caret, s:colors.none)
@@ -196,8 +195,8 @@ vim.g.colors_name = 'claudiocolor'
 -- call s:hl('WarningMsg', s:colors.red, s:colors.none, s:colors.none)
 -- call s:hl('WildMenu', s:colors.black, s:colors.cyan, s:colors.none)
 -- " ====================================================
--- 
--- 
+--
+--
 -- " ====================================================
 -- " standard syntax
 -- " ----------------------------------------------------
@@ -237,47 +236,47 @@ vim.g.colors_name = 'claudiocolor'
 -- call s:hl('Error', s:colors.red, s:colors.none, s:colors.none)
 -- call s:hl('Todo', s:colors.orange, s:colors.none, s:colors.none)
 -- " ====================================================
--- 
--- 
+--
+--
 -- " ====================================================
 -- " vim-lsp
 -- " ----------------------------------------------------
 -- call s:hl('SignColumn', s:colors.foreground, '#1b1b1b', s:colors.none)
 -- call s:hl('LspDiagnosticsErrorSign', s:colors.red, '#1b1b1b', s:attrs.none)
 -- call s:hl('LspDiagnosticsHintSign', s:colors.green, '#1b1b1b', s:attrs.none)
--- 
+--
 -- call s:hl('LspErrorText', s:colors.red, s:colors.none, s:colors.none)
 -- call s:hl('LspWarningText', s:colors.yellow, s:colors.none, s:colors.none)
 -- call s:hl('LspInformationText', s:colors.orange, s:colors.none, s:colors.none)
 -- call s:hl('LspHintText', s:colors.cyan, s:colors.none, s:colors.none)
--- 
+--
 -- call s:hl('LspErrorHighlight', s:colors.red, s:colors.none, s:attrs.underline)
 -- call s:hl('LspWarningHighlight', s:colors.none, s:colors.none, s:attrs.underline)
 -- call s:hl('LspInformationHighlight', s:colors.none, s:colors.none, s:attrs.underline)
 -- call s:hl('LspHintHighlight', s:colors.none, s:colors.none, s:attrs.none)
 -- " ====================================================
--- 
--- 
+--
+--
 -- " ---- TypescriptSpecific ----------------------------
--- 
+--
 -- let s:keywords = [
---   \ 'typescriptClassKeyword', 
---   \ 'typescriptClassStatic', 
---   \ 'typescriptDefault', 
+--   \ 'typescriptClassKeyword',
+--   \ 'typescriptClassStatic',
+--   \ 'typescriptDefault',
 --   \ 'typescriptIdentifierName'
 -- \ ]
 -- for item in s:keywords
 --   call s:hl(item, s:colors.keywords, s:colors.none, s:colors.none)
 -- endfor
--- 
--- 
+--
+--
 -- let s:attributes = [
 --   \ 'typescriptClassName'
 -- \]
 -- for item in s:attributes
 --   call s:hl(item, s:colors.attributes, s:colors.none, s:colors.none)
 -- endfor
--- 
+--
 -- let s:functions = [
 --  \ 'vimFunction',
 --  \ 'vimUserFunc',
@@ -285,8 +284,8 @@ vim.g.colors_name = 'claudiocolor'
 -- for item in s:functions
 --   call s:hl(item, s:colors.functions, s:colors.none, s:attrs.none)
 -- endfor
--- 
+--
 -- "hi! link vimFunction functions
--- 
+--
 -- "call s:hl('NERDTreeHelp', s:colors.strings, '#000000', s:colors.none)
--- 
+--

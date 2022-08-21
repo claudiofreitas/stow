@@ -9,4 +9,3 @@ vim.api.nvim_set_hl(0, 'LineNr', { fg = '#5eacd3' })
 vim.api.nvim_set_hl(0, 'netrwDir', { fg = '#5eacd3' })
 vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg = '#c3e88d', bg = 'None' })
 vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = '#f07178', bg = 'None' })
-

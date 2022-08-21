@@ -13,26 +13,26 @@ opt.diffopt = 'internal,filler,closeoff,vertical,context:99999'
 opt.signcolumn = 'yes'
 
 opt.fillchars = {
-  stl = ' ',
-  stlnc = ' ',
-  vert = '│',
-  fold = '-',
-  foldopen = '',
-  foldclose = '',
-  foldsep = '│',
-  diff = ' ',
-  msgsep = ' ',
-  eob = ' ',
+	stl = ' ',
+	stlnc = ' ',
+	vert = '│',
+	fold = '-',
+	foldopen = '',
+	foldclose = '',
+	foldsep = '│',
+	diff = ' ',
+	msgsep = ' ',
+	eob = ' ',
 }
 
 opt.foldenable = false
 
 -- listchars
 vim.opt.listchars = {
-  tab = ' ',
-  -- tab = '⟶ ',
-  space = '⋅',
-  eol = '↙',
+	tab = ' ',
+	-- tab = '⟶ ',
+	space = '⋅',
+	eol = '↙',
 }
 
 -- Keep everything in the same line
@@ -80,7 +80,7 @@ opt.laststatus = 3
 
 -- Default: ""
 -- opt.tabline = "%-0F"
-opt.tabline = "%-0F"
+opt.tabline = '%-0F'
 
 -- Faster completion (default: 4000ms)
 opt.updatetime = 150
@@ -134,14 +134,13 @@ opt.ignorecase = true
 
 --set completeopt=menuone,noinsert,noselect
 opt.completeopt = 'menuone,noinsert,noselect'
-vim.g.completion_matching_strategy_list = {'exact', 'substring', 'fuzzy'}
+vim.g.completion_matching_strategy_list = { 'exact', 'substring', 'fuzzy' }
 
--- Remove the "Match x of y" at the end of the insert list (ctrl+n) 
-opt.shortmess = opt.shortmess:append("c")
+-- Remove the "Match x of y" at the end of the insert list (ctrl+n)
+opt.shortmess = opt.shortmess:append('c')
 
--- Enables 24-bit RGB color in the TUI. Uses "gui" :highlight attributes instead of "cterm" attributes. 
+-- Enables 24-bit RGB color in the TUI. Uses "gui" :highlight attributes instead of "cterm" attributes.
 opt.termguicolors = true
-
 
 vim.g.mapleader = ' '
 
