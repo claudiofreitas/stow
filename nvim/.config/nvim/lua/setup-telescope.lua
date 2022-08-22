@@ -10,7 +10,9 @@ table.insert(vimgrep_arguments, '!.git/*')
 -- Telescope
 require('telescope').setup({
 	defaults = {
-		prompt_prefix = '🔎 ',
+		-- prompt_prefix = '🔭 ',
+		prompt_prefix = '  ',
+		-- prompt_prefix = '🔎 ',
 		winblend = 0,
 		sorting_strategy = 'ascending',
 		anchor = 'CENTER',
