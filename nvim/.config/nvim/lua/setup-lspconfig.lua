@@ -7,45 +7,58 @@ end
 local vim_lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
 local cmp_updated_capabilities = require('cmp_nvim_lsp').update_capabilities(vim_lsp_capabilities)
 
+-- keymap configuration
+local function configure_keymaps(buffer_number)
+	local current_buffer_option = { buffer = buffer_number }
+
+	nnoremap('<leader>vd', function()
+		vim.diagnostic.open_float()
+	end, current_buffer_option) -- "view diagnostics"
+
+	nnoremap('<leader><cr>', function()
+		vim.lsp.buf.code_action()
+	end, current_buffer_option)
+
+	nnoremap('K', vim.lsp.buf.hover, current_buffer_option)
+	nnoremap('<C-K>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', current_buffer_option)
+	nnoremap('gd', vim.lsp.buf.definition, current_buffer_option) -- "go definition"
+	nnoremap('gi', vim.lsp.buf.implementation, current_buffer_option) -- "go implementation"
+	-- nnoremap('gr', vim.lsp.buf.references, current_buffer_option) -- "go references"
+	nnoremap('gr', '<cmd>Telescope lsp_references<cr>', current_buffer_option) -- "go references"
+	nnoremap('<leader>re', vim.lsp.buf.rename, current_buffer_option)
+	nnoremap('<leader>f', function()
+		vim.lsp.buf.format({ timeout = 2000 })
+	end, current_buffer_option)
+end
+
+-- custom default configuration
 local function custom_config(_config)
-	return vim.tbl_deep_extend('force', {
+	local custom_on_attach = function(lsp_client, buffer_number) --> signature: function(client, bufnr)
+		if lsp_client.name == 'tsserver' then
+			lsp_client.server_capabilities.documentFormattingProvider = false
+		end
+
+		configure_keymaps(buffer_number)
+
+		if lsp_client.server_capabilities.document_highlight then
+			local lspHighlightGroup = vim.api.nvim_create_augroup('LspHighlightOnCursorHold', { clear = true })
+			vim.api.nvim_create_autocmd('CursorMoved', {
+				callback = vim.lsp.buf.document_highlight,
+				group = lspHighlightGroup,
+			})
+			vim.api.nvim_create_autocmd('CursorMoved', {
+				callback = vim.lsp.buf.clear_references,
+				group = lspHighlightGroup,
+			})
+		end
+	end
+
+	local extended_configuration = vim.tbl_deep_extend('force', {
 		capabilities = cmp_updated_capabilities,
-		on_attach = function(client, bufnr) --> signature: function(client, bufnr)
-			if client.name == 'tsserver' then
-				client.server_capabilities.documentFormattingProvider = false
-			end
-
-			local current_buffer_option = { buffer = bufnr }
-			nnoremap('<leader>vd', function()
-				vim.diagnostic.open_float()
-			end, current_buffer_option) -- "view diagnostics"
-			nnoremap('<leader><cr>', function()
-				vim.lsp.buf.code_action()
-			end, current_buffer_option)
-			nnoremap('K', vim.lsp.buf.hover, current_buffer_option)
-			nnoremap('<C-K>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', current_buffer_option)
-			nnoremap('gd', vim.lsp.buf.definition, current_buffer_option) -- "go definition"
-			nnoremap('gi', vim.lsp.buf.implementation, current_buffer_option) -- "go implementation"
-			-- nnoremap('gr', vim.lsp.buf.references, current_buffer_option) -- "go references"
-			nnoremap('gr', '<cmd>Telescope lsp_references<cr>', current_buffer_option) -- "go references"
-			nnoremap('<leader>re', vim.lsp.buf.rename, current_buffer_option)
-			nnoremap('<leader>f', function()
-				vim.lsp.buf.format({ timeout = 2000 })
-			end, current_buffer_option)
-
-			if client.server_capabilities.document_highlight then
-				local lspHighlightGroup = vim.api.nvim_create_augroup('LspHighlightOnCursorHold', { clear = true })
-				vim.api.nvim_create_autocmd('CursorMoved', {
-					callback = vim.lsp.buf.document_highlight,
-					group = lspHighlightGroup,
-				})
-				vim.api.nvim_create_autocmd('CursorMoved', {
-					callback = vim.lsp.buf.clear_references,
-					group = lspHighlightGroup,
-				})
-			end
-		end,
+		on_attach = custom_on_attach,
 	}, _config or {})
+
+	return extended_configuration
 end
 
 -- Lua (sumneko)
