@@ -88,7 +88,41 @@ opt.updatetime = 150
 -- Time in miliseconds to wait for a mapped sequence to complete (Default: 1000)
 opt.timeoutlen = 300
 
--- set formatoptions-=cro                  " Stop newline continution of comments
+-- default: 'jcroql' -- help: fo-table
+-- opt.formatoptions = ''
+
+-- opt.formatoptions = opt.formatoptions .. 'c'
+opt.formatoptions = opt.formatoptions:remove('c')
+-- ↑ Auto-wrap comments using 'textwidth',
+-- inserting the current comment leader automatically.
+
+opt.formatoptions = opt.formatoptions:remove('r')
+-- ↑ Automatically insert the current comment leader
+-- after hitting <Enter> in Insert mode.
+
+opt.formatoptions = opt.formatoptions:remove('o')
+-- ↑ Automatically insert the current comment leader
+-- after hitting 'o' or 'O' in Normal mode. In case comment is unwanted
+-- in a specific place use CTRL-U to quickly delete it.
+
+opt.formatoptions = opt.formatoptions:append('j')
+-- ↑ Where it makes sense, remove a comment leader when joining lines.  For
+-- example, joining:
+-- 	int i;   // the index
+-- 	         // in the list
+-- Becomes:
+-- 	int i;   // the index in the list
+
+opt.formatoptions = opt.formatoptions:append('q')
+-- ↑ Allow formatting of comments with "gq".
+-- Note that formatting will not change blank lines or lines containing
+-- only the comment leader.  A new paragraph starts after such a line,
+-- or when the comment leader changes.
+
+opt.formatoptions = opt.formatoptions:append('l')
+-- ↑ Long lines are not broken in insert mode: When a line was longer than
+-- 'textwidth' when the insert command started, Vim does not
+-- automatically format it.
 
 -- Copy paste between vim and everything else
 opt.clipboard = 'unnamedplus'
