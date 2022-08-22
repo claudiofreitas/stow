@@ -77,6 +77,8 @@ vim.api.nvim_exec(
 require('nvim-tree').setup({})
 vim.api.nvim_set_keymap('n', '<leader>1', '<cmd>NvimTreeToggle<cr>', {})
 
+require('nvim-autopairs').setup({})
+
 -- Fix indent behavior on yaml files
 vim.cmd([[
     filetype plugin indent on
