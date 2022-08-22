@@ -11,6 +11,10 @@ local function custom_config(_config)
 	return vim.tbl_deep_extend('force', {
 		capabilities = cmp_updated_capabilities,
 		on_attach = function(client, bufnr) --> signature: function(client, bufnr)
+			if client.name == 'tsserver' then
+				client.server_capabilities.documentFormattingProvider = false
+			end
+
 			local current_buffer_option = { buffer = bufnr }
 			nnoremap('<leader>vd', function()
 				vim.diagnostic.open_float()
@@ -25,7 +29,9 @@ local function custom_config(_config)
 			-- nnoremap('gr', vim.lsp.buf.references, current_buffer_option) -- "go references"
 			nnoremap('gr', '<cmd>Telescope lsp_references<cr>', current_buffer_option) -- "go references"
 			nnoremap('<leader>re', vim.lsp.buf.rename, current_buffer_option)
-			nnoremap('<leader>f', vim.lsp.buf.format, current_buffer_option)
+			nnoremap('<leader>f', function()
+				vim.lsp.buf.format({ timeout = 2000 })
+			end, current_buffer_option)
 
 			if client.server_capabilities.document_highlight then
 				local lspHighlightGroup = vim.api.nvim_create_augroup('LspHighlightOnCursorHold', { clear = true })
@@ -84,6 +90,12 @@ lspconfig.tsserver.setup(custom_config({
 		'typescript.tsx',
 	},
 }))
+
+-- css
+lspconfig.cssls.setup(custom_config({}))
+
+-- css modules
+lspconfig.cssmodules_ls.setup(custom_config({}))
 
 -- JSON (jsonls)
 lspconfig.jsonls.setup(custom_config({}))
