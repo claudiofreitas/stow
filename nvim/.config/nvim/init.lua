@@ -72,7 +72,8 @@ vim.api.nvim_exec([[
   sign define DiagnosticSignHint  text= linehl= numhl= texthl=DiagnosticSignHint
 ]], false)
 
-
+require('nvim-tree').setup({})
+vim.api.nvim_set_keymap("n", "<leader>1", "<cmd>NvimTreeToggle<cr>", {})
 
 -- Fix indent behavior on yaml files
 vim.cmd([[

@@ -58,6 +58,7 @@ require('packer').startup(function(use)
 	})
 
 	use('kyazdani42/nvim-web-devicons')
+  use('kyazdani42/nvim-tree.lua')
 
 	use('tpope/vim-fugitive')
 
