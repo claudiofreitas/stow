@@ -1,4 +1,26 @@
 -- https://github.com/nvim-lualine/lualine.nvim
+
+local function get_lsp_clients()
+	local empty_msg = 'No Active LSP'
+	local lsp_clients = vim.lsp.get_active_clients()
+	if next(lsp_clients) == nil then
+		return empty_msg
+	end
+
+	local msg = ''
+	for i, client in ipairs(lsp_clients) do
+		local filetypes = client.config.filetypes
+		local buffer_filetype = vim.api.nvim_buf_get_option(0, 'filetype')
+		if filetypes and vim.fn.index(filetypes, buffer_filetype) ~= -1 then
+			if i ~= 1 then
+				msg = msg .. ','
+			end
+			msg = msg .. client.name
+		end
+	end
+	return msg or empty_msg
+end
+
 require('lualine').setup({
 	options = {
 		theme = 'auto',
@@ -18,21 +40,7 @@ require('lualine').setup({
 		lualine_c = {
 			{ 'filename' },
 			{
-				function()
-					local msg = 'No Active LSP'
-					local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-					local clients = vim.lsp.get_active_clients()
-					if next(clients) == nil then
-						return msg
-					end
-					for _, client in ipairs(clients) do
-						local filetypes = client.config.filetypes
-						if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
-							return client.name
-						end
-					end
-					return msg
-				end,
+				get_lsp_clients,
 				icon = ' LSP:',
 				color = {
 					fg = '#ffffff',
