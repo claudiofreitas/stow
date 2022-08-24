@@ -35,8 +35,9 @@ vim.api.nvim_set_keymap(
 -- vim.api.nvim_command('colorscheme claudio-darker')
 -- vim.api.nvim_command('colorscheme kikwis')
 -- require('setup-colorscheme-material')
--- require('setup-colorscheme-tokyonight')
-require('setup-colorscheme-sonokai')
+require('setup-colorscheme-tokyonight')
+-- require('setup-colorscheme-sonokai')
+-- vim.api.nvim_command('colorscheme rose-pine')
 
 -- local my_group = vim.api.nvim_create_augroup('mygroup', { clear = true })
 -- vim.api.nvim_create_autocmd(
@@ -78,6 +79,24 @@ require('nvim-tree').setup({})
 vim.api.nvim_set_keymap('n', '<leader>1', '<cmd>NvimTreeToggle<cr>', {})
 
 require('nvim-autopairs').setup({})
+
+vim.cmd([[highlight IndentBlanklineIndent1 guibg=#1f1f1f gui=nocombine]])
+vim.cmd([[highlight IndentBlanklineIndent2 guibg=#1a1a1a gui=nocombine]])
+require('indent_blankline').setup({
+	space_char_blankline = ' ',
+	-- char = '',
+	-- char_highlight_list = {
+	-- 	'IndentBlanklineIndent1',
+	-- 	'IndentBlanklineIndent2',
+	-- },
+	-- space_char_highlight_list = {
+	-- 	'IndentBlanklineIndent1',
+	-- 	'IndentBlanklineIndent2',
+	-- },
+	-- show_trailing_blankline_indent = false,
+	-- show_current_context = true,
+	-- show_current_context_start = true,
+})
 
 -- Fix indent behavior on yaml files
 vim.cmd([[
