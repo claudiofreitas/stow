@@ -101,6 +101,8 @@ require('packer').startup(function(use)
 		branch = 'main',
 	})
 
+  use('j-hui/fidget.nvim')
+
 	use('windwp/nvim-autopairs')
 
   use('lukas-reineke/indent-blankline.nvim')
