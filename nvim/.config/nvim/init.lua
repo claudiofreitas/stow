@@ -9,6 +9,7 @@ require('setup-lspsaga')
 require('setup-lualine')
 require('setup-nullls')
 require('setup-fidget')
+require('setup-notify')
 require('keymaps')
 
 -- Refresh
@@ -25,6 +26,7 @@ Reload_all_requires = function()
 	package.loaded['keymaps'] = nil
 	package.loaded['setup-nullls'] = nil
 	package.loaded['setup-fidget'] = nil
+	package.loaded['setup-notify'] = nil
 end
 vim.api.nvim_set_keymap(
 	'n',
