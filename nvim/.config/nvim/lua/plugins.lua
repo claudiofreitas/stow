@@ -23,6 +23,8 @@ require('packer').startup(function(use)
 		end,
 	})
 	use('sainnhe/sonokai')
+  use('rose-pine/neovim')
+  use('tiagovla/tokyodark.nvim')
 
 	use({
 		'nvim-lualine/lualine.nvim',
