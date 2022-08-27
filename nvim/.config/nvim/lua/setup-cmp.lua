@@ -20,6 +20,7 @@ cmp.setup({
 				nvim_lsp = '[LSP]',
 				nvim_lua = '🌙',
 				luasnip = '[luasnip]',
+        path = '[path]',
 			},
 		}),
 	},
@@ -37,6 +38,7 @@ cmp.setup({
 		{ name = 'nvim_lua' },
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
+    { name = 'path' }
 	}),
 
 	experimental = {
