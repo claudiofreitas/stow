@@ -32,6 +32,10 @@ require('nvim-treesitter.configs').setup({
 		},
 	},
 
+	autotag = {
+		enable = true,
+	},
+
 	-- Indent (experimental) https://github.com/nvim-treesitter/nvim-treesitter#indentation
 	--indent = {
 	--  enable = true
