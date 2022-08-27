@@ -129,4 +129,7 @@ lspconfig.html.setup(custom_config({
 	},
 }))
 
+-- Tailwind CSS
+lspconfig.tailwindcss.setup(custom_config({}))
+
 print('loaded setup-lspconfig.lua')
