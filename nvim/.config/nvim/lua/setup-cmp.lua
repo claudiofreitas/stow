@@ -35,10 +35,10 @@ cmp.setup({
 
 	-- Add sources in order of priority
 	sources = cmp.config.sources({
+    { name = 'path' },
 		{ name = 'nvim_lua' },
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
-    { name = 'path' }
 	}),
 
 	experimental = {

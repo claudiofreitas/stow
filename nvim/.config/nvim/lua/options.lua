@@ -34,6 +34,7 @@ vim.opt.listchars = {
 	space = '⋅',
 	eol = '↙',
 }
+vim.opt.list = false
 
 -- Keep everything in the same line
 vim.wo.wrap = false

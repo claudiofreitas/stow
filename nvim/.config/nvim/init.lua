@@ -1,39 +1,33 @@
-require('options')
-require('plugins')
-require('setup-treesitter')
-require('setup-telescope')
-require('setup-lspconfig')
-require('setup-gitsigns')
-require('setup-cmp')
-require('setup-lspsaga')
-require('setup-lualine')
-require('setup-nullls')
-require('setup-fidget')
-require('setup-notify')
-require('keymaps')
+local autoload_packages = {
+	'options',
+	'plugins',
+	'setup-treesitter',
+	'setup-telescope',
+	'setup-lspconfig',
+	'setup-gitsigns',
+	'setup-cmp',
+	'setup-lspsaga',
+	'setup-lualine',
+	'setup-nullls',
+	'setup-fidget',
+	'setup-notify',
+	'keymaps',
+}
+
+for _, package_name in ipairs(autoload_packages) do
+	require(package_name)
+end
 
 -- Refresh
 Reload_all_requires = function()
-	package.loaded['options'] = nil
-	package.loaded['plugins'] = nil
-	package.loaded['setup-treesitter'] = nil
-	package.loaded['setup-telescope'] = nil
-	package.loaded['setup-lspconfig'] = nil
-	package.loaded['setup-gitsigns'] = nil
-	package.loaded['setup-cmp'] = nil
-	package.loaded['setup-lspsaga'] = nil
-	package.loaded['setup-lualine'] = nil
-	package.loaded['keymaps'] = nil
-	package.loaded['setup-nullls'] = nil
-	package.loaded['setup-fidget'] = nil
-	package.loaded['setup-notify'] = nil
+	for _, package_name in ipairs(autoload_packages) do
+		package.loaded[package_name] = nil
+	end
+	vim.api.nvim_command([[source ~/.config/nvim/init.lua]])
+	print('nvim config reloaded')
 end
-vim.api.nvim_set_keymap(
-	'n',
-	'<F5>',
-	':lua Reload_all_requires()<CR>:source ~/.config/nvim/init.lua<CR>:echo "nvim config reloaded"<CR>',
-	{}
-)
+
+vim.api.nvim_set_keymap('n', '<F5>', '<cmd>lua Reload_all_requires()<CR>', {})
 
 --> [[ Setup Theme ]]
 -- vim.api.nvim_command('colorscheme claudio-darker')
