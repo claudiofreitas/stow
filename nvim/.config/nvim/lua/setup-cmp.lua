@@ -29,15 +29,33 @@ cmp.setup({
 	mapping = cmp.mapping.preset.insert({
 		['<C-Space>'] = cmp.mapping.complete(),
 		['<CR>'] = cmp.mapping.confirm({ select = true }),
+		['<Tab>'] = cmp.mapping.select_next_item(),
 	}),
 
 	-- Add sources in order of priority
 	sources = cmp.config.sources({
-		{ name = 'nvim_lsp' },
 		{ name = 'nvim_lua' },
-		-- { name = 'luasnip' },
+		{ name = 'nvim_lsp' },
+		{ name = 'luasnip' },
 	}),
+
+	experimental = {
+		native_menu = false,
+		-- ghost_text = true,
+	},
 })
+
+vim.keymap.set({ 'i', 's' }, '<C-k>', function()
+	if luasnip.expand_or_jumpable() then
+		luasnip.expand_or_jump()
+	end
+end)
+
+vim.keymap.set({ 'i', 's' }, '<C-j>', function()
+	if luasnip.jumpable(-1) then
+		luasnip.jump(-1)
+	end
+end)
 
 -- require('cmp').setup({
 --   enabled = true,

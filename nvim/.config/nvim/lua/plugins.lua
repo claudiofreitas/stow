@@ -23,8 +23,8 @@ require('packer').startup(function(use)
 		end,
 	})
 	use('sainnhe/sonokai')
-  use('rose-pine/neovim')
-  use('tiagovla/tokyodark.nvim')
+	use('rose-pine/neovim')
+	use('tiagovla/tokyodark.nvim')
 
 	use({
 		'nvim-lualine/lualine.nvim',
@@ -101,11 +101,11 @@ require('packer').startup(function(use)
 		branch = 'main',
 	})
 
-  use('j-hui/fidget.nvim')
+	use('j-hui/fidget.nvim')
 
 	use('windwp/nvim-autopairs')
 
-  use('lukas-reineke/indent-blankline.nvim')
+	use('lukas-reineke/indent-blankline.nvim')
 
-  use('rcarriga/nvim-notify')
+	use('rcarriga/nvim-notify')
 end)
