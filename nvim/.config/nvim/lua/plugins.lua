@@ -110,4 +110,6 @@ require('packer').startup(function(use)
 	use('lukas-reineke/indent-blankline.nvim')
 
 	use('rcarriga/nvim-notify')
+
+	use('mattn/emmet-vim')
 end)
