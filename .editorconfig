@@ -1,0 +1,9 @@
+# https://github.com/editorconfig/editorconfig/wiki/EditorConfig-Properties#current-universal-properties
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+indent_style = tab
+
