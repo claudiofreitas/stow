@@ -112,4 +112,6 @@ require('packer').startup(function(use)
 	use('rcarriga/nvim-notify')
 
 	use('mattn/emmet-vim')
+
+  use('mbbill/undotree')
 end)

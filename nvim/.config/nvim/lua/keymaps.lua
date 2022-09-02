@@ -18,6 +18,9 @@ vim.api.nvim_set_keymap(
 	{}
 )
 
+-- Undotree
+vim.api.nvim_set_keymap('n', '<Leader>u', '<cmd>UndotreeToggle<CR>', {})
+
 -- Actually the keymap below is CTRL+/, but I don't know why it should be mapped as _
 -- vim.api.nvim_set_keymap("n", "<C-_>", ":Telescope current_buffer_fuzzy_find <CR>", {})
 
