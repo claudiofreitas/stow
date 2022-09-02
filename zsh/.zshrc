@@ -41,6 +41,7 @@ export FIREFOX_BIN="/Applications/Firefox Developer Edition.app/Contents/MacOS/f
 export MANPAGER="sh -c 'col -bx | bat --color=always --decorations=always --style=grid --language=man'"
 export AWS_PAGER="cat"
 export GPG_TTY=$(tty)
+export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yaml"
 ZSH_THEME="claudio"
 DISABLE_UPDATE_PROMPT="true"
 
@@ -93,6 +94,7 @@ alias vimrc="$EDITOR $HOME/stow/nvim/.config/nvim/init.lua"
 alias hammerspoonrc="$EDITOR $HOME/stow/hammerspoon/.hammerspoon/init.lua"
 alias hsrc="hammerspoonrc"
 alias tf="terraform"
+alias lg="lazygit"
 
 
 fbr() {

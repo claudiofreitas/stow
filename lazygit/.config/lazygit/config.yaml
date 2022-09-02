@@ -1,0 +1,13 @@
+gui:
+  timeFormat: '2006-01-02 15:04Z07:00' # https://pkg.go.dev/time#pkg-constants
+  showFileTree: false
+  showIcons: true
+  language: 'en'
+git:
+  paging:
+    colorArg: always
+    pager: delta
+# keybinding:
+#   universal:
+#     quit: ''
+
