@@ -13,12 +13,15 @@
 hyper - t : /Applications/kitty.app/Contents/MacOS/kitty
 
 hyper - left  : yabai -m window --grid 2:2:0:0:1:2;\
-                sleep 0.05;\
-                yabai -m window --resize right:-2:0
+                sleep 0.1;\
+                yabai -m window --resize right:-2:0;
+
 hyper - right : yabai -m window --grid 2:2:1:0:1:2;\
-                sleep 0.05;\
-                yabai -m window --resize left:+2:0
-hyper - m : yabai -m window --grid 1:1:0:0:1:1
+                sleep 0.1;\
+                yabai -m window --resize left:+2:0;
+
+hyper - m : yabai -m window --grid 1:1:0:0:1:1;
+
 
 # ################################################################ #
 # THE FOLLOWING IS AN EXPLANATION OF THE GRAMMAR THAT SKHD PARSES. #
