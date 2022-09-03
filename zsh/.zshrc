@@ -95,6 +95,8 @@ alias hammerspoonrc="$EDITOR $HOME/stow/hammerspoon/.hammerspoon/init.lua"
 alias hsrc="hammerspoonrc"
 alias tf="terraform"
 alias lg="lazygit"
+alias yd="yarn dev"
+alias ys="yarn start"
 
 
 fbr() {
