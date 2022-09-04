@@ -18,6 +18,9 @@ vim.api.nvim_set_keymap(
 	{}
 )
 
+-- When in visual, <leader>p paste the content without replacing the yank register
+vim.api.nvim_set_keymap('v', '<leader>p', '"_dP', {})
+
 -- Undotree
 vim.api.nvim_set_keymap('n', '<Leader>u', '<cmd>UndotreeToggle<CR>', {})
 
