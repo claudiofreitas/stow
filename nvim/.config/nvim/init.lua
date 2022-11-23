@@ -11,6 +11,7 @@ local autoload_packages = {
 	'setup-nullls',
 	'setup-fidget',
 	'setup-notify',
+	'setup-bufferline',
 	'keymaps',
 }
 
@@ -32,9 +33,10 @@ vim.api.nvim_set_keymap('n', '<F5>', '<cmd>lua Reload_all_requires()<CR>', {})
 --> [[ Setup Theme ]]
 -- vim.api.nvim_command('colorscheme claudio-darker')
 -- vim.api.nvim_command('colorscheme kikwis')
--- require('setup-colorscheme-material')
-require('setup-colorscheme-tokyonight')
+require('setup-colorscheme-material')
+-- require('setup-colorscheme-tokyonight')
 -- require('setup-colorscheme-sonokai')
+-- require('setup-colorscheme-catppuccin')
 -- vim.api.nvim_command('colorscheme rose-pine')
 
 -- local my_group = vim.api.nvim_create_augroup('mygroup', { clear = true })
