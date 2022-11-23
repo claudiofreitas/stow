@@ -8,14 +8,15 @@ REFS="%C(always,red)%d%C(always,reset)"
 SUBJECT="%s"
 
 # FORMAT="$HASH $RELATIVE_TIME{$AUTHOR{$REFS $SUBJECT"
-FORMAT="$HASH $AUTHOR_DATETIME{$AUTHOR{$REFS $SUBJECT"
+# FORMAT="$HASH $AUTHOR_DATETIME{$AUTHOR{$REFS $SUBJECT"
+FORMAT="$HASH $AUTHOR_DATETIME $AUTHOR$REFS $SUBJECT"
 
 pretty_git_log() {
   git log --pretty="tformat:$FORMAT" $* |
-    column -t -s '{' -c 60 |
+    column -t -s '{' |
     less -XRS --quit-if-one-screen
 }
 
 # From: https://github.com/mrnugget/dotfiles/blob/master/githelpers
-# Help: https://www.git-scm.com/docs/git-log
+# Help: https://www.git-scm.com/docs/git-log#Documentation/git-log.txt-emnem
 
