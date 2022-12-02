@@ -1,39 +1,41 @@
-# Append to $PATH
-path+=(
-  "$HOME/.yarn/bin"
-  "$HOME/.config/yarn/global/node_modules/.bin"
-  "$HOME/.vimpkg/bin"
-  "$HOME/repos/lua-language-server/bin/macOS"
-  "$HOME/.local/bin"
-  "$HOME/.local/n/bin"
-  "/usr/local/opt/node@10/bin"
-  "/usr/local/bin"
-  "/usr/local/sbin"
-  "/usr/bin"
-  "/bin"
-  "/usr/sbin"
-  "/sbin"
-  "/usr/local/opt/ruby/bin"
-  "/usr/local/go/bin"
-)
-
-# Rancher (Docker)
-path+=(
-  "$HOME/.rd/bin"
-)
-
 function prependToPath {
   export PATH="$1:$PATH"
 }
 
-# Prepend to $PATH
-# export PATH="/usr/local/opt/ruby/bin:$PATH"
+function appendToPath {
+  export PATH="$PATH:$1"
+}
+
+# Prepending to PATH has more importance than appending
 prependToPath "/usr/local/opt/ruby/bin"
+prependToPath "$HOME/.local/n/bin"
+
+# Appending to PATH
+appendToPath "$HOME/.yarn/bin"
+appendToPath "$HOME/.config/yarn/global/node_modules/.bin"
+appendToPath "$HOME/.vimpkg/bin"
+appendToPath "$HOME/repos/lua-language-server/bin/macOS"
+appendToPath "$HOME/.local/bin"
+appendToPath "/usr/local/opt/node@10/bin"
+appendToPath "/usr/local/bin"
+appendToPath "/usr/local/sbin"
+appendToPath "/usr/bin"
+appendToPath "/bin"
+appendToPath "/usr/sbin"
+appendToPath "/sbin"
+appendToPath "/usr/local/opt/ruby/bin"
+appendToPath "/usr/local/go/bin"
+# Rancher (Docker)
+appendToPath "$HOME/.rd/bin"
+
+
+
+alias brewvim="/usr/local/Cellar/neovim/HEAD-bd2d0ed/bin/nvim"
 
 # Exports
 export LC_ALL=en_US.UTF-8
 export ZSH="$HOME/.oh-my-zsh"
-export EDITOR='nvim'
+export EDITOR='brewvim'
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export N_PREFIX="$HOME/.local/n"
 export NVM_DIR="$HOME/.nvm"
@@ -62,7 +64,7 @@ function sourceIfExists {
 sourceIfExists "$ZSH/oh-my-zsh.sh"
 sourceIfExists "/usr/local/share/zsh/site-functions/aws_zsh_completer.sh"
 sourceIfExists "${HOME}/.iterm2_shell_integration.zsh"
-sourceIfExists "$NVM_DIR/nvm.sh"
+# sourceIfExists "$NVM_DIR/nvm.sh"
 sourceIfExists "$NVM_DIR/bash_completion"
 sourceIfExists "$HOME/.fzf.zsh"
 sourceIfExists "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
