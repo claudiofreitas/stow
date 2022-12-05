@@ -5,7 +5,8 @@ local function nnoremap(lhs, rhs, options)
 	vim.keymap.set('n', lhs, rhs, options)
 end
 local vim_lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
-local cmp_updated_capabilities = require('cmp_nvim_lsp').update_capabilities(vim_lsp_capabilities)
+local cmp_default_capabilities = require('cmp_nvim_lsp').default_capabilities()
+vim.tbl_deep_extend('force', vim_lsp_capabilities, cmp_default_capabilities)
 
 -- keymap configuration
 local function configure_keymaps(buffer_number)
@@ -54,7 +55,7 @@ local function custom_config(_config)
 	end
 
 	local extended_configuration = vim.tbl_deep_extend('force', {
-		capabilities = cmp_updated_capabilities,
+		capabilities = cmp_default_capabilities,
 		on_attach = custom_on_attach,
 	}, _config or {})
 
