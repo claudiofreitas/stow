@@ -14,9 +14,12 @@ require('material').setup({
 		LineNr = { bg = 'None' },
 		SignColumn = { bg = 'None' },
 		CursorLineNr = { bg = 'None' },
+		CursorLine = { bg = '#121212' },
 		GitSignsAdd = { bg = 'None', fg = '#c3e88d' },
 		GitSignsDelete = { bg = 'None', fg = '#f07178' },
 		['@keyword'] = { fg = materialColors.main.purple },
+		['@include'] = { fg = materialColors.main.purple },
+		['@parameter'] = { fg = materialColors.syntax.value },
 	},
 
 	disable = {
