@@ -1,5 +1,8 @@
 -- https://github.com/marko-cerovac/material.nvim
 vim.g.material_style = 'darker'
+
+local materialColors = require('material.colors')
+
 require('material').setup({
 	high_visibility = {
 		lighter = false,
@@ -13,6 +16,7 @@ require('material').setup({
 		CursorLineNr = { bg = 'None' },
 		GitSignsAdd = { bg = 'None', fg = '#c3e88d' },
 		GitSignsDelete = { bg = 'None', fg = '#f07178' },
+		['@keyword'] = { fg = materialColors.main.purple },
 	},
 
 	disable = {
