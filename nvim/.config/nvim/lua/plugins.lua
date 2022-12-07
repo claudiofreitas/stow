@@ -25,7 +25,7 @@ require('packer').startup(function(use)
 	use('sainnhe/sonokai')
 	use('rose-pine/neovim')
 	use('tiagovla/tokyodark.nvim')
-  use('catppuccin/nvim')
+	use('catppuccin/nvim')
 
 	use({
 		'nvim-lualine/lualine.nvim',
@@ -114,9 +114,9 @@ require('packer').startup(function(use)
 
 	use('mattn/emmet-vim')
 
-  use('mbbill/undotree')
+	use('mbbill/undotree')
 
-  use('akinsho/bufferline.nvim')
+	use('akinsho/bufferline.nvim')
 
-  use('jose-elias-alvarez/typescript.nvim')
+	use('jose-elias-alvarez/typescript.nvim')
 end)
