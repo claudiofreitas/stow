@@ -83,4 +83,8 @@
 	program = /usr/local/bin/gpg
 
 [fetch]
-	prune = true
+  prune = true
+
+[stash]
+  # Makes `git stash show` display the diff patch by default, without the need of adding `-p`.
+  showPatch = true
