@@ -1,5 +1,6 @@
 -- https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#snippets
 -- [The Ultimate LuaSnip Tutorial for Beginners](https://www.youtube.com/watch?v=ub0REXjhpmk)
+-- [A LuaSnip guide for LaTeX workflows](https://www.ejmastnak.com/tutorials/vim-latex/luasnip.html)
 
 local luasnip = require('luasnip')
 
