@@ -5,6 +5,7 @@ local autoload_packages = {
 	'setup-telescope',
 	'setup-lspconfig',
 	'setup-gitsigns',
+	'setup-luasnip',
 	'setup-cmp',
 	'setup-lspsaga',
 	'setup-lualine',

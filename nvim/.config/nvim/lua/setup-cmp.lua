@@ -19,8 +19,8 @@ cmp.setup({
 				-- buffer = '[buf]',
 				nvim_lsp = '[LSP]',
 				nvim_lua = '🌙',
-				luasnip = '[luasnip]',
-        path = '[path]',
+				luasnip = '',
+				path = '[path]',
 			},
 		}),
 	},
@@ -35,10 +35,10 @@ cmp.setup({
 
 	-- Add sources in order of priority
 	sources = cmp.config.sources({
-    { name = 'path' },
+		{ name = 'luasnip' },
+		{ name = 'path' },
 		{ name = 'nvim_lua' },
 		{ name = 'nvim_lsp' },
-		{ name = 'luasnip' },
 	}),
 
 	experimental = {
