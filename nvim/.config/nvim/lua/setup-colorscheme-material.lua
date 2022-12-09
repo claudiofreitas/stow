@@ -1,7 +1,7 @@
 -- https://github.com/marko-cerovac/material.nvim
 vim.g.material_style = 'darker'
 
-local materialColors = require('material.colors')
+local material_colors = require('material.colors')
 
 require('material').setup({
 	high_visibility = {
@@ -18,9 +18,9 @@ require('material').setup({
 		GitSignsAdd = { fg = '#547722', bg = 'None' },
 		GitSignsChange = { fg = '#571980', bg = 'None' },
 		GitSignsDelete = { fg = '#ff0000', bg = 'None' },
-		['@keyword'] = { fg = materialColors.main.purple },
-		['@include'] = { fg = materialColors.main.purple },
-		['@parameter'] = { fg = materialColors.syntax.value },
+		['@keyword'] = { fg = material_colors.main.purple },
+		['@include'] = { fg = material_colors.main.purple },
+		['@parameter'] = { fg = material_colors.syntax.value },
 	},
 
 	disable = {
