@@ -1,5 +1,32 @@
 -- https://github.com/nvim-lualine/lualine.nvim
 
+local b = { bg = '#212121', fg = '#B0BEC5' }
+local c = { bg = 'None', fg = '#B0BEC5' }
+
+local normal = {
+	a = { bg = '#ff9800', fg = '#212121' },
+	b = b,
+	c = c,
+}
+
+local insert = {
+	a = { bg = '#c3e88d', fg = '#212121' },
+	b = b,
+	c = c,
+}
+
+local visual = {
+	a = { bg = '#c792ea', fg = '#212121' },
+	b = b,
+	c = c,
+}
+
+local command = {
+	a = { bg = '#f07178', fg = '#212121' },
+	b = b,
+	c = c,
+}
+
 local function get_lsp_clients()
 	local empty_msg = 'No Active LSP'
 	local lsp_clients = vim.lsp.get_active_clients()
@@ -23,7 +50,15 @@ end
 
 require('lualine').setup({
 	options = {
-		theme = 'auto',
+		-- theme = 'auto',
+		theme = {
+			normal = normal,
+			insert = insert,
+			visual = visual,
+			command = command,
+		},
+
+		component_separators = { left = '❘', right = '❘' },
 	},
 
 	-- https://github.com/nvim-lualine/lualine.nvim#general-component-options
@@ -31,26 +66,27 @@ require('lualine').setup({
 		-- lualine_a = {
 		--   { 'mode', separator = { left = '' }, right_padding = 2 },
 		-- },
-		-- lualine_b = {
-		--   {
-		--     'branch',
-		--     icon = { '' },
-		--   },
-		-- },
-		lualine_c = {
-			{ 'filename' },
-			{
-				get_lsp_clients,
-				icon = ' LSP:',
-				color = {
-					fg = '#ffffff',
-					gui = 'bold',
-				},
-			},
+		lualine_b = {
+			{ 'branch', icon = { '' } },
+			{ 'filename', file_status = false, path = 1 },
+			{ get_lsp_clients, icon = ' LSP:' },
+		},
+		lualine_c = {},
+
+		lualine_x = {
+			{ 'diagnostics', sources = { 'nvim_diagnostic' }, sections = { 'error', 'warn', 'info', 'hint' } },
+		},
+		lualine_y = {
+			{ 'encoding' },
+			{ 'fileformat', symbols = { unix = ' LF', dos = ' CRLF', mac = ' CR' } },
+			{ 'filetype' },
+			{ 'progress' },
 		},
 	},
 
 	-- winbar = {
-	--   lualine_a = {'filename'},
+	-- 	lualine_x = {
+	-- 		{ 'diagnostics', sources = { 'nvim_diagnostic' }, sections = { 'error', 'warn', 'info', 'hint' } },
+	-- 	},
 	-- },
 })
