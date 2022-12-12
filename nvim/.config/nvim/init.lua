@@ -112,6 +112,10 @@ require('indent_blankline').setup({
 	-- show_current_context_start = true,
 })
 
+require('Comment').setup({
+	pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+})
+
 -- Fix indent behavior on yaml files
 vim.cmd([[
     filetype plugin indent on

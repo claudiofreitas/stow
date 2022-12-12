@@ -62,4 +62,41 @@ it('should TODO', async () => {{
 	)
 )
 
+create_snippet(
+	{
+		trig = 'beforeEach()',
+		name = 'Jest beforeEach() block',
+		dscr = 'Expands to a Jest beforeEach block',
+	},
+	format(
+		[[
+beforeEach(() => {{
+  {}
+}});
+]],
+		{
+			ins_node(0),
+		}
+	)
+)
+
+create_snippet(
+	{
+		trig = 'jest.mock()',
+		name = 'Jest mock() block',
+		dscr = 'Expands to a Jest mock block',
+	},
+	format(
+		[[
+jest.mock("{}", () => ({{
+  {}: jest.fn(),
+}}));
+]],
+		{
+			ins_node(1, 'module'),
+			ins_node(2, 'exportedFunction'),
+		}
+	)
+)
+
 return snippets, autosnippets
