@@ -89,12 +89,9 @@ require('packer').startup(function(use)
 
 	-- https://github.com/numToStr/Comment.nvim
 	-- Demo: https://www.youtube.com/watch?v=-InmtHhk2qM
-	use({
-		'numToStr/Comment.nvim',
-		config = function()
-			require('Comment').setup()
-		end,
-	})
+	use('numToStr/Comment.nvim')
+	-- Enable treesitter module to set the comment string based on the position of the cursor inside the file
+	use('JoosepAlviste/nvim-ts-context-commentstring')
 
 	-- https://github.com/glepnir/lspsaga.nvim
 	use({
