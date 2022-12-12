@@ -30,6 +30,12 @@ local function configure_keymaps(buffer_number)
 	nnoremap('<leader>f', function()
 		vim.lsp.buf.format({ timeout = 2000 })
 	end, current_buffer_option)
+	nnoremap(']d', function()
+		vim.diagnostic.goto_next()
+	end)
+	nnoremap('[d', function()
+		vim.diagnostic.goto_prev()
+	end)
 end
 
 -- custom default configuration
