@@ -62,4 +62,22 @@ it('should TODO', async () => {{
 	)
 )
 
+create_snippet(
+	{
+		trig = 'beforeEach()',
+		name = 'Jest beforeEach() block',
+		dscr = 'Expands to a Jest beforeEach block',
+	},
+	format(
+		[[
+beforeEach(() => {{
+  {}
+}});
+]],
+		{
+			ins_node(0),
+		}
+	)
+)
+
 return snippets, autosnippets
