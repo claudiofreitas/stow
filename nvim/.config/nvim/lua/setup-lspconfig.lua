@@ -28,7 +28,7 @@ local function configure_keymaps(buffer_number)
 	nnoremap('gr', '<cmd>Telescope lsp_references<cr>', current_buffer_option) -- "go references"
 	nnoremap('<leader>re', vim.lsp.buf.rename, current_buffer_option)
 	nnoremap('<leader>f', function()
-		vim.lsp.buf.format({ timeout = 2000 })
+		vim.lsp.buf.format({ timeout_ms = 2000 })
 	end, current_buffer_option)
 	nnoremap(']d', function()
 		vim.diagnostic.goto_next()
