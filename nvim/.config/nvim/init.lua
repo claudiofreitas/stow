@@ -13,6 +13,7 @@ local autoload_packages = {
 	'setup-fidget',
 	'setup-notify',
 	'setup-bufferline',
+	'setup-colorcolumn',
 	'keymaps',
 }
 

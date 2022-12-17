@@ -15,6 +15,7 @@ require('material').setup({
 		SignColumn = { bg = 'None' },
 		CursorLineNr = { bg = 'None' },
 		CursorLine = { bg = '#121212' },
+		ColorColumn = { bg = '#121212' },
 		GitSignsAdd = { fg = '#547722', bg = 'None' },
 		GitSignsChange = { fg = '#571980', bg = 'None' },
 		GitSignsDelete = { fg = '#ff0000', bg = 'None' },
