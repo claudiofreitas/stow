@@ -36,40 +36,41 @@ require('bufferline').setup({
 		separator_style = { '', '' },
 	},
 
+	-- Highlights: https://github.com/akinsho/bufferline.nvim/blob/main/doc/bufferline.txt#L742
 	highlights = {
-		-- When it is in the background, for example with the Telescope open.
-		buffer_visible = {
-			fg = '#474747',
-		},
+		-- Active buffer ----------------------------------------------------------
 
-		-- The active buffer.
 		buffer_selected = {
 			fg = '#ffa500',
 			italic = false,
-			bold = false,
-			underline = true,
-			sp = '#ffa500',
+			bold = true,
 		},
 
-		-- All the inactive buffers, when you have more than one buffer open.
+		close_button_selected = {
+			fg = '#ffa500',
+			bold = true,
+			-- underline = true,
+			-- sp = '#ffa500',
+		},
+
+		-- Inactive buffers (when you have more than one buffer open) -------------
+
 		background = {
 			fg = '#757575',
 		},
 
-		-- Close button area of the active buffer.
-		close_button_selected = {
-			underline = true,
-			sp = '#ffa500',
+		close_button = {
+			fg = '#757575',
 		},
 
-		-- Close button area of the background buffer (e.g. when Telescope is open).
-		close_button_visible = {
+		-- Background buffer (for example with the Telescope open) ----------------
+
+		buffer_visible = {
 			fg = '#474747',
 		},
 
-		-- Close button area of the inactive buffer.
-		close_button = {
-			fg = '#757575',
+		close_button_visible = {
+			fg = '#474747',
 		},
 	},
 })
