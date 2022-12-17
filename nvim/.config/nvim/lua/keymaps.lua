@@ -5,6 +5,9 @@ vim.api.nvim_set_keymap('n', '<F1>', ':lua vim.lsp.buf.signature_help() <CR>', {
 vim.api.nvim_set_keymap('n', '<S-PageUp>', '5zh', {})
 vim.api.nvim_set_keymap('n', '<S-PageDown>', '5zl', {})
 
+vim.api.nvim_set_keymap('n', '<M-Left>', ':bp<CR>', {})
+vim.api.nvim_set_keymap('n', '<M-Right>', ':bn<CR>', {})
+
 -- Telescope
 vim.api.nvim_set_keymap('n', '<Leader>o', "<cmd>lua require('telescope.builtin').find_files()<cr>", {})
 vim.api.nvim_set_keymap('n', '<Leader>b', ':Telescope buffers <CR>', {})
