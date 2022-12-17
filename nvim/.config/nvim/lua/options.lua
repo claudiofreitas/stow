@@ -179,18 +179,6 @@ opt.termguicolors = true
 
 vim.g.mapleader = ' '
 
--- From previous vimrc:
--- set formatoptions-=cro                  " Stop newline continution of comments
--- set formatoptions-=ro                   " Disable keeping next line as comment after inserting breaking line when in a comment line.
--- call plug#begin(stdpath('data').'/plugged') " Which on Mac is: ~/.local/share/nvim/plugged
---   Plug 'mbbill/undotree' " Use :UndotreeShow to show the Undotree
---   Plug 'janko/vim-test'
---   Plug 'dikiaap/minimalist'
---   Plug 'sheerun/vim-polyglot'
---   Plug 'preservim/nerdcommenter'
---   Plug 'junegunn/goyo.vim'
---   Plug 'prettier/vim-prettier'
---   Plug 'chuling/equinusocio-material.vim'
---   Plug 'mhinz/vim-signify'
--- call plug#end()
---
+-- Persist undo history on disk
+vim.opt.undodir = os.getenv('HOME') .. '/.local/state/nvim/undo'
+vim.opt.undofile = true
