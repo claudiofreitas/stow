@@ -8,6 +8,9 @@ vim.api.nvim_set_keymap('n', '<S-PageDown>', '5zl', {})
 vim.api.nvim_set_keymap('n', '<M-Left>', ':bp<CR>', {})
 vim.api.nvim_set_keymap('n', '<M-Right>', ':bn<CR>', {})
 
+vim.keymap.set('v', '<S-Up>', ":m '<-2<CR>gv=gv")
+vim.keymap.set('v', '<S-Down>', ":m '>+1<CR>gv=gv")
+
 -- Telescope
 vim.api.nvim_set_keymap('n', '<Leader>o', "<cmd>lua require('telescope.builtin').find_files()<cr>", {})
 vim.api.nvim_set_keymap('n', '<Leader>b', ':Telescope buffers <CR>', {})
