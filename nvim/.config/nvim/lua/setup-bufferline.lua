@@ -36,7 +36,7 @@ require('bufferline').setup({
 		separator_style = { '', '' },
 	},
 
-	-- Highlights: https://github.com/akinsho/bufferline.nvim/blob/main/doc/bufferline.txt#L742
+	-- https://github.com/akinsho/bufferline.nvim/blob/main/doc/bufferline.txt#L742
 	highlights = {
 		-- Active buffer ----------------------------------------------------------
 
@@ -71,6 +71,20 @@ require('bufferline').setup({
 
 		close_button_visible = {
 			fg = '#474747',
+		},
+
+		modified_visible = {
+			fg = '#474747',
+		},
+
+		-- Modified icon (floppy disk) --------------------------------------------
+
+		modified = {
+			fg = '#f07178',
+		},
+
+		modified_selected = {
+			fg = '#f07178',
 		},
 	},
 })
