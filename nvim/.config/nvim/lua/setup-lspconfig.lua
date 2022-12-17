@@ -47,13 +47,15 @@ local function custom_config(_config)
 
 		configure_keymaps(buffer_number)
 
-		if lsp_client.server_capabilities.document_highlight then
-			local lspHighlightGroup = vim.api.nvim_create_augroup('LspHighlightOnCursorHold', { clear = true })
-			vim.api.nvim_create_autocmd('CursorMoved', {
+		if lsp_client.server_capabilities.documentHighlightProvider then
+			local lspHighlightGroup = vim.api.nvim_create_augroup('ClaudioHighlightOnCursorHold', { clear = true })
+
+			vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
 				callback = vim.lsp.buf.document_highlight,
 				group = lspHighlightGroup,
 			})
-			vim.api.nvim_create_autocmd('CursorMoved', {
+
+			vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
 				callback = vim.lsp.buf.clear_references,
 				group = lspHighlightGroup,
 			})
