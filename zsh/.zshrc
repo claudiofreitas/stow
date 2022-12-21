@@ -28,14 +28,10 @@ appendToPath "/usr/local/go/bin"
 # Rancher (Docker)
 appendToPath "$HOME/.rd/bin"
 
-
-
-alias brewvim="/usr/local/Cellar/neovim/HEAD-bd2d0ed/bin/nvim"
-
 # Exports
 export LC_ALL=en_US.UTF-8
 export ZSH="$HOME/.oh-my-zsh"
-export EDITOR='brewvim'
+export EDITOR='nvim'
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export N_PREFIX="$HOME/.local/n"
 export NVM_DIR="$HOME/.nvm"
@@ -53,7 +49,6 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 # Disable telemetry for Next.js
 export NEXT_TELEMETRY_DISABLED=1
 
-
 plugins=(
   aws
 )
@@ -64,13 +59,11 @@ function sourceIfExists {
 sourceIfExists "$ZSH/oh-my-zsh.sh"
 sourceIfExists "/usr/local/share/zsh/site-functions/aws_zsh_completer.sh"
 sourceIfExists "${HOME}/.iterm2_shell_integration.zsh"
-# sourceIfExists "$NVM_DIR/nvm.sh"
 sourceIfExists "$NVM_DIR/bash_completion"
 sourceIfExists "$HOME/.fzf.zsh"
 sourceIfExists "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 sourceIfExists "/etc/grc.zsh" # Generic colorizer
 sourceIfExists "$HOME/.bun/_bun" # bun completions
-
 
 # Aliases
 alias ls="ls -lahFG"
@@ -101,7 +94,6 @@ alias lg="lazygit"
 alias yd="yarn dev"
 alias ys="yarn start"
 
-
 fbr() {
   local branches branch
   branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
@@ -117,12 +109,9 @@ pr() {
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C $HOME/.local/bin/terraform terraform
 
-# print "Loaded zshrc"
-
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
-# export PATH="$BUN_INSTALL/bin:$PATH"
 prependToPath "$BUN_INSTALL/bin"
 
