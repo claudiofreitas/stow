@@ -38,3 +38,6 @@ vim.api.nvim_set_keymap('n', '<C-g>', ':G <CR>', {})
 
 -- Misc
 vim.api.nvim_command('nmap <F7> :TSHighlightCapturesUnderCursor<CR>')
+vim.keymap.set('n', '<leader><leader>x', function()
+	vim.api.nvim_command('source %')
+end)
