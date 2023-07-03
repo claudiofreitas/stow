@@ -101,7 +101,10 @@ require('packer').startup(function(use)
 		branch = 'main',
 	})
 
-	use('j-hui/fidget.nvim')
+	use({
+		'j-hui/fidget.nvim',
+		tag = 'legacy',
+	})
 
 	use('windwp/nvim-autopairs')
 
