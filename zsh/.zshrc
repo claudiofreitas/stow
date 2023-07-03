@@ -9,9 +9,9 @@ function appendToPath {
 # Prepending to PATH has more importance than appending
 prependToPath "/usr/local/opt/ruby/bin"
 prependToPath "$HOME/.local/n/bin"
+prependToPath "$HOME/.yarn/bin"
 
 # Appending to PATH
-appendToPath "$HOME/.yarn/bin"
 appendToPath "$HOME/.config/yarn/global/node_modules/.bin"
 appendToPath "$HOME/.vimpkg/bin"
 appendToPath "$HOME/repos/lua-language-server/bin/macOS"
