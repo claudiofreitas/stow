@@ -74,7 +74,7 @@ end
 local sumneko_binary_path = '/Users/claudio/repos/lua-language-server/bin/macOS/lua-language-server'
 local sumneko_root_path = '/Users/claudio/repos/lua-language-server/main.lua'
 
-lspconfig.sumneko_lua.setup(custom_config({
+lspconfig.lua_ls.setup(custom_config({
 	cmd = { sumneko_binary_path, '-E', sumneko_root_path },
 	settings = {
 		Lua = {
