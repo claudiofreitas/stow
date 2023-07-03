@@ -35,7 +35,7 @@ alias brewvim="/usr/local/Cellar/neovim/HEAD-bd2d0ed/bin/nvim"
 # Exports
 export LC_ALL=en_US.UTF-8
 export ZSH="$HOME/.oh-my-zsh"
-export EDITOR='brewvim'
+export EDITOR='nvim'
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export N_PREFIX="$HOME/.local/n"
 export NVM_DIR="$HOME/.nvm"
@@ -100,6 +100,7 @@ alias tf="terraform"
 alias lg="lazygit"
 alias yd="yarn dev"
 alias ys="yarn start"
+alias pn="pnpm"
 
 
 fbr() {
@@ -125,4 +126,9 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export BUN_INSTALL="$HOME/.bun"
 # export PATH="$BUN_INSTALL/bin:$PATH"
 prependToPath "$BUN_INSTALL/bin"
+
+# TODO: organize this part -- config for pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
