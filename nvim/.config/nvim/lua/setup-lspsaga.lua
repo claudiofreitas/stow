@@ -1,6 +1,10 @@
 -- https://github.com/nvimdev/lspsaga.nvim
 
-local lspsaga = require('lspsaga')
+local ok, lspsaga = pcall(require, 'lspsaga')
+if not ok then
+	print('error on trying to load lspsaga')
+	return nil
+end
 
 lspsaga.setup({
 

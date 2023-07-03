@@ -3,7 +3,13 @@
 
 -- Each key inside the table is a module
 
-require('nvim-treesitter.configs').setup({
+local ok, treesitter_configs = pcall(require, 'nvim-treesitter.configs')
+if not ok then
+	print('error on trying to load nvim-treesitter')
+	return nil
+end
+
+treesitter_configs.setup({
 	ensure_installed = 'all', -- either "all" or a list of languages
 	ignore_install = {}, -- List of parsers to ignore installing
 

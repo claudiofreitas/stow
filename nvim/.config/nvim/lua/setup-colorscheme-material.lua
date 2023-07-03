@@ -1,7 +1,11 @@
 -- https://github.com/marko-cerovac/material.nvim
 vim.g.material_style = 'darker'
 
-local material_colors = require('material.colors')
+local ok, material_colors = pcall(require, 'material.colors')
+if not ok then
+	print('error on trying to load material')
+	return nil
+end
 
 require('material').setup({
 	high_visibility = {

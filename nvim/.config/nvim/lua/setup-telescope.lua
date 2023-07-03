@@ -1,4 +1,8 @@
-local telescope_config = require('telescope.config')
+local ok, telescope_config = pcall(require, 'telescope.config')
+if not ok then
+	print('error on trying to load telescope')
+	return nil
+end
 
 local vimgrep_arguments = {
 	unpack(telescope_config.values.vimgrep_arguments),

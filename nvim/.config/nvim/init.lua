@@ -1,6 +1,7 @@
 local autoload_packages = {
 	'options',
-	'plugins',
+	-- 'plugins',
+	'setup-lazy',
 	'setup-treesitter',
 	'setup-telescope',
 	'setup-lspconfig',
@@ -91,32 +92,101 @@ vim.api.nvim_exec(
 	false
 )
 
-require('nvim-tree').setup({})
-vim.api.nvim_set_keymap('n', '<leader>1', '<cmd>NvimTreeToggle<cr>', {})
+local nvim_tree_ok, nvim_tree = pcall(require, 'nvim-tree')
+if not nvim_tree_ok then
+	print('error on trying to load nvim-tree')
+else
+	nvim_tree.setup({})
+	vim.api.nvim_set_keymap('n', '<leader>1', '<cmd>NvimTreeToggle<cr>', {})
+end
 
-require('nvim-autopairs').setup({})
+local autopairs_ok, autopairs = pcall(require, 'nvim-autopairs')
+if not autopairs_ok then
+	print('error on trying to load nvim-autopairs')
+else
+	autopairs.setup({})
+end
 
-vim.cmd([[highlight IndentBlanklineIndent1 guibg=#1f1f1f gui=nocombine]])
-vim.cmd([[highlight IndentBlanklineIndent2 guibg=#1a1a1a gui=nocombine]])
-require('indent_blankline').setup({
-	space_char_blankline = ' ',
-	-- char = '',
-	-- char_highlight_list = {
-	-- 	'IndentBlanklineIndent1',
-	-- 	'IndentBlanklineIndent2',
-	-- },
-	-- space_char_highlight_list = {
-	-- 	'IndentBlanklineIndent1',
-	-- 	'IndentBlanklineIndent2',
-	-- },
-	-- show_trailing_blankline_indent = false,
-	-- show_current_context = true,
-	-- show_current_context_start = true,
-})
+local blankline_ok, blankline = pcall(require, 'indent_blankline')
+if not blankline_ok then
+	print('error on trying to load indent_blankline')
+else
+	vim.cmd([[highlight IndentBlanklineChar guifg=#474747 gui=nocombine]])
+	blankline.setup({
+		char = '│',
+		char_blankline = '│',
 
-require('Comment').setup({
-	pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
-})
+		-- char_blankline = '',
+		-- char_list = { '1', '2' },
+		-- char_list_blankline = { '3', '4' },
+		-- char_highlight_list = {'Error', 'Function'},
+		-- char_highlight_list = {
+		-- 	'IndentBlanklineIndent1',
+		-- 	'IndentBlanklineIndent2',
+		-- },
+		-- space_char_blankline = ' ',
+		-- space_char_highlight_list = {
+		-- 	'',
+		-- },
+		-- space_char_blankline_highlight_list = {
+		-- 	'',
+		-- },
+
+		-- use_treesitter = false,
+		-- indent_level = 10,
+		-- max_indent_increase = 10,
+		-- show_first_indent_level = true,
+		show_trailing_blankline_indent = false,
+		-- show_end_of_line = false,
+		-- show_foldtext = true,
+		-- enabled = true,
+		-- disable_with_nolist = false,
+		-- filetype = {}, -- enabled for all filetypes
+		filetype_exclude = {
+			'help',
+			'alpha',
+			'dashboard',
+			'neo-tree',
+			'Trouble',
+			'lazy',
+			'mason',
+			'notify',
+			'toggleterm',
+			'lazyterm',
+		},
+		-- buftype_exclude = {},
+		-- strict_tabs = {},
+		show_current_context = false,
+		-- show_current_context_start = false, -- requires treesitter
+		-- show_current_context_start_on_current_line = true, -- requires treesitter
+		-- context_char = 'L',
+		-- context_char_blankline = '*',
+		-- context_char_list = {},
+		-- context_char_list_blankline = {},
+		-- context_highlight_list = {},
+		-- char_priority = 1,
+		-- context_patterns = {}, -- only when show_current_context is true
+		-- use_treesitter_scope = false,
+		-- context_pattern_highlight = {},
+		-- viewport_buffer = 10,
+		-- disable_warning_message = false,
+	})
+end
+
+local comment_ok, comment = pcall(require, 'Comment')
+if not comment_ok then
+	print('error on trying to load Comment')
+else
+	local ts_context_commentstring_ok, ts_context_commentstring =
+		pcall(require, 'ts_context_commentstring.integrations.comment_nvim')
+	if not ts_context_commentstring_ok then
+		print('error on trying to load ts_context_commentstring')
+	else
+		comment.setup({
+			pre_hook = ts_context_commentstring.create_pre_hook(),
+		})
+	end
+end
 
 -- Fix indent behavior on yaml files
 vim.cmd([[

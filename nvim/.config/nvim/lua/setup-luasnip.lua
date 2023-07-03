@@ -2,7 +2,11 @@
 -- [The Ultimate LuaSnip Tutorial for Beginners](https://www.youtube.com/watch?v=ub0REXjhpmk)
 -- [A LuaSnip guide for LaTeX workflows](https://www.ejmastnak.com/tutorials/vim-latex/luasnip.html)
 
-local luasnip = require('luasnip')
+local ok, luasnip = pcall(require, 'luasnip')
+if not ok then
+	print('error on trying to load luasnip')
+	return nil
+end
 
 require('luasnip.loaders.from_lua').load({ paths = '~/.config/nvim/snippets' })
 

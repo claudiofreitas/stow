@@ -1,11 +1,22 @@
-local lspconfig = require('lspconfig')
+local ok, lspconfig = pcall(require, 'lspconfig')
+if not ok then
+	print('error on trying to load lspconfig')
+	return nil
+end
 
 -- My experiments
 local function nnoremap(lhs, rhs, options)
 	vim.keymap.set('n', lhs, rhs, options)
 end
+
 local vim_lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
-local cmp_default_capabilities = require('cmp_nvim_lsp').default_capabilities()
+local cmp_default_capabilities = {}
+local cmp_nvim_lsp_ok, cmp_nvim_lsp = pcall(require, 'cmp_nvim_lsp')
+if not cmp_nvim_lsp_ok then
+	print('error on trying to load cmp_vim_lsp (setup-lspconfig.lua)')
+else
+	cmp_default_capabilities = cmp_nvim_lsp.default_capabilities()
+end
 vim.tbl_deep_extend('force', vim_lsp_capabilities, cmp_default_capabilities)
 
 -- keymap configuration

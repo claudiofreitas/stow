@@ -48,7 +48,13 @@ local function get_lsp_clients()
 	return msg or empty_msg
 end
 
-require('lualine').setup({
+local ok, lualine = pcall(require, 'lualine')
+if not ok then
+  print('error on trying to load lualine')
+	return nil
+end
+
+lualine.setup({
 	options = {
 		-- theme = 'auto',
 		theme = {

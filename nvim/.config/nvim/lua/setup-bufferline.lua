@@ -1,6 +1,12 @@
 -- https://github.com/akinsho/bufferline.nvim/blob/main/doc/bufferline.txt
 
-require('bufferline').setup({
+local ok, bufferline = pcall(require, 'bufferline')
+if not ok then
+  print('error on trying to load bufferline')
+	return nil
+end
+
+bufferline.setup({
 	options = {
 		mode = 'buffers',
 

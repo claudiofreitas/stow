@@ -1,5 +1,11 @@
 -- https://github.com/j-hui/fidget.nvim/blob/main/doc/fidget.md#options
-require('fidget').setup({
+local ok, fidget = pcall(require, 'fidget')
+if not ok then
+  print('error on trying to load fidget')
+	return nil
+end
+
+fidget.setup({
 	text = {
 		spinner = 'dots', -- animation shown when tasks are ongoing
 		done = '  ', -- character shown when all tasks are complete

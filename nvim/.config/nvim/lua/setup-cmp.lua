@@ -1,8 +1,21 @@
-local cmp = require('cmp')
-local luasnip = require('luasnip')
+local cmp_ok, cmp = pcall(require, 'cmp')
+if not cmp_ok then
+	print('error on trying to load cmp')
+	return nil
+end
+
+local luasnip_ok, luasnip = pcall(require, 'luasnip')
+if not luasnip_ok then
+	print('error on trying to load luasnip (setup-cmp.lua)')
+	return nil
+end
 
 -- https://github.com/onsails/lspkind.nvim
-local lspkind = require('lspkind')
+local lspkind_ok, lspkind = pcall(require, 'lspkind')
+if not lspkind_ok then
+	print('error trying to load lspkind (setup-cmp.lua)')
+	return nil
+end
 
 -- Demo: https://www.youtube.com/watch?v=_DnmphIwnjo
 cmp.setup({
