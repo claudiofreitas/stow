@@ -14,6 +14,7 @@ local autoload_packages = {
 	'setup-notify',
 	'setup-bufferline',
 	'setup-colorcolumn',
+	'setup-neovide',
 	'keymaps',
 }
 
