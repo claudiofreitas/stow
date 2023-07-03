@@ -19,8 +19,9 @@ require('bufferline').setup({
 		color_icons = true,
 		show_buffer_icons = true,
 		show_buffer_close_icons = true,
-		show_buffer_default_icon = true,
 		modified_icon = ' ',
+		-- close_icon = '󰅖',
+		-- buffer_close_icon = 'x',
 
 		show_duplicate_prefix = true,
 
