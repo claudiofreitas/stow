@@ -13,7 +13,7 @@ null_ls.setup({
 		formatting.prettier,
 		formatting.rustfmt,
 
-		diagnostics.eslint_d,
+		-- diagnostics.eslint_d,
 	},
 	debug = true,
 })
