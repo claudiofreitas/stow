@@ -2,6 +2,8 @@ require('packer').startup(function(use)
 	-- Packer
 	use('wbthomason/packer.nvim')
 
+	use('~/repos/stackmap.nvim')
+
 	use({
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate',
@@ -113,7 +115,30 @@ require('packer').startup(function(use)
 
 	use('mbbill/undotree')
 
-	use('akinsho/bufferline.nvim')
+	use({
+		'akinsho/bufferline.nvim',
+		-- tag = '*',
+		requires = 'nvim-tree/nvim-web-devicons',
+	})
 
 	use('jose-elias-alvarez/typescript.nvim')
+
+	use({
+		'folke/which-key.nvim',
+		config = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+			require('which-key').setup({
+
+				-- TODO: remove this setup from here
+				-- Ref.: https://github.com/folke/which-key.nvim#-usage
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			})
+			require('which-key').register({
+				q = ':q',
+			}, { prefix = '<leader>' })
+		end,
+	})
 end)
