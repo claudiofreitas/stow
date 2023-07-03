@@ -85,10 +85,16 @@ date_format=$(get "@onedark_date_format" "%d/%m/%Y")
 # dotfiles status
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+CALENDAR_ICON=""
+CLOCK_ICON="󱑏"
+
 set "status-left"  "#[fg=$onedark_green,bg=$onedark_black,nobold,nounderscore,noitalics] [#S] "
-set "status-right" "#{prefix_highlight}#[fg=$onedark_black,bg=$onedark_green,bold]  ${date_format}   ${time_format}  #{online_status}  #($CURRENT_DIR/dotfiles-status.sh)"
+set "status-right" "#{prefix_highlight}#[fg=$onedark_black,bg=$onedark_green,bold] ${CALENDAR_ICON} ${date_format}  ${CLOCK_ICON} ${time_format}  #{online_status}  #($CURRENT_DIR/dotfiles-status.sh)"
+
+MAGNIFYING_ICON="󰍉"
+WINDOW_ICON=""
 
 # window-status-format is for all the windows, window-status-current-format is for the active one.
-set "window-status-current-format" "#[fg=$onedark_black,bg=$onedark_green,nobold] #{?window_zoomed_flag,,} #I. #W "
-set "window-status-format"         "#[fg=$onedark_white,bg=$onedark_black] #{?window_zoomed_flag,,} #I. #W "
+set "window-status-current-format" "#[fg=$onedark_black,bg=$onedark_green,nobold] #{?window_zoomed_flag,${MAGNIFYING_ICON},${WINDOW_ICON}} #I. #W "
+set "window-status-format"         "#[fg=$onedark_white,bg=$onedark_black] #{?window_zoomed_flag,${WINDOW_ICON},${WINDOW_ICON}} #I. #W "
 
