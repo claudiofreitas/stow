@@ -10,12 +10,70 @@ if not ok then
 end
 
 treesitter_configs.setup({
-	ensure_installed = 'all', -- either "all" or a list of languages
+	ensure_installed = { -- either "all" or a list of languages
+		'bash',
+		'c',
+		'css',
+		'diff',
+		'dockerfile',
+		'git_config',
+		'git_rebase',
+		'gitattributes',
+		'gitcommit',
+		'gitignore',
+		'graphql',
+		'html',
+		'http',
+		'javascript',
+		'jq',
+		'jsdoc',
+		'json',
+		'json5',
+		'jsonc',
+		'latex',
+		'lua',
+		'luadoc',
+		'make',
+		'markdown',
+		'markdown_inline',
+		'mermaid',
+		'ninja',
+		'nix',
+		'objc',
+		'perl',
+		'php',
+		'prisma',
+		'puppet',
+		'python',
+		'query', -- tree-sitter query language
+		'r',
+		'regex',
+		'ruby',
+		'rust',
+		'scss',
+		'sql',
+		'terraform',
+		'toml',
+		'tsx',
+		'typescript',
+		'vim',
+		'vimdoc',
+		'vue',
+		'yaml',
+	},
 	ignore_install = {}, -- List of parsers to ignore installing
+	sync_install = false, -- false for async
+	auto_install = true,
 
 	-- Highlight settings
 	highlight = {
 		enable = true, -- false will disable the whole module
+
+		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+		-- Using this option may slow down your editor, and you may see some duplicate highlights.
+		-- Instead of true it can also be a list of languages
+		additional_vim_regex_highlighting = false,
 	},
 
 	-- Playground
