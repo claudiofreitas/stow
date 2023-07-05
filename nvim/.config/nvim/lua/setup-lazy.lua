@@ -11,6 +11,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- https://github.com/folke/lazy.nvim#-plugin-spec
 require('lazy').setup({
 
 	{ dir = '~/repos/stackmap.nvim' },
@@ -102,8 +103,17 @@ require('lazy').setup({
 		-- tag = '*',
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
 	},
+	{
+		'echasnovski/mini.indentscope',
+		version = '*',
+		event = { 'BufReadPre', 'BufNewFile' },
+		opts = {
+			symbol = '│',
+			options = { try_as_border = true },
+		},
+	},
 
-	-- Functionality ------------------------------------------------------
+	-- Functionality ---------------------------------------
 
 	-- https://github.com/numToStr/Comment.nvim
 	-- Demo: https://www.youtube.com/watch?v=-InmtHhk2qM
