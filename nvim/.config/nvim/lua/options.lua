@@ -172,7 +172,13 @@ opt.completeopt = 'menuone,noinsert,noselect'
 vim.g.completion_matching_strategy_list = { 'exact', 'substring', 'fuzzy' }
 
 -- Remove the "Match x of y" at the end of the insert list (ctrl+n)
-opt.shortmess = opt.shortmess:append('c')
+opt.shortmess:append('c')
+
+-- Remove buffer written messages
+opt.shortmess:append('W')
+
+-- Do not give the file info when editing a file, like :silent was used for the command
+opt.shortmess:append('F')
 
 -- Enables 24-bit RGB color in the TUI. Uses "gui" :highlight attributes instead of "cterm" attributes.
 opt.termguicolors = true
