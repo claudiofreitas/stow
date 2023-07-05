@@ -190,4 +190,21 @@ require('lazy').setup({
 			}, { prefix = '<leader>' })
 		end,
 	},
+
+	{
+		'ThePrimeagen/refactoring.nvim',
+		dependencies = {
+			{ 'nvim-lua/plenary.nvim' },
+			{ 'nvim-treesitter/nvim-treesitter' },
+		},
+		opts = {},
+		keys = {
+			{
+				'<leader>ev',
+				[[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]],
+				mode = 'v',
+				desc = 'Extract Variable (Refactoring)',
+			},
+		},
+	},
 })
