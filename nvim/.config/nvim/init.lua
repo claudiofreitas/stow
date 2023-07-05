@@ -1,9 +1,11 @@
 local autoload_packages = {
 	'options',
+
 	-- 'plugins',
 	'setup-lazy',
 	'setup-treesitter',
 	'setup-telescope',
+
 	-- 'setup-lspconfig',
 	'setup-lspzero',
 	'setup-gitsigns',
