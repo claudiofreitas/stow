@@ -15,10 +15,66 @@ require('lazy').setup({
 
 	{ dir = '~/repos/stackmap.nvim' },
 
+	-- Treesitter
 	{ 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
 	{ 'nvim-treesitter/playground' },
+	-- Enable treesitter module to set the comment string based on the position of the cursor inside the file
+	{ 'JoosepAlviste/nvim-ts-context-commentstring' },
 
-	-- Color schemes
+	-- LSP
+	{ 'neovim/nvim-lspconfig', dependencies = { 'hrsh7th/nvim-cmp' } },
+	{
+		'VonHeikemen/lsp-zero.nvim',
+		branch = 'v2.x',
+		dependencies = {
+			-- LSP Support
+			{ 'neovim/nvim-lspconfig' }, -- Required
+			{
+				'williamboman/mason.nvim', -- Optional
+				build = function()
+					pcall(vim.cmd, 'MasonUpdate')
+				end,
+			},
+			{ 'williamboman/mason-lspconfig.nvim' }, -- Optional
+
+			-- Autocompletion
+			{ 'hrsh7th/nvim-cmp' }, -- Required
+			{ 'hrsh7th/cmp-nvim-lsp' }, -- Required
+
+			-- Snippets
+			{ 'L3MON4D3/LuaSnip' }, -- Required
+		},
+	},
+	{ 'jose-elias-alvarez/null-ls.nvim' },
+	{ 'jose-elias-alvarez/typescript.nvim' },
+
+	{ 'glepnir/lspsaga.nvim', branch = 'main' },
+
+	-- Autocomplete & Snips
+	-- https://github.com/L3MON4D3/LuaSnip
+	-- Demo: https://www.youtube.com/watch?v=Dn800rlPIho
+	{ 'L3MON4D3/LuaSnip' },
+	{ 'hrsh7th/nvim-cmp', dependencies = { 'onsails/lspkind.nvim' } },
+	{ 'hrsh7th/cmp-nvim-lsp', dependencies = { 'hrsh7th/nvim-cmp' } },
+	{ 'hrsh7th/cmp-nvim-lua', dependencies = { 'hrsh7th/nvim-cmp' } },
+	{ 'hrsh7th/cmp-path', dependencies = { 'hrsh7th/nvim-cmp' } },
+	{ 'saadparwaiz1/cmp_luasnip' },
+	{ 'onsails/lspkind.nvim' },
+
+	-- Telescope
+	{ 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
+	{ 'nvim-telescope/telescope-ui-select.nvim' },
+	{ 'nvim-telescope/telescope-file-browser.nvim' },
+
+	-- Tree
+	{ 'nvim-tree/nvim-web-devicons' },
+	{ 'nvim-tree/nvim-tree.lua' },
+
+	-- Git
+	{ 'tpope/vim-fugitive' },
+	{ 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
+
+	-- Color schemes & UI Visuals
 	{ 'lucastrvsn/kikwis' },
 	{ 'folke/tokyonight.nvim' },
 	{
@@ -35,72 +91,30 @@ require('lazy').setup({
 	{ 'rose-pine/neovim' },
 	{ 'tiagovla/tokyodark.nvim' },
 	{ 'catppuccin/nvim' },
-
-	{ 'nvim-lualine/lualine.nvim' },
-
-	{ 'neovim/nvim-lspconfig', dependencies = { 'hrsh7th/nvim-cmp' } },
-
-	{ 'nvim-lua/plenary.nvim' },
-
 	{ 'rktjmp/lush.nvim' },
 
-	-- Telescope
-	{ 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
-	{ 'nvim-telescope/telescope-ui-select.nvim' },
-	{ 'nvim-telescope/telescope-file-browser.nvim' },
-
-	-- Tree
-	{ 'nvim-tree/nvim-web-devicons' },
-	{ 'nvim-tree/nvim-tree.lua' },
-
-	-- Git
-	{ 'tpope/vim-fugitive' },
-	{ 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
-
-	-- Autocomplete & Snips
-	-- https://github.com/L3MON4D3/LuaSnip
-	-- Demo: https://www.youtube.com/watch?v=Dn800rlPIho
-	{ 'L3MON4D3/LuaSnip' },
-	{ 'hrsh7th/nvim-cmp', dependencies = { 'onsails/lspkind.nvim' } },
-	{ 'hrsh7th/cmp-nvim-lsp', dependencies = { 'hrsh7th/nvim-cmp' } },
-	{ 'hrsh7th/cmp-nvim-lua', dependencies = { 'hrsh7th/nvim-cmp' } },
-	{ 'hrsh7th/cmp-path', dependencies = { 'hrsh7th/nvim-cmp' } },
-	{ 'saadparwaiz1/cmp_luasnip' },
-	{ 'onsails/lspkind.nvim' },
-
-	-- Other --------------------------------------------------
-
-	{ 'jose-elias-alvarez/null-ls.nvim' },
-
-	-- https://github.com/numToStr/Comment.nvim
-	-- Demo: https://www.youtube.com/watch?v=-InmtHhk2qM
-	{ 'numToStr/Comment.nvim' },
-	-- Enable treesitter module to set the comment string based on the position of the cursor inside the file
-	{ 'JoosepAlviste/nvim-ts-context-commentstring' },
-
-	-- https://github.com/glepnir/lspsaga.nvim
-	{ 'glepnir/lspsaga.nvim', branch = 'main' },
-
-	{ 'j-hui/fidget.nvim', tag = 'legacy' },
-
-	{ 'windwp/nvim-autopairs' },
-	{ 'windwp/nvim-ts-autotag' },
-
+	{ 'nvim-lualine/lualine.nvim' },
 	{ 'lukas-reineke/indent-blankline.nvim' },
-
+	{ 'j-hui/fidget.nvim', tag = 'legacy' },
 	{ 'rcarriga/nvim-notify' },
-
-	{ 'mattn/emmet-vim' },
-
-	{ 'mbbill/undotree' },
-
 	{
 		'akinsho/bufferline.nvim',
 		-- tag = '*',
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
 	},
 
-	{ 'jose-elias-alvarez/typescript.nvim' },
+	-- Functionality ------------------------------------------------------
+
+	-- https://github.com/numToStr/Comment.nvim
+	-- Demo: https://www.youtube.com/watch?v=-InmtHhk2qM
+	{ 'numToStr/Comment.nvim' },
+
+	{ 'windwp/nvim-autopairs' },
+	{ 'windwp/nvim-ts-autotag' },
+
+	{ 'mattn/emmet-vim' },
+
+	{ 'mbbill/undotree' },
 
 	{
 		'folke/which-key.nvim',
