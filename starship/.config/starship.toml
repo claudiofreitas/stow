@@ -1,0 +1,40 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = true
+format = '$all'
+
+[character]
+success_symbol = "[>](red)"
+
+[username]
+format = "[ $user]($style) "
+show_always = true
+style_user = "blue"
+
+[hostname]
+format = "[  $ssh_symbol$hostname]($style) "
+ssh_symbol = "\\(ssh\\) "
+ssh_only = false
+style = "green"
+
+[directory]
+format = "[  $path]($style)[$read_only]($read_only_style) "
+style = "yellow"
+
+[python]
+format = "[${symbol}${pyenv_prefix}(${version} )(\\($virtualenv\\) )]($style)"
+
+[git_branch]
+format = "[$symbol$branch(:$remote_branch)]($style) "
+symbol = " "
+style = "blue"
+
+[cmake]
+disabled = true
+
+[shell]
+disabled = false
+format = "[$indicator]($style) "
+style = "white"
+bash_indicator = "bash"
+zsh_indicator = "zsh"
