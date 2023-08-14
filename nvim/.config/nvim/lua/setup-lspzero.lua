@@ -72,12 +72,21 @@ lspzero.ensure_installed({
 	'astro',
 })
 
+require('neodev').setup({})
+
 local lspconfig = require('lspconfig')
+
 lspconfig.lua_ls.setup(lspzero.nvim_lua_ls({
 	settings = {
-		telemetry = { enable = false },
+		Lua = {
+			telemetry = { enable = false },
+			completion = {
+				callSnippet = 'Replace',
+			},
+		},
 	},
 }))
+
 lspconfig.tsserver.setup({
 	filetypes = {
 		'javascript',
@@ -88,6 +97,7 @@ lspconfig.tsserver.setup({
 		'typescript.tsx',
 	},
 })
+
 lspconfig.html.setup({
 	capabilities = {
 		textDocument = {
@@ -95,6 +105,18 @@ lspconfig.html.setup({
 				completionItem = {
 					snippetSupport = true,
 				},
+			},
+		},
+	},
+})
+
+-- lspconfig.pyright.setup({})
+lspconfig.ruff_lsp.setup({
+	settings = {
+		logLevel = 'info',
+		codeAction = {
+			fixViolation = {
+				enable = true,
 			},
 		},
 	},
