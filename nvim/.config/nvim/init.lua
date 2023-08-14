@@ -40,7 +40,6 @@ vim.api.nvim_set_keymap('n', '<F5>', '<cmd>lua Reload_all_requires()<CR>', {})
 --> [[ Setup Theme ]]
 -- vim.api.nvim_command('colorscheme claudio-darker')
 -- vim.api.nvim_command('colorscheme kikwis')
-require('setup-colorscheme-material')
 -- require('setup-colorscheme-tokyonight')
 -- require('setup-colorscheme-sonokai')
 -- require('setup-colorscheme-catppuccin')
@@ -82,6 +81,10 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagn
 	underline = true,
 	virtual_text = {
 		spacing = 16,
+		source = true,
+	},
+	float = {
+		source = true,
 	},
 })
 
@@ -94,14 +97,6 @@ vim.api.nvim_exec(
 ]],
 	false
 )
-
-local nvim_tree_ok, nvim_tree = pcall(require, 'nvim-tree')
-if not nvim_tree_ok then
-	print('error on trying to load nvim-tree')
-else
-	nvim_tree.setup({})
-	vim.api.nvim_set_keymap('n', '<leader>1', '<cmd>NvimTreeToggle<cr>', {})
-end
 
 local autopairs_ok, autopairs = pcall(require, 'nvim-autopairs')
 if not autopairs_ok then
