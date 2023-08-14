@@ -34,7 +34,8 @@ disabled = true
 
 [shell]
 disabled = false
-format = "[$indicator]($style) "
-style = "white"
+format = "[$indicator]($style)"
+style = "yellow"
 bash_indicator = "bash"
 zsh_indicator = "zsh"
+fish_indicator = "fish"
