@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [[ -z $1 ]]; then
-  session=$({ find ~ ~/repos -mindepth 1 -maxdepth 1 -type d; echo "/tmp"; } | fzf)
+  session=$({ find ~ ~/repos -mindepth 1 -maxdepth 1 -type d -o -type l; echo "/tmp"; } | fzf)
 else
   session=$1
 fi
