@@ -70,6 +70,7 @@ lspzero.ensure_installed({
 	'html',
 	'tailwindcss',
 	'astro',
+	'prismals',
 })
 
 require('neodev').setup({})

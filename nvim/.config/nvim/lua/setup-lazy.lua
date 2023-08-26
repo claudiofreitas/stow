@@ -405,6 +405,9 @@ local lazy_opts = {
 			{ '[[', desc = 'Prev Reference' },
 		},
 	},
+	{
+		'prisma/vim-prisma',
+	},
 }
 
 require('lazy').setup(lazy_opts)
