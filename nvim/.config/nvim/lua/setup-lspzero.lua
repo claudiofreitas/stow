@@ -50,11 +50,13 @@ lspzero.on_attach(function(lsp_client, bufnr)
 		vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
 			callback = vim.lsp.buf.document_highlight,
 			group = lsp_highlight_group,
+			buffer = bufnr,
 		})
 
 		vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
 			callback = vim.lsp.buf.clear_references,
 			group = lsp_highlight_group,
+			buffer = bufnr,
 		})
 	end
 end)
