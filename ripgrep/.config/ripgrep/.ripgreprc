@@ -1,0 +1,2 @@
+# Suppress all error messages related to opening and reading files. Error messages related to the syntax of the pattern given are still shown.
+--no-messages
