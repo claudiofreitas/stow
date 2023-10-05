@@ -38,6 +38,12 @@ lspzero.on_attach(function(lsp_client, bufnr)
 	nnoremap('gi', vim.lsp.buf.implementation, opts) -- "go implementation"
 	-- nnoremap('gr', vim.lsp.buf.references, opts) -- "go references"
 	nnoremap('gr', '<cmd>Telescope lsp_references<cr>', opts) -- "go references"
+	nnoremap('gR', function()
+		-- testando uma lsp reference list um pouco maior para usar com monitor wide, com o espaco para nome ocupando 80 chars
+		require('telescope.builtin').lsp_references({
+			fname_width = 80,
+		})
+	end, opts)
 	nnoremap('<leader>re', vim.lsp.buf.rename, opts)
 	nnoremap('<leader>f', function()
 		vim.lsp.buf.format({ timeout_ms = 2000 })
@@ -73,7 +79,7 @@ lspzero.ensure_installed({
 	'tailwindcss',
 	'astro',
 	'prismals',
-	'volar',
+	-- 'volar',
 })
 
 require('neodev').setup({})
@@ -126,9 +132,9 @@ lspconfig.ruff_lsp.setup({
 	},
 })
 
-lspconfig.volar.setup({
-	filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
-})
+-- lspconfig.volar.setup({
+-- 	filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
+-- })
 
 lspzero.setup()
 
