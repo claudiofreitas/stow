@@ -195,6 +195,19 @@ return {
 		end,
 	},
 	{
+		'rose-pine/neovim',
+		config = function()
+			require('rose-pine').setup({
+				variant = 'moon',
+				-- dim_nc_background = true,
+
+				groups = {
+					background_nc = 'overlay',
+				},
+			})
+		end,
+	},
+	{
 		dir = '~/repos/claudio-darker.lua',
 		-- config = "vim.cmd('colorscheme claudio-darker')",
 	},
@@ -237,7 +250,6 @@ return {
 		end,
 	},
 	{ 'sainnhe/sonokai' },
-	{ 'rose-pine/neovim' },
 	{ 'tiagovla/tokyodark.nvim' },
 	{ 'catppuccin/nvim' },
 	{ 'rktjmp/lush.nvim' },
