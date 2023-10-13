@@ -158,6 +158,7 @@ return {
 	-- Git
 	{ 'tpope/vim-fugitive' },
 	{ 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
+	{ 'sindrets/diffview.nvim', dependencies = { 'nvim-tree/nvim-web-devicons' } },
 
 	-- Color schemes & UI Visuals
 	{
