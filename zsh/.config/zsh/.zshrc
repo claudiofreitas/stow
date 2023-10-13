@@ -1,3 +1,9 @@
+# Zsh Options
+setopt BEEP # activates beep when error (autocomplete fails, etc)
+# current BEEP sound on MacOs: "Jump"
+
+
+
 function prependToPath {
   export PATH="$1:$PATH"
 }
@@ -10,6 +16,8 @@ function appendToPath {
 prependToPath "/usr/local/opt/ruby/bin"
 prependToPath "$HOME/.local/n/bin"
 prependToPath "$HOME/.yarn/bin"
+prependToPath "/opt/homebrew/bin"
+prependToPath "/opt/homebrew/opt/jpeg/bin"
 
 # Appending to PATH
 appendToPath "$HOME/.config/yarn/global/node_modules/.bin"
@@ -42,6 +50,10 @@ export GPG_TTY=$(tty)
 export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yaml"
 ZSH_THEME="claudio"
 DISABLE_UPDATE_PROMPT="true"
+export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
+
+# Disable analytics for Homebrew
+export HOMEBREW_NO_ANALYTICS=1
 
 # Disable telemetry for dotnet
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
@@ -56,7 +68,17 @@ plugins=(
 function sourceIfExists {
   [[ -s $1 ]] && source $1
 }
+
 sourceIfExists "$ZSH/oh-my-zsh.sh"
+# On pressing up or down with a word inserted, display history items that starts with that word
+# autoload -U up-line-or-beginning-search
+# autoload -U down-line-or-beginning-search
+# zle -N up-line-or-beginning-search
+# zle -N down-line-or-beginning-search
+# bindkey "^[OA" up-line-or-beginning-search # Up
+# bindkey "^[OB" down-line-or-beginning-search # Down
+
+
 sourceIfExists "/usr/local/share/zsh/site-functions/aws_zsh_completer.sh"
 sourceIfExists "${HOME}/.iterm2_shell_integration.zsh"
 sourceIfExists "$NVM_DIR/bash_completion"
@@ -94,6 +116,7 @@ alias lg="lazygit"
 alias yd="yarn dev"
 alias ys="yarn start"
 alias pn="pnpm"
+alias neovide="/Applications/neovide.app/Contents/MacOS/neovide"
 
 fbr() {
   local branches branch
@@ -121,3 +144,11 @@ export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
+# nvm
+export NVM_DIR="$HOME/.nvm"
+
+# This loads nvm:
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# This loads nvm bash_completion:
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
