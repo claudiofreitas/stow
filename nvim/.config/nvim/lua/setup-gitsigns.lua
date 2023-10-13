@@ -20,7 +20,7 @@ U+259x 	▐ 	░ 	▒ 	▓ 	▔ 	▕ 	▖ 	▗ 	▘ 	▙ 	▚ 	▛ 	▜ 	▝ 	�
 
 local ok, gitsigns = pcall(require, 'gitsigns')
 if not ok then
-  print('error on trying to load gitsigns')
+	print('error on trying to load gitsigns')
 	return nil
 end
 
@@ -62,4 +62,34 @@ gitsigns.setup({
 		row = 0,
 		col = 1,
 	},
+	on_attach = function(bufnr)
+		-- Navigation
+		vim.keymap.set('n', '[c', function()
+			if vim.wo.diff then
+				return '[c'
+			end
+			vim.schedule(function()
+				gitsigns.prev_hunk()
+			end)
+			return '<Ignore>'
+		end, { expr = true, buffer = bufnr, desc = 'Prev change' })
+
+		vim.keymap.set('n', ']c', function()
+			if vim.wo.diff then
+				return ']c'
+			end
+			vim.schedule(function()
+				gitsigns.next_hunk()
+			end)
+			return '<Ignore>'
+		end, { expr = true, buffer = bufnr, desc = 'Next change' })
+
+		-- Actions
+		-- vim.keymap.set('n', '<Leader>hb', gitsigns.toggle_current_line_blame, { buffer = bufnr, desc = 'hunk blame' })
+		-- vim.keymap.set('n', '<Leader>ha', gitsigns.stage_hunk, { buffer = bufnr, desc = 'hunk stage (add)' })
+		-- vim.keymap.set('n', '<Leader>hr', gitsigns.reset_hunk, { buffer = bufnr, desc = 'hunk restore/reset' })
+		-- vim.keymap.set('n', '<Leader>hu', gitsigns.undo_stage_hunk, { buffer = bufnr, desc = 'hunk undo stage' })
+		-- vim.keymap.set('n', '<Leader>hp', gitsigns.preview_hunk, { buffer = bufnr, desc = 'hunk preview diff' })
+		-- vim.keymap.set('n', '<Leader>hd', gitsigns.diffthis, { buffer = bufnr, desc = 'hunk diffthis(?)' })
+	end,
 })
