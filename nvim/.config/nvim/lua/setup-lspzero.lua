@@ -79,6 +79,7 @@ lspzero.ensure_installed({
 	'tailwindcss',
 	'astro',
 	'prismals',
+	'bashls',
 	-- 'volar',
 })
 
