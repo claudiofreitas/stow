@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+function load_tmux_nav_work_sessions () {
+	find ~/work/path1 -mindepth 1 -maxdepth 1 -type d -o -type l;
+	find ~/work/path2 -mindepth 1 -maxdepth 1 -type d -o -type l;
+}
+

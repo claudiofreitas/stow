@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
 
+source "$HOME"/.local/bin/tmux-nav/load-work-sessions.sh
+
 if [[ -z $1 ]]; then
-  session=$({ find ~ ~/repos -mindepth 1 -maxdepth 1 -type d -o -type l; echo "/tmp"; } | fzf)
+  session=$({ 
+		find ~ -mindepth 1 -maxdepth 1 -type d -o -type l;
+		find ~/repos -mindepth 1 -maxdepth 1 -type d -o -type l;
+		load_tmux_nav_work_sessions;
+		echo "/tmp";
+	} | fzf)
 else
   session=$1
 fi
@@ -15,7 +22,7 @@ tmux_running=$(pgrep tmux)
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
   # Not inside tmux && Tmux is not running
-  tmux new-session -s $session_name -c $session
+  tmux new-session -s "$session_name" -c "$session"
   exit 0
 fi
 
