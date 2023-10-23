@@ -109,7 +109,6 @@ sourceIfExists "$NVM_DIR/bash_completion"
 sourceIfExists "$HOME/.fzf.zsh"
 sourceIfExists "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 sourceIfExists "/etc/grc.zsh" # Generic colorizer
-sourceIfExists "$HOME/.bun/_bun" # bun completions
 
 # Aliases
 alias ls="ls -lahFG"
