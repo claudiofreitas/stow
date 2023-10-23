@@ -3,7 +3,6 @@ setopt BEEP # activates beep when error (autocomplete fails, etc)
 # current BEEP sound on MacOs: "Jump"
 
 
-
 function prependToPath {
   export PATH="$1:$PATH"
 }
@@ -52,6 +51,20 @@ ZSH_THEME="claudio"
 DISABLE_UPDATE_PROMPT="true"
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
 
+# ----- Configure HISTORY - https://zsh-manual.netlify.app/options#1624-history
+# https://zsh-manual.netlify.app/parameters?highlight=HISTFILE#156-parameters-used-by-the-shell
+export HISTFILE="$HOME/.config/zsh/.zsh_history"
+
+# https://zsh-manual.netlify.app/parameters?highlight=HISTSIZE#156-parameters-used-by-the-shell
+export HISTSIZE=100000
+
+# https://zsh-manual.netlify.app/parameters?highlight=SAVEHIST#156-parameters-used-by-the-shell
+export SAVEHIST=100000
+
+# https://zsh-manual.netlify.app/options?highlight=inc_append_history#1624-history
+setopt inc_append_history
+# -----------------------------------------------------------------------------
+
 # Disable analytics for Homebrew
 export HOMEBREW_NO_ANALYTICS=1
 
@@ -75,11 +88,11 @@ sourceIfExists "$ZSH/oh-my-zsh.sh"
 # autoload -U down-line-or-beginning-search
 # zle -N up-line-or-beginning-search
 # zle -N down-line-or-beginning-search
-# bindkey "^[OA" up-line-or-beginning-search # Up
-# bindkey "^[OB" down-line-or-beginning-search # Down
+# bindkey "^[[A" up-line-or-beginning-search # Up
+# bindkey "^[[B" down-line-or-beginning-search # Down
 
-
-sourceIfExists "/usr/local/share/zsh/site-functions/aws_zsh_completer.sh"
+# aws_zsh_completer raises warnings when I disable oh-my-zsh
+# sourceIfExists "/usr/local/share/zsh/site-functions/aws_zsh_completer.sh"
 sourceIfExists "${HOME}/.iterm2_shell_integration.zsh"
 sourceIfExists "$NVM_DIR/bash_completion"
 sourceIfExists "$HOME/.fzf.zsh"
@@ -96,7 +109,6 @@ alias gd="git diff"
 alias gds="git diff --staged"
 alias ga="git add"
 alias gcm="git commit -m"
-# alias gl="git log --pretty=format:'%C(blue)%h%C(red)%d %C(white)%s - %C(cyan)%cn, %C(green)%cr'"
 alias gl="source $HOME/.local/bin/pretty_git_log.bash && pretty_git_log"
 alias v="nvim"
 alias tempo="curl 'wttr.in/Koto?format=\"%l++%c++%t++%w++%p\"'"
@@ -152,3 +164,15 @@ export NVM_DIR="$HOME/.nvm"
 
 # This loads nvm bash_completion:
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+# pnpm
+export PNPM_HOME="/Users/claudio/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# enable starship (should be at the end of the .zshrc)
+eval "$(starship init zsh)"
+
