@@ -29,6 +29,10 @@ format = "[${symbol}${pyenv_prefix}(${version} )(\\($virtualenv\\) )]($style)"
 format = "\\([$symbol($version)]($style)\\) "
 version_format = "v${major}"
 
+[docker_context]
+format = "\\([$symbol$context]($style)\\) "
+disabled = true
+
 [git_branch]
 format = "[$symbol$branch(:$remote_branch)]($style) "
 symbol = " "
