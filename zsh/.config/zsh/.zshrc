@@ -82,14 +82,19 @@ function sourceIfExists {
   [[ -s $1 ]] && source $1
 }
 
-sourceIfExists "$ZSH/oh-my-zsh.sh"
+# sourceIfExists "$ZSH/oh-my-zsh.sh"
+# Ref.: https://github.com/wincent/wincent/blob/be7fde5bf2/aspects/dotfiles/files/.zshrc#L185
 # On pressing up or down with a word inserted, display history items that starts with that word
-# autoload -U up-line-or-beginning-search
-# autoload -U down-line-or-beginning-search
-# zle -N up-line-or-beginning-search
-# zle -N down-line-or-beginning-search
-# bindkey "^[[A" up-line-or-beginning-search # Up
-# bindkey "^[[B" down-line-or-beginning-search # Down
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search # Up
+bindkey "^[[B" down-line-or-beginning-search # Down
+# autoload: https://zsh-manual.netlify.app/functions?highlight=autoload#91-autoloading-functions
+autoload -U compinit
+# compinit: https://zsh-manual.netlify.app/completion-system?highlight=compinit#2021-use-of-compinit
+compinit -d "$HOME/.cache/zsh/zcompdump-$ZSH_VERSION"
 
 # aws_zsh_completer raises warnings when I disable oh-my-zsh
 # sourceIfExists "/usr/local/share/zsh/site-functions/aws_zsh_completer.sh"
