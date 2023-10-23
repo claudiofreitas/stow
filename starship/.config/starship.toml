@@ -1,4 +1,5 @@
 "$schema" = 'https://starship.rs/config-schema.json'
+# https://starship.rs/config/
 
 add_newline = false
 format = '$all'
@@ -23,6 +24,10 @@ style = "yellow"
 
 [python]
 format = "[${symbol}${pyenv_prefix}(${version} )(\\($virtualenv\\) )]($style)"
+
+[nodejs]
+format = "\\([$symbol($version)]($style)\\) "
+version_format = "v${major}"
 
 [git_branch]
 format = "[$symbol$branch(:$remote_branch)]($style) "
