@@ -98,7 +98,6 @@ compinit -d "$HOME/.cache/zsh/zcompdump-$ZSH_VERSION"
 
 # aws_zsh_completer raises warnings when I disable oh-my-zsh
 # sourceIfExists "/usr/local/share/zsh/site-functions/aws_zsh_completer.sh"
-sourceIfExists "${HOME}/.iterm2_shell_integration.zsh"
 sourceIfExists "$NVM_DIR/bash_completion"
 sourceIfExists "$HOME/.fzf.zsh"
 sourceIfExists "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
