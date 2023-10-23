@@ -21,6 +21,10 @@ style = "green"
 [directory]
 format = "[  $path]($style)[$read_only]($read_only_style) "
 style = "yellow"
+truncate_to_repo = false
+truncation_length = 0
+truncation_symbol = '.../'
+repo_root_style = "underline yellow"
 
 [python]
 format = "[${symbol}${pyenv_prefix}(${version} )(\\($virtualenv\\) )]($style)"
