@@ -89,8 +89,15 @@ autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search # Up
-bindkey "^[[B" down-line-or-beginning-search # Down
+if [ "$(uname)" = "Darwin" ]; then
+	bindkey "^[[A" up-line-or-beginning-search # Up
+	bindkey "^[[B" down-line-or-beginning-search # Down
+else
+	# Check if on Linux it was really ^[0A
+	bindkey "^[0A" up-line-or-beginning-search # Up
+	bindkey "^[0B" down-line-or-beginning-search # Down
+fi
+
 # autoload: https://zsh-manual.netlify.app/functions?highlight=autoload#91-autoloading-functions
 autoload -U compinit
 # compinit: https://zsh-manual.netlify.app/completion-system?highlight=compinit#2021-use-of-compinit
