@@ -11,6 +11,7 @@
 [alias]
 	s = !git status -s
 	l = !git log --pretty=format:'%C(blue)%h%C(red)%d %C(white)%s - %C(cyan)%cn, %C(green)%cr'
+	unstage = reset HEAD --
 
 [delta "defaults"]
 	side-by-side = true
