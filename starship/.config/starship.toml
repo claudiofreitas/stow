@@ -3,6 +3,7 @@
 
 add_newline = false
 format = '$all'
+command_timeout = 1_000_000
 
 [character]
 success_symbol = "[>](red)"
@@ -44,6 +45,11 @@ style = "blue"
 
 [cmake]
 disabled = true
+
+[cmd_duration]
+min_time = 120_000 # only show if it takes more than 120s (2min)
+show_notifications = false
+# min_time_to_notify = 1_000 # only notify if it takes more than 60s
 
 [shell]
 disabled = false
