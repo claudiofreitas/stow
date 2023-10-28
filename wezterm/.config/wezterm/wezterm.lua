@@ -89,18 +89,11 @@ local config = {
 	-- macos_window_background_blur = 30,
 
 	animation_fps = 10,
+	cursor_blink_rate = 0,
 	cursor_blink_ease_in = "EaseIn",
 	cursor_blink_ease_out = "EaseOut",
 	anti_alias_custom_block_glyphs = true,
 	-- bold_brightens_ansi_colors = "No",
-
-	keys = {
-		{
-			key = "P",
-			mods = "CTRL",
-			action = wezterm.action.ActivateCommandPalette,
-		},
-	},
 
 	command_palette_font_size = 24.0,
 
@@ -110,7 +103,128 @@ local config = {
 	window_decorations = "INTEGRATED_BUTTONS|RESIZE",
 
 	-- https://wezfurlong.org/wezterm/config/default-keys.html
-	disable_default_key_bindings = false,
+	disable_default_key_bindings = true,
+	keys = {
+		{
+			mods = "CTRL",
+			key = "p",
+			action = wezterm.action.ActivateCommandPalette,
+		},
+		{
+			mods = "SUPER",
+			key = "q",
+			action = wezterm.action.QuitApplication,
+		},
+		-- Increase font (cmd+=)
+		{
+			mods = "SUPER",
+			key = "=",
+			action = wezterm.action.IncreaseFontSize,
+		},
+		-- Decrease font (cmd+-)
+		{
+			mods = "SUPER",
+			key = "-",
+			action = wezterm.action.DecreaseFontSize,
+		},
+		-- Reset font (cmd+0)
+		{
+			mods = "SUPER",
+			key = "0",
+			action = wezterm.action.ResetFontSize,
+		},
+		-- Paste (cmd+v)
+
+		{
+			mods = "SUPER",
+			key = "v",
+			action = wezterm.action.PasteFrom("Clipboard"),
+		},
+		-- Tmux Previous Window (cmd+left)
+		{
+			mods = "SUPER",
+			key = "LeftArrow",
+			action = wezterm.action.Multiple({
+				wezterm.action.SendKey({
+					mods = "CTRL",
+					key = "f",
+				}),
+				wezterm.action.SendKey({
+					mods = "CTRL",
+					key = "p",
+				}),
+			}),
+		},
+		-- Tmux Next Window (cmd+right)
+		{
+			mods = "SUPER",
+			key = "RightArrow",
+			action = wezterm.action.Multiple({
+				wezterm.action.SendKey({
+					mods = "CTRL",
+					key = "f",
+				}),
+				wezterm.action.SendKey({
+					mods = "CTRL",
+					key = "n",
+				}),
+			}),
+		},
+		-- Tmux New Window (cmd+t)
+		{
+			mods = "SUPER",
+			key = "t",
+			action = wezterm.action.Multiple({
+				wezterm.action.SendKey({
+					mods = "CTRL",
+					key = "f",
+				}),
+				wezterm.action.SendKey({
+					key = "t",
+				}),
+			}),
+		},
+		-- Tmux Close Window (cmd+w)
+		{
+			mods = "SUPER",
+			key = "w",
+			action = wezterm.action.Multiple({
+				wezterm.action.SendKey({
+					mods = "CTRL",
+					key = "f",
+				}),
+				wezterm.action.SendKey({
+					key = "X",
+				}),
+			}),
+		},
+	},
+
+	-- https://wezfurlong.org/wezterm/config/mouse.html
+	-- TODO: I could not make this work yet
+	-- disable_default_mouse_bindings = true,
+	-- mouse_bindings = {
+	-- 	{
+	-- 		mods = "SUPER",
+	-- 		event = {
+	-- 			Down = {
+	-- 				streak = 1,
+	-- 				button = "Left",
+	-- 			},
+	-- 		},
+	-- 		action = wezterm.action.Nop,
+	-- 	},
+	-- 	{
+	-- 		mods = "SUPER",
+	-- 		event = {
+	-- 			Up = {
+	-- 				streak = 1,
+	-- 				button = "Left",
+	-- 			},
+	-- 		},
+	-- 		action = wezterm.action.OpenLinkAtMouseCursor,
+	-- 	},
+	-- },
 
 	window_close_confirmation = "NeverPrompt",
 
