@@ -40,6 +40,10 @@ require('telescope').setup({
 				'!.git/*',
 			},
 		},
+
+		lsp_references = {
+			show_line = false,
+		},
 	},
 
 	extensions = {
