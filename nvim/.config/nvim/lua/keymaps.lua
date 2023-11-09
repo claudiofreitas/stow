@@ -4,6 +4,15 @@
 vim.api.nvim_set_keymap('n', '<F1>', ':lua vim.lsp.buf.signature_help() <CR>', {})
 vim.api.nvim_set_keymap('n', '<S-PageUp>', '5zh', {})
 vim.api.nvim_set_keymap('n', '<S-PageDown>', '5zl', {})
+vim.api.nvim_set_keymap('', '<S-ScrollWheelUp>', '<ScrollWheelLeft>', {})
+-- vim.api.nvim_set_keymap('', '<S-ScrollWheelDown>', '<ScrollWheelRight>', {})
+-- vim.api.nvim_set_keymap('', '<S-ScrollWheelDown>', function()
+-- 	print('scrolled')
+-- end, {})
+
+vim.keymap.set('', '<S-ScrollWheelDown>', function()
+	print('scrolled')
+end, {})
 
 vim.api.nvim_set_keymap('n', '<M-Left>', ':bp<CR>', {})
 vim.api.nvim_set_keymap('n', '<M-Right>', ':bn<CR>', {})
