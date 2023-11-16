@@ -17,6 +17,9 @@ end, {})
 vim.api.nvim_set_keymap('n', '<M-Left>', ':bp<CR>', {})
 vim.api.nvim_set_keymap('n', '<M-Right>', ':bn<CR>', {})
 
+-- Disable relative line number
+vim.api.nvim_set_keymap('n', '<Leader>0', ':set norelativenumber<CR>', {})
+
 -- Navigate forward or backward the quickfix list with [c ]c
 vim.api.nvim_set_keymap('n', '[q', '<cmd>cprev<cr>zz', { desc = 'Quickfix previous' })
 vim.api.nvim_set_keymap('n', ']q', '<cmd>cnext<cr>zz', { desc = 'Quickfix next' })
