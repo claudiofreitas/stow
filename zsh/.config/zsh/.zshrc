@@ -120,7 +120,6 @@ alias gds="git diff --staged"
 alias ga="git add"
 alias gcm="git commit -m"
 alias gl="source $HOME/.local/bin/pretty_git_log.bash && pretty_git_log"
-alias gr="cd $(git rev-parse --show-toplevel)"
 alias v="nvim"
 alias tempo="curl 'wttr.in/Koto?format=\"%l++%c++%t++%w++%p\"'"
 alias ls="exa --long --header --git --links --time-style=long-iso --icons -a"
@@ -140,6 +139,10 @@ alias yd="yarn dev"
 alias ys="yarn start"
 alias pn="pnpm"
 alias neovide="/Applications/neovide.app/Contents/MacOS/neovide"
+
+gr() {
+	cd $(git rev-parse --show-toplevel)
+}
 
 fbr() {
   local branches branch
