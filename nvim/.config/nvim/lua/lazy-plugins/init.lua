@@ -521,6 +521,46 @@ return {
 	},
 
 	{
+		'chentoast/marks.nvim',
+		-- https://github.com/chentoast/marks.nvim
+		opts = {
+			default_mappings = false,
+			-- builtin_marks = { ".", "<", ">", "^" },
+			-- cyclic = true,
+			-- whether the shada file is updated after modifying uppercase marks. default false
+			force_write_shada = true,
+			refresh_interval = 250,
+			-- sign priorities for each type of mark - builtin marks, uppercase marks, lowercase
+			-- marks, and bookmarks.
+			-- can be either a table with all/none of the keys, or a single number, in which case
+			-- the priority applies to all marks.
+			-- default 10.
+			sign_priority = { lower = 10, upper = 15, builtin = 8, bookmark = 20 },
+			-- disables mark tracking for specific filetypes. default {}
+			excluded_filetypes = {},
+			-- marks.nvim allows you to configure up to 10 bookmark groups, each with its own
+			-- sign/virttext. Bookmarks can be used to group together positions and quickly move
+			-- across multiple buffers. default sign is '!@#$%^&*()' (from 0 to 9), and
+			-- default virt_text is "".
+			bookmark_0 = {
+				sign = "⚑",
+				-- virt_text = "hello world",
+				-- explicitly prompt for a virtual line annotation when setting a bookmark from this group.
+				-- defaults to false.
+				annotate = false,
+			},
+			-- https://github.com/chentoast/marks.nvim#mappings
+			mappings = {
+				set_bookmark0 = '<F3>',
+				delete_bookmark = '<S-F3>',
+				prev_bookmark0 = '[b',
+				next_bookmark0 = ']b',
+				annotate = '<C-F3>',
+			},
+		},
+	},
+
+	{
 		'RRethy/vim-illuminate',
 		event = { 'BufReadPost', 'BufNewFile' },
 		opts = {
