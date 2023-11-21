@@ -73,4 +73,22 @@ jest.mock("{}", () => ({{
 	)
 )
 
+create_snippet(
+	{
+		trig = 'console.log(JSON.stringify(VAR, null, 2))',
+		name = 'Console log stringified',
+		dscr = 'Console log with JSON formatted variable',
+	},
+	format(
+		[[
+console.log("{}");
+console.log(JSON.stringify({}, null, 2));
+]],
+		{
+			ins_node(1, 'variableName'),
+			rep_node(1),
+		}
+	)
+)
+
 return snippets, autosnippets
