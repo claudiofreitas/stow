@@ -109,6 +109,7 @@ sourceIfExists "$NVM_DIR/bash_completion"
 sourceIfExists "$HOME/.fzf.zsh"
 sourceIfExists "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 sourceIfExists "/etc/grc.zsh" # Generic colorizer
+sourceIfExists "$HOME/.cargo/env"
 
 # Aliases
 alias ls="ls -lahFG"
@@ -156,34 +157,36 @@ pr() {
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C $HOME/.local/bin/terraform terraform
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# Config rbenv
+if which rbenv > /dev/null; then
+	eval "$(rbenv init -)"; 
+fi
 
-# bun
+# Config bun
 export BUN_INSTALL="$HOME/.bun"
 prependToPath "$BUN_INSTALL/bin"
 
-# TODO: organize this part -- config for pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+# Config pyenv
+if command -v pyenv >/dev/null 2>&1; then
+  export PYENV_ROOT="$HOME/.pyenv"
+	export PATH="$PYENV_ROOT/bin:$PATH"
+  eval "$(pyenv init -)"
+fi
 
-# nvm
+# Config nvm
 export NVM_DIR="$HOME/.nvm"
+sourceIfExists "$NVM_DIR/nvm.sh"
+sourceIfExists "$NVM_DIR/bash_completion"
 
-# This loads nvm:
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-# This loads nvm bash_completion:
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
-# pnpm
+# Config pnpm
 export PNPM_HOME="/Users/claudio/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
 
-# enable starship (should be at the end of the .zshrc)
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Config starship (should be at the end of the .zshrc)
 eval "$(starship init zsh)"
 
