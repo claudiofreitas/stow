@@ -49,7 +49,7 @@ gitsigns.setup({
 		delay = 200,
 		ignore_whitespace = false,
 	},
-	current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
+	current_line_blame_formatter = '<summary> (<author>) <author_time:%Y-%m-%d>',
 	sign_priority = 6,
 	update_debounce = 100,
 	status_formatter = nil, -- Use default
@@ -85,7 +85,7 @@ gitsigns.setup({
 		end, { expr = true, buffer = bufnr, desc = 'Next change' })
 
 		-- Actions
-		-- vim.keymap.set('n', '<Leader>hb', gitsigns.toggle_current_line_blame, { buffer = bufnr, desc = 'hunk blame' })
+		vim.keymap.set('n', '<Leader>B', gitsigns.toggle_current_line_blame, { buffer = bufnr, desc = 'hunk blame' })
 		-- vim.keymap.set('n', '<Leader>ha', gitsigns.stage_hunk, { buffer = bufnr, desc = 'hunk stage (add)' })
 		-- vim.keymap.set('n', '<Leader>hr', gitsigns.reset_hunk, { buffer = bufnr, desc = 'hunk restore/reset' })
 		-- vim.keymap.set('n', '<Leader>hu', gitsigns.undo_stage_hunk, { buffer = bufnr, desc = 'hunk undo stage' })
