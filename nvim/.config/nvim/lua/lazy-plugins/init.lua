@@ -1,5 +1,8 @@
 return {
-	{ 'folke/neodev.nvim' },
+	{
+		'folke/neodev.nvim',
+		config = true,
+	},
 
 	{ dir = '~/repos/stackmap.nvim' },
 
@@ -37,7 +40,7 @@ return {
 			{ 'L3MON4D3/LuaSnip' }, -- Required
 		},
 	},
-	{ 'jose-elias-alvarez/null-ls.nvim' },
+	-- { 'jose-elias-alvarez/null-ls.nvim' },
 	{ 'jose-elias-alvarez/typescript.nvim' },
 	{ 'glepnir/lspsaga.nvim', branch = 'main' },
 	{
@@ -56,6 +59,65 @@ return {
 		'mfussenegger/nvim-lint',
 		config = function()
 			local lint = require('lint')
+			lint.linters.eslint_d.parser = function(output, bufnr)
+				local severities = {
+					vim.diagnostic.severity.WARN,
+					vim.diagnostic.severity.ERROR,
+				}
+				local eslint_parser = function(_output, _bufnr)
+					if vim.trim(_output) == '' then
+						return {}
+					end
+					local decode_opts = { luanil = { object = true, array = true } }
+					local ok, data = pcall(vim.json.decode, _output, decode_opts)
+					if not ok then
+						return {
+							{
+								bufnr = _bufnr,
+								lnum = 0,
+								col = 0,
+								message = 'Could not parse linter output due to: ' .. data .. '\noutput: ' .. _output,
+							},
+						}
+					end
+					-- See https://eslint.org/docs/latest/use/formatters/#json
+					local diagnostics = {}
+					for _, result in ipairs(data or {}) do
+						for _, msg in ipairs(result.messages or {}) do
+							-- TODO: move this logic into a personal separate package
+							if msg.ruleId ~= 'simple-import-sort/imports' then
+								table.insert(diagnostics, {
+									lnum = msg.line and (msg.line - 1) or 0,
+									end_lnum = msg.endLine and (msg.endLine - 1) or nil,
+									col = msg.column and (msg.column - 1) or 0,
+									end_col = msg.endColumn and (msg.endColumn - 1) or nil,
+									message = msg.message,
+									code = msg.ruleId,
+									severity = severities[msg.severity],
+									source = 'eslint_d',
+								})
+							end
+						end
+					end
+					return diagnostics
+				end
+				local result = eslint_parser(output, bufnr)
+				for _, d in ipairs(result) do
+					d.source = 'eslint_d'
+				end
+				return result
+			end
+			-- The following can be used to fix a file:
+			-- lint.linters.eslint_d.args = {
+			-- 	'--fix',
+			-- 	'--format',
+			-- 	'json',
+			-- 	'--stdin',
+			-- 	'--stdin-filename',
+			-- 	function()
+			-- 		return vim.api.nvim_buf_get_name(0)
+			-- 	end,
+			-- }
 			lint.linters_by_ft = {
 				javascript = { 'eslint_d' },
 				typescript = { 'eslint_d' },
@@ -67,7 +129,58 @@ return {
 					lint.try_lint()
 				end,
 			})
-			vim.keymap.set('n', '<Leader>l', lint.try_lint, { desc = 'Lint' })
+			vim.keymap.set('n', '<Leader>l', function()
+				lint.try_lint()
+				vim.diagnostic.show()
+			end, { desc = 'Lint' })
+		end,
+	},
+	{
+		'stevearc/conform.nvim',
+		event = { 'BufWritePre' },
+		cmd = { 'ConformInfo' },
+		keys = {
+			{
+				-- Customize this to your liking
+				'<Leader>f',
+				function()
+					require('conform').format({
+						async = true,
+						lsp_fallback = true,
+					})
+				end,
+				mode = '',
+				desc = 'Format buffer (conform)',
+			},
+		},
+		opts = {
+			-- define your formatters
+			formatters_by_ft = {
+				javascript = {
+					{ 'prettierd', 'prettier' },
+				},
+				typescript = {
+					{ 'prettierd', 'prettier' },
+				},
+				javascriptreact = {
+					{ 'prettierd', 'prettier' },
+				},
+				typescriptreact = {
+					{ 'prettierd', 'prettier' },
+				},
+				lua = {
+					{ 'stylua' },
+				},
+			},
+			formatters = {
+				shfmt = {
+					prepend_args = { '-i', '2' },
+				},
+			},
+		},
+		init = function()
+			-- if you want the formatexpr, here is the place to set it
+			-- vim.o.formatexpr = "v:lua.require('conform').formatexpr()"
 		end,
 	},
 

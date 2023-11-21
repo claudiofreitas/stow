@@ -180,6 +180,8 @@ opt.shortmess:append('W')
 -- Do not give the file info when editing a file, like :silent was used for the command
 opt.shortmess:append('F')
 
+opt.foldcolumn = "1"
+
 -- Enables 24-bit RGB color in the TUI. Uses "gui" :highlight attributes instead of "cterm" attributes.
 opt.termguicolors = true
 
