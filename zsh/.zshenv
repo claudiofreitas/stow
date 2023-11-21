@@ -6,5 +6,4 @@
 # .zshrc    - for interactive shells
 # .zlogin   - for login shells
 
-. "$HOME/.cargo/env"
 ZDOTDIR="$HOME/.config/zsh"
