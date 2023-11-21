@@ -4,7 +4,7 @@ local opt = vim.opt
 vim.wo.number = true
 
 -- Relative line numbers
-vim.wo.relativenumber = true
+vim.wo.relativenumber = false
 
 -- Default: 'internal,filler,closeoff'
 opt.diffopt = 'internal,filler,closeoff,vertical,context:99999'
