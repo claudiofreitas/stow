@@ -45,9 +45,9 @@ lspzero.on_attach(function(lsp_client, bufnr)
 		})
 	end, opts)
 	nnoremap('<leader>re', vim.lsp.buf.rename, opts)
-	nnoremap('<leader>f', function()
-		vim.lsp.buf.format({ timeout_ms = 2000 })
-	end, opts)
+	-- nnoremap('<leader>f', function()
+	-- 	vim.lsp.buf.format({ timeout_ms = 2000 })
+	-- end, opts)
 
 	-- Highlights
 	if lsp_client.server_capabilities.documentHighlightProvider then

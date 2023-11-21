@@ -13,7 +13,7 @@ local autoload_packages = {
 	'setup-cmp',
 	'setup-lspsaga',
 	'setup-lualine',
-	'setup-nullls',
+	-- 'setup-nullls',
 	'setup-fidget',
 	'setup-notify',
 	'setup-bufferline',
