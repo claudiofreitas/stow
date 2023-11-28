@@ -83,8 +83,6 @@ lspzero.ensure_installed({
 	-- 'volar',
 })
 
-require('neodev').setup({})
-
 local lspconfig = require('lspconfig')
 
 lspconfig.lua_ls.setup(lspzero.nvim_lua_ls({
