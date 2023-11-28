@@ -1,8 +1,13 @@
 -- https://github.com/akinsho/bufferline.nvim/blob/main/doc/bufferline.txt
 
+-- Right now bufferline is not updated with correct types to use inside the setup function.
+-- Maybe the types are for internal use, and when used with neodev it produces too much warnings.
+-- Remove after https://github.com/akinsho/bufferline.nvim/pull/812 is merged.
+---@diagnostic disable: missing-fields
+
 local ok, bufferline = pcall(require, 'bufferline')
 if not ok then
-  print('error on trying to load bufferline')
+	print('error on trying to load bufferline')
 	return nil
 end
 
