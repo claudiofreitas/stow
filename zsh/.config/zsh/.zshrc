@@ -79,7 +79,15 @@ plugins=(
 )
 
 function sourceIfExists {
-  [[ -s $1 ]] && source $1
+	local debugNotFound=0
+  if [[ -s $1 ]]; then
+		# echo "$1"
+		source $1
+	else
+		if [[ $debugNotFound = 1 ]]; then
+			echo "$1 not found"
+		fi
+	fi
 }
 
 # sourceIfExists "$ZSH/oh-my-zsh.sh"
