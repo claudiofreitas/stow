@@ -6,7 +6,6 @@ local autoload_packages = {
 	'setup-treesitter',
 	'setup-telescope',
 
-	-- 'setup-lspconfig',
 	'setup-lspzero',
 	'setup-gitsigns',
 	'setup-luasnip',
