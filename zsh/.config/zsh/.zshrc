@@ -79,9 +79,8 @@ plugins=(
 )
 
 function sourceIfExists {
-	local debugNotFound=0
+	local debugNotFound=1
   if [[ -s $1 ]]; then
-		# echo "$1"
 		source $1
 	else
 		if [[ $debugNotFound = 1 ]]; then
@@ -115,7 +114,7 @@ compinit -d "$HOME/.cache/zsh/zcompdump-$ZSH_VERSION"
 # sourceIfExists "/usr/local/share/zsh/site-functions/aws_zsh_completer.sh"
 sourceIfExists "$NVM_DIR/bash_completion"
 sourceIfExists "$HOME/.fzf.zsh"
-sourceIfExists "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+sourceIfExists "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 sourceIfExists "/etc/grc.zsh" # Generic colorizer
 sourceIfExists "$HOME/.cargo/env"
 
