@@ -99,16 +99,4 @@ treesitter_configs.setup({
 	autotag = {
 		enable = true,
 	},
-
-	-- Enable treesitter module to set the comment string based on the position of the cursor inside the file
-	-- Provided by https://github.com/JoosepAlviste/nvim-ts-context-commentstring
-	context_commentstring = {
-		enable = true,
-		enable_autocmd = false,
-	},
-
-	-- Indent (experimental) https://github.com/nvim-treesitter/nvim-treesitter#indentation
-	--indent = {
-	--  enable = true
-	--},
 })

@@ -7,7 +7,7 @@ return {
 	{ dir = '~/repos/stackmap.nvim' },
 
 	-- Treesitter
-	{ 'nvim-treesitter/nvim-treesitter',            build = ':TSUpdate' },
+	{ 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
 	{ 'nvim-treesitter/playground' },
 	-- Enable treesitter module to set the comment string based on the position of the cursor inside the file
 	{ 'JoosepAlviste/nvim-ts-context-commentstring' },
@@ -33,7 +33,7 @@ return {
 			{ 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
 			-- Autocompletion
-			{ 'hrsh7th/nvim-cmp' },  -- Required
+			{ 'hrsh7th/nvim-cmp' }, -- Required
 			{ 'hrsh7th/cmp-nvim-lsp' }, -- Required
 
 			-- Snippets
@@ -42,7 +42,7 @@ return {
 	},
 	-- { 'jose-elias-alvarez/null-ls.nvim' },
 	{ 'jose-elias-alvarez/typescript.nvim' },
-	{ 'glepnir/lspsaga.nvim',              branch = 'main' },
+	{ 'glepnir/lspsaga.nvim', branch = 'main' },
 	{
 		'folke/trouble.nvim', -- https://github.com/folke/trouble.nvim
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -188,15 +188,15 @@ return {
 	-- https://github.com/L3MON4D3/LuaSnip
 	-- Demo: https://www.youtube.com/watch?v=Dn800rlPIho
 	{ 'L3MON4D3/LuaSnip' },
-	{ 'hrsh7th/nvim-cmp',                          dependencies = { 'onsails/lspkind.nvim' } },
-	{ 'hrsh7th/cmp-nvim-lsp',                      dependencies = { 'hrsh7th/nvim-cmp' } },
-	{ 'hrsh7th/cmp-nvim-lua',                      dependencies = { 'hrsh7th/nvim-cmp' } },
-	{ 'hrsh7th/cmp-path',                          dependencies = { 'hrsh7th/nvim-cmp' } },
+	{ 'hrsh7th/nvim-cmp', dependencies = { 'onsails/lspkind.nvim' } },
+	{ 'hrsh7th/cmp-nvim-lsp', dependencies = { 'hrsh7th/nvim-cmp' } },
+	{ 'hrsh7th/cmp-nvim-lua', dependencies = { 'hrsh7th/nvim-cmp' } },
+	{ 'hrsh7th/cmp-path', dependencies = { 'hrsh7th/nvim-cmp' } },
 	{ 'saadparwaiz1/cmp_luasnip' },
 	{ 'onsails/lspkind.nvim' },
 
 	-- Telescope
-	{ 'nvim-telescope/telescope.nvim',             dependencies = { 'nvim-lua/plenary.nvim' } },
+	{ 'nvim-telescope/telescope.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
 	{ 'nvim-telescope/telescope-ui-select.nvim' },
 	{ 'nvim-telescope/telescope-file-browser.nvim' },
 
@@ -289,7 +289,7 @@ return {
 	-- Git
 	{ 'tpope/vim-fugitive' },
 	{ 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
-	{ 'sindrets/diffview.nvim',  dependencies = { 'nvim-tree/nvim-web-devicons' } },
+	{ 'sindrets/diffview.nvim', dependencies = { 'nvim-tree/nvim-web-devicons' } },
 
 	-- Color schemes & UI Visuals
 	{
@@ -387,8 +387,53 @@ return {
 	{ 'rktjmp/lush.nvim' },
 
 	{ 'nvim-lualine/lualine.nvim' },
-	{ 'lukas-reineke/indent-blankline.nvim' },
-	{ 'j-hui/fidget.nvim',                  tag = 'legacy' },
+	{
+		'lukas-reineke/indent-blankline.nvim',
+		main = 'ibl',
+		opts = {
+			indent = {
+				char = '│',
+			},
+
+			-- show_trailing_blankline_indent = false,
+			whitespace = {
+				remove_blankline_trail = true,
+			},
+
+			-- filetype_exclude = {
+			-- 	'help',
+			-- 	'alpha',
+			-- 	'dashboard',
+			-- 	'neo-tree',
+			-- 	'Trouble',
+			-- 	'lazy',
+			-- 	'mason',
+			-- 	'notify',
+			-- 	'toggleterm',
+			-- 	'lazyterm',
+			-- },
+			exclude = {
+				filetypes = {
+					'help',
+					'alpha',
+					'dashboard',
+					'neo-tree',
+					'Trouble',
+					'lazy',
+					'mason',
+					'notify',
+					'toggleterm',
+					'lazyterm',
+				},
+			},
+
+			-- show_current_context = false,
+			scope = {
+				enabled = false,
+			},
+		},
+	},
+	{ 'j-hui/fidget.nvim', tag = 'legacy' },
 	{ 'rcarriga/nvim-notify' },
 	{
 		'akinsho/bufferline.nvim',
@@ -419,11 +464,11 @@ return {
 				},
 			},
 			presets = {
-				bottom_search = true,     -- use a classic bottom cmdline for search
-				command_palette = true,   -- position the cmdline and popupmenu together
+				bottom_search = true, -- use a classic bottom cmdline for search
+				command_palette = true, -- position the cmdline and popupmenu together
 				long_message_to_split = true, -- long messages will be sent to a split
-				inc_rename = false,       -- enables an input dialog for inc-rename.nvim
-				lsp_doc_border = false,   -- add a border to hover docs and signature help
+				inc_rename = false, -- enables an input dialog for inc-rename.nvim
+				lsp_doc_border = false, -- add a border to hover docs and signature help
 			},
 			routes = {
 				{
@@ -543,7 +588,7 @@ return {
 			-- across multiple buffers. default sign is '!@#$%^&*()' (from 0 to 9), and
 			-- default virt_text is "".
 			bookmark_0 = {
-				sign = "⚑",
+				sign = '⚑',
 				-- virt_text = "hello world",
 				-- explicitly prompt for a virtual line annotation when setting a bookmark from this group.
 				-- defaults to false.
