@@ -75,6 +75,7 @@ brew "gobject-introspection"
 brew "grafana", restart_service: true
 brew "libtool"
 brew "graphviz"
+brew "grc"
 brew "guile"
 brew "handbrake"
 brew "htop"
