@@ -115,7 +115,7 @@ compinit -d "$HOME/.cache/zsh/zcompdump-$ZSH_VERSION"
 sourceIfExists "$NVM_DIR/bash_completion"
 sourceIfExists "$HOME/.fzf.zsh"
 sourceIfExists "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-sourceIfExists "/etc/grc.zsh" # Generic colorizer
+sourceIfExists "/opt/homebrew/etc/grc.zsh" # Generic colorizer
 sourceIfExists "$HOME/.cargo/env"
 
 # Aliases
