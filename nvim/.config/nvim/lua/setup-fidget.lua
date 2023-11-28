@@ -1,7 +1,7 @@
 -- https://github.com/j-hui/fidget.nvim/blob/main/doc/fidget.md#options
 local ok, fidget = pcall(require, 'fidget')
 if not ok then
-  print('error on trying to load fidget')
+	print('error on trying to load fidget')
 	return nil
 end
 

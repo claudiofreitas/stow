@@ -50,7 +50,7 @@ end
 
 local ok, lualine = pcall(require, 'lualine')
 if not ok then
-  print('error on trying to load lualine')
+	print('error on trying to load lualine')
 	return nil
 end
 
