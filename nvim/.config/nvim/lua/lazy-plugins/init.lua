@@ -575,7 +575,8 @@ return {
 	-- Demo: https://www.youtube.com/watch?v=-InmtHhk2qM
 	{ 'numToStr/Comment.nvim' },
 
-	{ 'windwp/nvim-autopairs' },
+	{ 'windwp/nvim-autopairs', config = true },
+
 	{ 'windwp/nvim-ts-autotag' },
 
 	{ 'mattn/emmet-vim' },

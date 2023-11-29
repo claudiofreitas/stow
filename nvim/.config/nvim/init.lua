@@ -74,13 +74,6 @@ vim.api.nvim_exec(
 	false
 )
 
-local autopairs_ok, autopairs = pcall(require, 'nvim-autopairs')
-if not autopairs_ok then
-	print('error on trying to load nvim-autopairs')
-else
-	autopairs.setup({})
-end
-
 local comment_ok, comment = pcall(require, 'Comment')
 if not comment_ok then
 	print('error on trying to load Comment')
