@@ -9,8 +9,24 @@ return {
 	-- Treesitter
 	{ 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
 	{ 'nvim-treesitter/playground' },
-	-- Enable treesitter module to set the comment string based on the position of the cursor inside the file
-	{ 'JoosepAlviste/nvim-ts-context-commentstring' },
+
+	{
+		'numToStr/Comment.nvim',
+		-- Demo: https://www.youtube.com/watch?v=-InmtHhk2qM
+		dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
+		-- https://github.com/numToStr/Comment.nvim
+		config = function()
+			---@diagnostic disable-next-line: missing-fields
+			require('ts_context_commentstring').setup({
+				enable_autocmd = false,
+			})
+			---@diagnostic disable-next-line: missing-fields
+			require('Comment').setup({
+				pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+			})
+		end,
+	},
+
 	{ 'Glench/Vim-Jinja2-Syntax' },
 
 	-- LSP
@@ -18,6 +34,7 @@ return {
 		'neovim/nvim-lspconfig',
 		dependencies = { 'hrsh7th/nvim-cmp' },
 	},
+
 	{
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v2.x',
@@ -31,18 +48,20 @@ return {
 				end,
 			},
 			{ 'williamboman/mason-lspconfig.nvim' }, -- Optional
-
 			-- Autocompletion
 			{ 'hrsh7th/nvim-cmp' }, -- Required
 			{ 'hrsh7th/cmp-nvim-lsp' }, -- Required
-
 			-- Snippets
 			{ 'L3MON4D3/LuaSnip' }, -- Required
 		},
 	},
+
 	-- { 'jose-elias-alvarez/null-ls.nvim' },
+
 	{ 'jose-elias-alvarez/typescript.nvim' },
+
 	{ 'glepnir/lspsaga.nvim', branch = 'main' },
+
 	{
 		'folke/trouble.nvim', -- https://github.com/folke/trouble.nvim
 		dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -55,6 +74,7 @@ return {
 			},
 		},
 	},
+
 	{
 		'mfussenegger/nvim-lint',
 		config = function()
@@ -135,6 +155,7 @@ return {
 			end, { desc = 'Lint' })
 		end,
 	},
+
 	{
 		'stevearc/conform.nvim',
 		event = { 'BufWritePre' },
@@ -188,11 +209,17 @@ return {
 	-- https://github.com/L3MON4D3/LuaSnip
 	-- Demo: https://www.youtube.com/watch?v=Dn800rlPIho
 	{ 'L3MON4D3/LuaSnip' },
+
 	{ 'hrsh7th/nvim-cmp', dependencies = { 'onsails/lspkind.nvim' } },
+
 	{ 'hrsh7th/cmp-nvim-lsp', dependencies = { 'hrsh7th/nvim-cmp' } },
+
 	{ 'hrsh7th/cmp-nvim-lua', dependencies = { 'hrsh7th/nvim-cmp' } },
+
 	{ 'hrsh7th/cmp-path', dependencies = { 'hrsh7th/nvim-cmp' } },
+
 	{ 'saadparwaiz1/cmp_luasnip' },
+
 	{ 'onsails/lspkind.nvim' },
 
 	-- Telescope
@@ -202,6 +229,7 @@ return {
 
 	-- Tree
 	{ 'nvim-tree/nvim-web-devicons' },
+
 	{
 		'nvim-neo-tree/neo-tree.nvim',
 		branch = 'v2.x',
@@ -261,7 +289,6 @@ return {
 					visible = true,
 				},
 			},
-
 			-- Other options ...
 		},
 		keys = {
@@ -288,7 +315,9 @@ return {
 
 	-- Git
 	{ 'tpope/vim-fugitive' },
+
 	{ 'lewis6991/gitsigns.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
+
 	{ 'sindrets/diffview.nvim', dependencies = { 'nvim-tree/nvim-web-devicons' } },
 
 	-- Color schemes & UI Visuals
@@ -296,6 +325,7 @@ return {
 		'lucastrvsn/kikwis',
 		lazy = true,
 	},
+
 	{
 		'folke/tokyonight.nvim',
 		lazy = false,
@@ -310,11 +340,8 @@ return {
 				-- 	floats = 'transparent',
 				-- },
 			})
-
 			print('tokyonight!')
-
 			vim.cmd([[colorscheme tokyonight]])
-
 			-- vim.api.nvim_set_hl(0, 'Normal', { bg = 'None' })
 			vim.api.nvim_set_hl(0, 'SignColumn', { bg = 'None' })
 			vim.api.nvim_set_hl(0, 'CursorLineNr', { bg = 'None' })
@@ -326,35 +353,35 @@ return {
 			vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg = '#f07178', bg = 'None' })
 		end,
 	},
+
 	{
 		'rose-pine/neovim',
 		config = function()
 			require('rose-pine').setup({
 				variant = 'moon',
 				-- dim_nc_background = true,
-
 				groups = {
 					background_nc = 'overlay',
 				},
 			})
 		end,
 	},
+
 	{
 		dir = '~/repos/claudio-darker.lua',
 		-- config = "vim.cmd('colorscheme claudio-darker')",
 	},
+
 	{
 		'marko-cerovac/material.nvim',
 		config = function()
 			vim.g.material_style = 'darker'
-
 			local material_colors = require('material.colors')
 			require('material').setup({
 				high_visibility = {
 					lighter = false,
 					darker = true,
 				},
-
 				custom_highlights = {
 					Normal = { bg = 'None' },
 					LineNr = { bg = 'None' },
@@ -372,7 +399,6 @@ return {
 					['@include'] = { fg = material_colors.main.purple },
 					['@parameter'] = { fg = material_colors.syntax.value },
 				},
-
 				disable = {
 					colored_cursor = true,
 					background = false,
@@ -381,12 +407,17 @@ return {
 			-- vim.cmd([[colorscheme material]])
 		end,
 	},
+
 	{ 'sainnhe/sonokai' },
+
 	{ 'tiagovla/tokyodark.nvim' },
+
 	{ 'catppuccin/nvim' },
+
 	{ 'rktjmp/lush.nvim' },
 
 	{ 'nvim-lualine/lualine.nvim' },
+
 	{
 		'lukas-reineke/indent-blankline.nvim',
 		main = 'ibl',
@@ -394,12 +425,10 @@ return {
 			indent = {
 				char = '│',
 			},
-
 			-- show_trailing_blankline_indent = false,
 			whitespace = {
 				remove_blankline_trail = true,
 			},
-
 			-- filetype_exclude = {
 			-- 	'help',
 			-- 	'alpha',
@@ -426,7 +455,6 @@ return {
 					'lazyterm',
 				},
 			},
-
 			-- show_current_context = false,
 			scope = {
 				enabled = false,
@@ -571,10 +599,6 @@ return {
 
 	-- Functionality ---------------------------------------
 
-	-- https://github.com/numToStr/Comment.nvim
-	-- Demo: https://www.youtube.com/watch?v=-InmtHhk2qM
-	{ 'numToStr/Comment.nvim' },
-
 	{ 'windwp/nvim-autopairs', config = true },
 
 	{ 'windwp/nvim-ts-autotag' },
@@ -716,6 +740,7 @@ return {
 			{ '[[', desc = 'Prev Reference' },
 		},
 	},
+
 	{
 		'prisma/vim-prisma',
 	},
