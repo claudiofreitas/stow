@@ -15,7 +15,6 @@ local autoload_packages = {
 	-- 'setup-nullls',
 	'setup-fidget',
 	'setup-notify',
-	'setup-bufferline',
 	'setup-colorcolumn',
 	'setup-neovide',
 	'keymaps',
