@@ -58,7 +58,11 @@ return {
 
 	-- { 'jose-elias-alvarez/null-ls.nvim' },
 
-	{ 'jose-elias-alvarez/typescript.nvim' },
+	-- Filetype Specific Plugins
+	{
+		'jose-elias-alvarez/typescript.nvim',
+		ft = { 'typescript', 'typescriptreact' },
+	},
 
 	{ 'glepnir/lspsaga.nvim', branch = 'main' },
 
@@ -600,6 +604,13 @@ return {
 	-- Functionality ---------------------------------------
 
 	{ 'windwp/nvim-autopairs', config = true },
+
+	{
+		'kylechui/nvim-surround',
+		version = '*',
+		event = 'VeryLazy',
+		config = true,
+	},
 
 	{ 'windwp/nvim-ts-autotag' },
 
