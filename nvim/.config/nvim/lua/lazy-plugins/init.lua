@@ -317,6 +317,73 @@ return {
 		},
 	},
 
+	{
+		'kevinhwang91/nvim-ufo',
+		dependencies = 'kevinhwang91/promise-async',
+		config = function()
+			vim.o.foldcolumn = '1'
+			vim.o.foldlevel = 99
+			vim.o.foldlevelstart = 99
+			vim.o.foldenable = true
+
+			---@diagnostic disable-next-line: missing-fields
+			require('ufo').setup({
+				provider_selector = function()
+					return { 'lsp', 'indent' }
+				end,
+			})
+		end,
+	},
+
+	{
+		'luukvbaal/statuscol.nvim',
+		branch = '0.10',
+		config = function()
+			local builtin = require('statuscol.builtin')
+			require('statuscol').setup({
+				setopt = true,
+				thousands = false,
+				relculright = true,
+				segments = {
+					-- GitSigns
+					{
+						text = { '%s' },
+						click = 'v:lua.ScSa',
+						sign = {
+							name = { 'GitSigns*' },
+							colwidth = 1,
+						},
+					},
+					-- Folds
+					{
+						text = { builtin.foldfunc, ' ' },
+						click = 'v:lua.ScFa',
+						sign = {
+							colwidth = 1,
+						},
+					},
+					-- Signs, .*
+					-- {
+					-- 	text = { '%s' },
+					-- 	click = 'v:lua.ScSa',
+					-- 	sign = {
+					-- 		name = { 'a' },
+					-- 		colwidth = 1,
+					-- 	},
+					-- },
+					-- Line Number
+					{
+						text = { builtin.lnumfunc, ' ' },
+						click = 'v:lua.ScLa',
+						sign = {
+							colwidth = 1,
+						},
+					},
+				},
+			})
+		end,
+	},
+
 	-- Git
 	{ 'tpope/vim-fugitive' },
 
