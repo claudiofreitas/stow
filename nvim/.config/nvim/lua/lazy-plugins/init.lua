@@ -9,6 +9,26 @@ return {
 	-- Treesitter
 	{ 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
 	{ 'nvim-treesitter/playground' },
+	{
+		'nvim-treesitter/nvim-treesitter-context',
+		config = function()
+			vim.api.nvim_set_hl(0, 'TreesitterContextSeparator', { underline = true })
+			vim.api.nvim_set_keymap('n', '<Leader>c', '<Cmd>TSContextToggle<CR>', {})
+
+			require('treesitter-context').setup({
+				enable = false,
+				max_lines = -1,
+				min_window_height = -1,
+				line_numbers = true,
+				multiline_threshold = 20,
+				trim_scope = 'outer',
+				mode = 'cursor',
+				separator = ' ',
+				zindex = 20,
+				on_attach = nil,
+			})
+		end,
+	},
 
 	{
 		'numToStr/Comment.nvim',
