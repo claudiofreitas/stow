@@ -131,6 +131,10 @@ lspconfig.ruff_lsp.setup({
 	},
 })
 
+lspconfig.bashls.setup({
+	filetypes = { 'sh', 'zsh' },
+})
+
 -- lspconfig.volar.setup({
 -- 	filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
 -- })
