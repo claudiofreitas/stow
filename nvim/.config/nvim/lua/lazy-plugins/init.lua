@@ -850,4 +850,26 @@ return {
 	{
 		'prisma/vim-prisma',
 	},
+
+	-- Testing
+	{
+		'nvim-neotest/neotest',
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			'antoinemadec/FixCursorHold.nvim',
+			'nvim-treesitter/nvim-treesitter',
+			-- Adapters
+			'nvim-neotest/neotest-jest',
+		},
+		config = function()
+			---@diagnostic disable-next-line: missing-fields
+			require('neotest').setup({
+				adapters = {
+					require('neotest-jest')({
+						jestCommand = 'npx jest',
+					}),
+				},
+			})
+		end,
+	},
 }
