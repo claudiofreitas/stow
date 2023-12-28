@@ -965,14 +965,117 @@ return {
 			'nvim-treesitter/nvim-treesitter',
 			-- Adapters
 			'nvim-neotest/neotest-jest',
+			'rouge8/neotest-rust',
 		},
 		config = function()
+			vim.keymap.set('n', 't1', function()
+				require('neotest').run.run()
+			end, { desc = 'Neotest Run Run' })
+
+			vim.keymap.set('n', 't2', function()
+				require('neotest').run.stop()
+			end, { desc = 'Neotest Run Stop' })
+
+			vim.keymap.set('n', 't3', function()
+				require('neotest').output.open()
+			end, { desc = 'Neotest Output Open' })
+
+			vim.keymap.set('n', 't4', function()
+				require('neotest').summary.toggle()
+			end, { desc = 'Neotest Summary Toggle' })
+
+			vim.keymap.set('n', 't5', function()
+				require('neotest').run.run(vim.fn.expand('%'))
+			end, { desc = 'Neotest Run Run Expand %' })
+
+			vim.keymap.set('n', 'tn', function()
+				require('neotest').jump.next({ status = 'failed' })
+			end, { desc = 'Neotest Jump Next failed' })
+
+			vim.keymap.set('n', 'tp', function()
+				require('neotest').jump.prev({ status = 'failed' })
+			end, { desc = 'Neotest Jump Prev failed' })
+
+			vim.keymap.set('n', 'tw', function()
+				require('neotest').run.run({ jestCommand = 'npx jest --watch' })
+			end, { desc = 'Neotest Run Test Watch' })
+
+			vim.keymap.set('n', 'tt', function()
+				local Menu = require('nui.menu')
+				local m1 = Menu({
+					position = '50%',
+					size = {
+						width = 25,
+						height = 5,
+					},
+					border = {
+						style = 'single',
+						text = {
+							top = '[Neotest]',
+							top_align = 'center',
+						},
+					},
+					win_options = {
+						winhighlight = 'Normal:Normal,FloatBorder:Normal',
+					},
+				}, {
+					lines = {
+						Menu.item('Run Tests'),
+						Menu.item('Open Output'),
+						Menu.item('Toggle Summary'),
+						Menu.item('Test Watch'),
+						Menu.item('Stop Tests'),
+						-- Menu.separator('Noble-Gases', {
+						-- 	char = '-',
+						-- 	text_align = 'right',
+						-- }),
+						-- Menu.item('Helium (He)'),
+						-- Menu.item('Neon (Ne)'),
+						-- Menu.item('Argon (Ar)'),
+					},
+					max_width = 20,
+					keymap = {
+						focus_next = { 'j', '<Down>', '<Tab>' },
+						focus_prev = { 'k', '<Up>', '<S-Tab>' },
+						close = { '<Esc>', '<C-c>' },
+						submit = { '<CR>', '<Space>' },
+					},
+					on_close = function()
+						print('Menu Closed!')
+					end,
+					on_submit = function(item)
+						if item.text == 'Run Tests' then
+							require('neotest').run.run()
+							print('run')
+						elseif item.text == 'Open Output' then
+							require('neotest').output.open()
+							print('output open')
+						elseif item.text == 'Toggle Summary' then
+							require('neotest').summary.toggle()
+						elseif item.text == 'Test Watch' then
+							require('neotest').run.run({ jestCommand = 'npx jest --watch' })
+						elseif item.text == 'Stop Tests' then
+							require('neotest').run.stop()
+						end
+						-- print('Menu Submitted: ', item.text)
+						-- print('SUBMITTED', vim.inspect(item))
+					end,
+				})
+				m1:mount()
+			end, { desc = 'Neotest Run Test Watch' })
+
 			---@diagnostic disable-next-line: missing-fields
 			require('neotest').setup({
 				adapters = {
 					require('neotest-jest')({
 						jestCommand = 'npx jest',
+						jestConfigFile = '',
+						env = { CI = true },
+						cwd = function()
+							return vim.fn.getcwd()
+						end,
 					}),
+					require('neotest-rust'),
 				},
 			})
 		end,
