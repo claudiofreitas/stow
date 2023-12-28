@@ -51,6 +51,7 @@
 
 [delta]
   features = defaults
+  navigate = true
 
 [delta "diff-filter"]
   features = defaults
