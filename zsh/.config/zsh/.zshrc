@@ -164,6 +164,10 @@ pr() {
   gh pr view --web || gh pr create --web
 }
 
+function take() {
+	mkdir -p $@ && cd ${@:$#}
+}
+
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C $HOME/.local/bin/terraform terraform
 
