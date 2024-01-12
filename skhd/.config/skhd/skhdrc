@@ -10,6 +10,9 @@
 #hyper - down : yabai -m window --display south && yabai -m display --focus south
 # hyper - down : yabai -m window --display south && yabai -m window --focus
 
+# --grid <rows>:<cols>:<start-x>:<start-y>:<width>:<height>
+# Set the frame of the selected window based on a self-defined grid.
+
 hyper - t : /Applications/kitty.app/Contents/MacOS/kitty
 
 hyper - left  : yabai -m window --grid 2:2:0:0:1:2;\
@@ -22,6 +25,19 @@ hyper - right : yabai -m window --grid 2:2:1:0:1:2;\
 
 hyper - m : yabai -m window --grid 1:1:0:0:1:1;
 
+
+hyper - 1 : yabai -m window --grid 1:3:0:0:1:1;\
+            sleep 0.1;\
+						yabai -m window --resize right:-2:0;
+
+hyper - 2 : yabai -m window --grid 1:3:1:0:1:1;\
+						sleep 0.1;\
+						yabai -m window --resize left:+1:0;\
+						yabai -m window --resize right:-1:0;
+
+hyper - 3 : yabai -m window --grid 1:3:2:0:1:1;\
+						sleep 0.1;\
+						yabai -m window --resize left:+2:0;
 
 # ################################################################ #
 # THE FOLLOWING IS AN EXPLANATION OF THE GRAMMAR THAT SKHD PARSES. #
