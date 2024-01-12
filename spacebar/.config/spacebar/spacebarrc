@@ -18,9 +18,11 @@ spacebar -m config space_icon_strip     web term code 4 5 6 7 8 9 10
 spacebar -m config space_icon           
 spacebar -m config space_icon_color     0xffcd950c
 
-spacebar -m config right_shell          off
-spacebar -m config right_shell_icon     
-spacebar -m config right_shell_command  "echo $SHELL; echo [31ma"
+spacebar -m config right_shell          on
+# spacebar -m config right_shell_icon      
+spacebar -m config right_shell_icon     " "
+# spacebar -m config right_shell_command  "echo $SHELL; echo [31ma"
+spacebar -m config right_shell_command  "echo \" \"; TZ=UTC date -R +%R; echo \" UTC\""
 
 spacebar -m config dnd                  on
 spacebar -m config dnd_icon             
@@ -33,7 +35,7 @@ spacebar -m config battery_icon_color   0xffd75f5f
 
 spacebar -m config clock                on
 spacebar -m config clock_icon           ""
-spacebar -m config clock_format         "%Y-%m-%d (%A)   %R"
+spacebar -m config clock_format         "%Y-%m-%d (%A)   %R %Z"
 spacebar -m config clock_icon_color     0xffa8a8a8
 
 echo "spacebar configuration loaded..."
