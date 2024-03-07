@@ -332,7 +332,7 @@ return {
 				},
 				filesystem = {
 					filtered_items = {
-						visible = true,
+						visible = false,
 					},
 					group_empty_dirs = true,
 				},
