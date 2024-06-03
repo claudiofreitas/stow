@@ -1,0 +1,86 @@
+# https://i3wm.org/i3status/manpage.html
+
+general {
+	interval = 5
+	colors = true
+	color_good = "#8C9440"
+	color_bad = "#A54242"
+	color_degraded = "#DE935F"
+}
+
+# order += "disk /"
+# order += "cpu_usage"
+# order += "memory"
+order += "cpu_temperature 0"
+order += "tztime utc_time"
+order += "volume master"
+order += "run_watch DHCP"
+order += "run_watch VPN"
+# order += "ethernet eno1"
+# order += "load"
+order += "tztime local_date"
+order += "tztime local_time"
+# order += "battery 0"
+
+ethernet eno1 {
+  # if you use %speed, i3status requires root privileges
+	# format_up = "E: %ip (%speed)"
+	format_up = "eno1 %ip"
+	format_down = "eno1 offline"
+}
+
+run_watch DHCP {
+	pidfile = "/var/run/dhclient*.pid"
+	format_down = ""
+}
+
+run_watch VPN {
+	pidfile = "/var/run/vpnc/pid"
+	format_down = ""
+}
+
+tztime local_date {
+	format = "󰃶 %Y-%m-%d"
+}
+
+tztime local_time {
+	format = "󱑌 %H:%M %Z"
+}
+
+tztime utc_time {
+	format = "󱑌 %H:%M %Z"
+	timezone = "UTC"
+}
+
+load {
+	format = "%1min"
+}
+
+disk "/" {
+	format = "🖴 %avail"
+}
+
+battery 0 {
+	format_down = ""
+}
+
+volume master {
+	format = "  %volume"
+	format_muted = "  %volume (mute)"
+}
+
+cpu_usage {
+	max_threshold = "75"
+	# format = "󰘚󰻠 %usage"
+	format = "󰘚 %usage"
+}
+
+cpu_temperature 0 {
+  format = "󰔏 %degrees 󰔄"
+	path = "/sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input"
+  # format = "%degrees 󰔄"
+}
+
+memory  {
+	format = "󰍛 %used / %total"
+}
