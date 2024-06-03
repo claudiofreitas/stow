@@ -7,6 +7,11 @@ setopt BEEP # activates beep when error (autocomplete fails, etc)
 # https://zsh-manual.netlify.app/options#1623-expansion-and-globbing
 setopt GLOBDOTS
 
+# Better help
+unalias run-help
+autoload run-help
+alias help="run-help"
+
 function prependToPath {
   export PATH="$1:$PATH"
 }
