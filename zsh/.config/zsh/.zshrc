@@ -80,7 +80,7 @@ plugins=(
 )
 
 function sourceIfExists {
-	local debugNotFound=1
+	# local debugNotFound=1
   if [[ -s $1 ]]; then
 		source $1
 	else
@@ -114,12 +114,11 @@ compinit -d "$HOME/.cache/zsh/zcompdump-$ZSH_VERSION"
 # aws_zsh_completer raises warnings when I disable oh-my-zsh
 # sourceIfExists "/usr/local/share/zsh/site-functions/aws_zsh_completer.sh"
 sourceIfExists "$NVM_DIR/bash_completion"
-eval "$(fzf --zsh)"
 sourceIfExists "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" # MacOS
 sourceIfExists "/run/current-system/sw/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" # NixOS
-# sourceIfExists "/opt/homebrew/etc/grc.zsh" # Generic colorizer
 sourceIfExists "$ZDOTDIR/extras/grc.zsh" # Generic colorizer
 sourceIfExists "$HOME/.cargo/env"
+eval "$(fzf --zsh)"
 
 # Aliases
 alias ls="ls -lahFG"
@@ -203,7 +202,10 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# TODO: maybe organize all brew related code under a single place with an IF
+if [[ -s /opt/homebrew/bin/brew ]]; then
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # Config starship (should be at the end of the .zshrc)
 eval "$(starship init zsh)"
