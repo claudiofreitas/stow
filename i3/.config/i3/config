@@ -28,6 +28,7 @@ for_window [class="TelegramDesktop"] floating enable
 
 for_window [class="Pavucontrol"] floating enable
 for_window [class="org.gnome.Nautilus"] floating enable
+for_window [class="firefox" window_role="page-info"] floating enable
 
 default_border normal
 
