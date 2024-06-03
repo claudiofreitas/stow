@@ -2,6 +2,10 @@
 setopt BEEP # activates beep when error (autocomplete fails, etc)
 # current BEEP sound on MacOs: "Jump"
 
+# Let me tab-complete for directories starting with dot
+# Eg.: cd stow/zsh/.<TAB> -> cd stow/zsh/.config
+# https://zsh-manual.netlify.app/options#1623-expansion-and-globbing
+setopt GLOBDOTS
 
 function prependToPath {
   export PATH="$1:$PATH"
