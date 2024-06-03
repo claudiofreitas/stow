@@ -44,6 +44,7 @@ export N_PREFIX="$HOME/.local/n"
 export NVM_DIR="$HOME/.nvm"
 export FIREFOX_BIN="/Applications/Firefox Developer Edition.app/Contents/MacOS/firefox"
 export MANPAGER="sh -c 'col -bx | bat --color=always --decorations=always --style=grid --language=man'"
+export MANROFFOPT="-c"
 export AWS_PAGER="cat"
 export GPG_TTY=$(tty)
 export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yaml"
@@ -113,7 +114,7 @@ compinit -d "$HOME/.cache/zsh/zcompdump-$ZSH_VERSION"
 # aws_zsh_completer raises warnings when I disable oh-my-zsh
 # sourceIfExists "/usr/local/share/zsh/site-functions/aws_zsh_completer.sh"
 sourceIfExists "$NVM_DIR/bash_completion"
-sourceIfExists "$HOME/.fzf.zsh"
+eval "$(fzf --zsh)"
 sourceIfExists "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 sourceIfExists "/opt/homebrew/etc/grc.zsh" # Generic colorizer
 sourceIfExists "$HOME/.cargo/env"
@@ -147,6 +148,7 @@ alias yd="yarn dev"
 alias ys="yarn start"
 alias pn="pnpm"
 alias neovide="/Applications/neovide.app/Contents/MacOS/neovide"
+alias tn="tmux-nav.sh"
 
 gr() {
 	cd $(git rev-parse --show-toplevel)
