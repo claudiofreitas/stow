@@ -231,6 +231,8 @@ local config = {
 		},
 	},
 
+	-- Does not work with my tmux config.
+	-- For some reason tmux consumes the mouse scroll completely, and wezterm doesn't see the event
 	mouse_bindings = {
 		-- Increase font (ctrl+scroll up)
 		{
