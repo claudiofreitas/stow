@@ -101,9 +101,8 @@ if [ "$(uname)" = "Darwin" ]; then
 	bindkey "^[[A" up-line-or-beginning-search # Up
 	bindkey "^[[B" down-line-or-beginning-search # Down
 else
-	# Check if on Linux it was really ^[0A
-	bindkey "^[0A" up-line-or-beginning-search # Up
-	bindkey "^[0B" down-line-or-beginning-search # Down
+	bindkey "$key[Up]" up-line-or-beginning-search # Up
+	bindkey "$key[Down]" down-line-or-beginning-search # Down
 fi
 
 # autoload: https://zsh-manual.netlify.app/functions?highlight=autoload#91-autoloading-functions
