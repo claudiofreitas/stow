@@ -117,7 +117,8 @@ sourceIfExists "$NVM_DIR/bash_completion"
 eval "$(fzf --zsh)"
 sourceIfExists "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" # MacOS
 sourceIfExists "/run/current-system/sw/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" # NixOS
-sourceIfExists "/opt/homebrew/etc/grc.zsh" # Generic colorizer
+# sourceIfExists "/opt/homebrew/etc/grc.zsh" # Generic colorizer
+sourceIfExists "./extras/grc.zsh" # Generic colorizer
 sourceIfExists "$HOME/.cargo/env"
 
 # Aliases
