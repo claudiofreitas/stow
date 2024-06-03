@@ -1,0 +1,39 @@
+{
+	// https://www.reddit.com/r/hyprland/comments/136gptg/comment/jkie75f
+	"layer": "top",
+	"position": "top",
+	"height": 42,
+	"modules-left": [
+		"sway/workspaces",
+		"sway/mode"
+	],
+	"modules-center": [
+		"sway/window"
+	],
+	"modules-right": [
+		"battery",
+		"clock"
+	],
+	"sway/window": {
+		"max-length": 50
+	},
+	"battery": {
+		"format": "{capacity}% {icon}",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		]
+	},
+	"clock": {
+		"format": "📅 {:%Y-%m-%d 🕑 %H:%M}",
+		"format-alt": "{:%a, %d. %b  %H:%M}",
+		"tooltip-format": "{tz_list}",
+		// "tooltip-format": "<tt><small>Aee</small></tt>",
+		"actions": {
+			"on-click-left": "mode"
+		}
+	}
+}
