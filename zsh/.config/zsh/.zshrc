@@ -123,7 +123,7 @@ compinit -d "$HOME/.cache/zsh/zcompdump-$ZSH_VERSION"
 # sourceIfExists "/usr/local/share/zsh/site-functions/aws_zsh_completer.sh"
 sourceIfExists "$NVM_DIR/bash_completion"
 sourceIfExists "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" # MacOS
-sourceIfExists "/run/current-system/sw/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" # NixOS
+sourceIfExists "$HOME/.config/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" # NixOS
 sourceIfExists "$ZDOTDIR/extras/grc.zsh" # Generic colorizer
 sourceIfExists "$HOME/.cargo/env"
 eval "$(fzf --zsh)"
@@ -144,7 +144,7 @@ alias ls="exa --long --header --git --links --time-style=long-iso --icons -a"
 alias luamake="$HOME/repos/lua-language-server/3rd/luamake/luamake"
 alias dirsize="du -sh * 2> /dev/null | gsort -h"
 alias tmuxconf="$EDITOR $HOME/.tmux.conf"
-alias zshrc="$EDITOR $HOME/.zshrc"
+alias zshrc="$EDITOR $HOME/.config/zsh/.zshrc"
 alias yabairc="$EDITOR $HOME/stow/yabai/.config/yabai/yabairc"
 alias skhdrc="$EDITOR $HOME/stow/skhd/.config/skhd/skhdrc"
 alias kittyconf="$EDITOR $HOME/stow/kitty/.config/kitty/kitty.conf"
@@ -158,6 +158,7 @@ alias ys="yarn start"
 alias pn="pnpm"
 alias neovide="/Applications/neovide.app/Contents/MacOS/neovide"
 alias tn="tmux-nav.sh"
+alias i3config="$EDITOR $HOME/.config/i3/config"
 
 gr() {
 	cd $(git rev-parse --show-toplevel)
@@ -218,3 +219,4 @@ fi
 # Config starship (should be at the end of the .zshrc)
 eval "$(starship init zsh)"
 
+# GTK_THEME=Adwaita-dark
