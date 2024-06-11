@@ -2,6 +2,15 @@
 setopt BEEP # activates beep when error (autocomplete fails, etc)
 # current BEEP sound on MacOs: "Jump"
 
+# Let me tab-complete for directories starting with dot
+# Eg.: cd stow/zsh/.<TAB> -> cd stow/zsh/.config
+# https://zsh-manual.netlify.app/options#1623-expansion-and-globbing
+setopt GLOBDOTS
+
+# Better help
+unalias run-help
+autoload run-help
+alias help="run-help"
 
 function prependToPath {
   export PATH="$1:$PATH"
@@ -44,6 +53,7 @@ export N_PREFIX="$HOME/.local/n"
 export NVM_DIR="$HOME/.nvm"
 export FIREFOX_BIN="/Applications/Firefox Developer Edition.app/Contents/MacOS/firefox"
 export MANPAGER="sh -c 'col -bx | bat --color=always --decorations=always --style=grid --language=man'"
+export MANROFFOPT="-c"
 export AWS_PAGER="cat"
 export GPG_TTY=$(tty)
 export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yaml"
@@ -79,7 +89,7 @@ plugins=(
 )
 
 function sourceIfExists {
-	local debugNotFound=1
+	# local debugNotFound=1
   if [[ -s $1 ]]; then
 		source $1
 	else
@@ -100,9 +110,8 @@ if [ "$(uname)" = "Darwin" ]; then
 	bindkey "^[[A" up-line-or-beginning-search # Up
 	bindkey "^[[B" down-line-or-beginning-search # Down
 else
-	# Check if on Linux it was really ^[0A
-	bindkey "^[0A" up-line-or-beginning-search # Up
-	bindkey "^[0B" down-line-or-beginning-search # Down
+	bindkey "$key[Up]" up-line-or-beginning-search # Up
+	bindkey "$key[Down]" down-line-or-beginning-search # Down
 fi
 
 # autoload: https://zsh-manual.netlify.app/functions?highlight=autoload#91-autoloading-functions
@@ -113,10 +122,11 @@ compinit -d "$HOME/.cache/zsh/zcompdump-$ZSH_VERSION"
 # aws_zsh_completer raises warnings when I disable oh-my-zsh
 # sourceIfExists "/usr/local/share/zsh/site-functions/aws_zsh_completer.sh"
 sourceIfExists "$NVM_DIR/bash_completion"
-sourceIfExists "$HOME/.fzf.zsh"
-sourceIfExists "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-sourceIfExists "/opt/homebrew/etc/grc.zsh" # Generic colorizer
+sourceIfExists "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" # MacOS
+sourceIfExists "/run/current-system/sw/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" # NixOS
+sourceIfExists "$ZDOTDIR/extras/grc.zsh" # Generic colorizer
 sourceIfExists "$HOME/.cargo/env"
+eval "$(fzf --zsh)"
 
 # Aliases
 alias ls="ls -lahFG"
@@ -147,6 +157,7 @@ alias yd="yarn dev"
 alias ys="yarn start"
 alias pn="pnpm"
 alias neovide="/Applications/neovide.app/Contents/MacOS/neovide"
+alias tn="tmux-nav.sh"
 
 gr() {
 	cd $(git rev-parse --show-toplevel)
@@ -199,7 +210,10 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# TODO: maybe organize all brew related code under a single place with an IF
+if [[ -s /opt/homebrew/bin/brew ]]; then
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # Config starship (should be at the end of the .zshrc)
 eval "$(starship init zsh)"

@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# Inspired/copied from:
+# https://gist.github.com/0atman/1a5133b842f929ba4c1e195ee67599d5
+
+# Exits on error
+set -e
+
+# cd into the configuration directory
+pushd ~/nixos
+
+# if git diff --quiet '*.nix'; then
+# 	echo "No changes detected, exiting."
+# 	popd
+# 	exit 0
+# fi
+
+# Autoformat your nix files
+alejandra . &>/dev/null \
+	|| (alejandra . ; echo "Formatting failed!" && exit 1)
+
+# Shows your changes
+git diff -U0 '*.nix'
+
+echo "NixOS rebuilding..."
+
+# Rebuild, output simplified errors, log trackebacks
+sudo nixos-rebuild switch --flake ~/nixos &>nixos-switch.log \
+	|| (cat nixos-switch.log | grep --color error && exit 1)
+
+# Get current metadata
+current=$(nixos-rebuild list-generations | grep current)
+
+# Commit all changes with the generation metadata
+git commit -a -m "$current"
+
+# Back to where you were
+popd
+
+# Notify all ok!
+notify-send -e "NixOS rebuilt OK!" --icon=software-update-available

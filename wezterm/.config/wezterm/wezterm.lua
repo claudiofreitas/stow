@@ -42,6 +42,8 @@ local config = {
 		indexed = { [136] = "#ff0000" },
 	},
 
+	enable_wayland = false,
+
 	window_frame = {
 		active_titlebar_bg = "#181818",
 		-- active_titlebar_fg = '',
@@ -68,7 +70,7 @@ local config = {
 	},
 
 	-- => 0
-	enable_tab_bar = true,
+	enable_tab_bar = false,
 	show_tabs_in_tab_bar = false,
 	show_new_tab_button_in_tab_bar = false,
 	font = wezterm.font({
@@ -84,7 +86,7 @@ local config = {
 	freetype_interpreter_version = 40,
 	freetype_load_target = "Normal",
 	freetype_load_flags = "NO_HINTING",
-	font_size = 22,
+	font_size = 14,
 	adjust_window_size_when_changing_font_size = false,
 	-- macos_window_background_blur = 30,
 
@@ -100,7 +102,8 @@ local config = {
 	-- This is good for launcher:
 	-- window_decorations = "RESIZE",
 	-- https://wezfurlong.org/wezterm/config/launch.html
-	window_decorations = "INTEGRATED_BUTTONS|RESIZE",
+	-- window_decorations = "INTEGRATED_BUTTONS|RESIZE",
+	window_decorations = "RESIZE",
 
 	-- https://wezfurlong.org/wezterm/config/default-keys.html
 	disable_default_key_bindings = true,
@@ -115,31 +118,56 @@ local config = {
 			key = "q",
 			action = wezterm.action.QuitApplication,
 		},
+
+		-- Increase font (ctrl+=)
+		{
+			mods = "CTRL",
+			key = "=",
+			action = wezterm.action.IncreaseFontSize,
+		},
+
 		-- Increase font (cmd+=)
 		{
 			mods = "SUPER",
 			key = "=",
 			action = wezterm.action.IncreaseFontSize,
 		},
+
+		-- Decrease font (ctrl+-)
+		{
+			mods = "CTRL",
+			key = "-",
+			action = wezterm.action.DecreaseFontSize,
+		},
+
 		-- Decrease font (cmd+-)
 		{
 			mods = "SUPER",
 			key = "-",
 			action = wezterm.action.DecreaseFontSize,
 		},
+
 		-- Reset font (cmd+0)
 		{
 			mods = "SUPER",
 			key = "0",
 			action = wezterm.action.ResetFontSize,
 		},
-		-- Paste (cmd+v)
 
+		-- Paste (cmd+v)
 		{
 			mods = "SUPER",
 			key = "v",
 			action = wezterm.action.PasteFrom("Clipboard"),
 		},
+
+		-- Paste (ctrl+v)
+		{
+			mods = "CTRL",
+			key = "v",
+			action = wezterm.action.PasteFrom("Clipboard"),
+		},
+
 		-- Tmux Previous Window (cmd+left)
 		{
 			mods = "SUPER",
@@ -155,6 +183,7 @@ local config = {
 				}),
 			}),
 		},
+
 		-- Tmux Next Window (cmd+right)
 		{
 			mods = "SUPER",
@@ -170,6 +199,7 @@ local config = {
 				}),
 			}),
 		},
+
 		-- Tmux New Window (cmd+t)
 		{
 			mods = "SUPER",
@@ -184,6 +214,7 @@ local config = {
 				}),
 			}),
 		},
+
 		-- Tmux Close Window (cmd+w)
 		{
 			mods = "SUPER",
@@ -197,6 +228,34 @@ local config = {
 					key = "X",
 				}),
 			}),
+		},
+	},
+
+	-- Does not work with my tmux config.
+	-- For some reason tmux consumes the mouse scroll completely, and wezterm doesn't see the event
+	mouse_bindings = {
+		-- Increase font (ctrl+scroll up)
+		{
+			mods = "CTRL",
+			event = {
+				Down = {
+					streak = 1,
+					button = { WheelUp = 1 },
+				},
+			},
+			action = wezterm.action.IncreaseFontSize,
+		},
+
+		-- Increase font (ctrl+scroll up)
+		{
+			mods = "CTRL",
+			event = {
+				Down = {
+					streak = 1,
+					button = { WheelDown = 1 },
+				},
+			},
+			action = wezterm.action.DecreaseFontSize,
 		},
 	},
 

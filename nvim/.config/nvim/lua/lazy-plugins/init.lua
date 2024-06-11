@@ -233,6 +233,9 @@ return {
 				lua = {
 					{ 'stylua' },
 				},
+				nix = {
+					{ 'alejandra' },
+				},
 			},
 			formatters = {
 				shfmt = {

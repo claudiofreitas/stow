@@ -1,0 +1,5 @@
+set icons true
+set hidden false
+set drawbox true
+
+map . set hidden!
