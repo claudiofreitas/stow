@@ -12,6 +12,7 @@ table.insert(vimgrep_arguments, '--glob')
 table.insert(vimgrep_arguments, '!.git/*')
 
 -- Telescope
+local actions = require('telescope.actions')
 require('telescope').setup({
 	defaults = {
 		-- prompt_prefix = '🔭 ',
@@ -38,6 +39,14 @@ require('telescope').setup({
 				'--hidden',
 				'--glob',
 				'!.git/*',
+			},
+		},
+
+		buffers = {
+			mappings = {
+				i = {
+					['<C-x>'] = actions.delete_buffer + actions.move_to_top,
+				},
 			},
 		},
 

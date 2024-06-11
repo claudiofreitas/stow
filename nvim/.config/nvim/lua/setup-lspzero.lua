@@ -80,6 +80,7 @@ lspzero.ensure_installed({
 	'astro',
 	'prismals',
 	'bashls',
+	'biome',
 	-- 'volar',
 })
 
