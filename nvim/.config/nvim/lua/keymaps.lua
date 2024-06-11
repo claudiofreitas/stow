@@ -30,11 +30,21 @@ vim.keymap.set('v', '<S-Down>', ":m '>+1<CR>gv=gv")
 vim.keymap.set({ 'i', 'n' }, '<Esc>', '<cmd>noh<CR><Esc>', { desc = 'Escape and clear hlsearch' })
 
 -- Telescope
-vim.api.nvim_set_keymap('n', '<Leader>o', "<cmd>lua require('telescope.builtin').find_files()<cr>", {})
+-- vim.api.nvim_set_keymap('n', '<Leader>o', "<cmd>lua require('telescope.builtin').find_files()<cr>", {})
+vim.keymap.set('n', '<leader>o', function()
+	local telescope = require('telescope.builtin')
+	telescope.find_files({
+		-- use fd to "find files" and return absolute paths
+		find_command = { 'fd', '-t=f', '-a' },
+		-- path_display = { 'absolute' },
+		wrap_results = true,
+	})
+end, {})
 vim.api.nvim_set_keymap('n', '<Leader>b', ':Telescope buffers <CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<cr>", {})
 vim.api.nvim_set_keymap('n', '<leader>h', "<cmd>lua require('telescope.builtin').help_tags()<cr>", {})
 vim.api.nvim_set_keymap('n', '<leader>e', "<cmd>lua require('telescope.builtin').oldfiles()<cr>", {})
+
 vim.api.nvim_set_keymap(
 	'n',
 	'<leader>fb',
