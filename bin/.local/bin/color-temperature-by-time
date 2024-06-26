@@ -1,0 +1,74 @@
+#!/usr/bin/env node
+
+// const assert = require('node:assert/strict');
+// import {strict as assert} from 'node:assert';
+
+const date = new Date();
+const hours = date.getHours();
+const minutes = date.getMinutes();
+
+const t = hours * 60 + minutes;
+
+const PI = Math.PI;
+
+// ---------------------------------------------
+
+const time2Rad = (t) => 2.0 * PI * t / 1440
+
+const theta = time2Rad(t);
+const theta0 = time2Rad(240);
+
+const deltaFactor = (_theta, _theta0) => {
+    // return Math.cos(_theta - PI - _theta0) / 2;
+    return (Math.cos(_theta - PI - _theta0) + 1) / 2;
+};
+
+// delta_factor "0"    "0"     # = 0
+// delta_factor "360"  "0"     # = 1/2
+// delta_factor "720"  "0"     # = 1
+// delta_factor "1080" "0"     # = 1/2
+// delta_factor "1440" "0"     # = 0
+
+const assertFloat = (actual, expected) => {
+	if (Math.abs(expected - actual) < 0.0001) {
+		return;
+	} else {
+		throw new Error("Do not match");
+	}
+}
+
+assertFloat(deltaFactor(time2Rad(240 + 0   ), theta0), 0  )
+assertFloat(deltaFactor(time2Rad(240 + 360 ), theta0), 0.5)
+assertFloat(deltaFactor(time2Rad(240 + 720 ), theta0), 1  )
+assertFloat(deltaFactor(time2Rad(240 + 1080), theta0), 0.5)
+assertFloat(deltaFactor(time2Rad(240 + 1440), theta0), 0  )
+
+
+const minTemp = 3000;
+const maxTemp = 6500;
+const delta = maxTemp - minTemp;
+
+const temperature = minTemp + delta * deltaFactor(theta, theta0);
+
+console.log(temperature);
+// return temperature;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
