@@ -3,17 +3,28 @@
 
 
 # TODO: https://wiki.archlinux.org/title/Dunst#Using_dunstify_as_volume/brightness_level_indicator
+# bindsym XF86AudioRaiseVolume \
+#   exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% \
+# 	&& dunstify --hints string:x-dunst-stack-tag:volume "Volume" "\+10" \
+# 	&& $refresh_i3status
+
+
+# bindsym XF86AudioLowerVolume \
+#   exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% \
+# 	&& dunstify --hints string:x-dunst-stack-tag:volume "Volume" "\-10" \
+# 	&& $refresh_i3status
+
+
 bindsym XF86AudioRaiseVolume \
-  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% \
-	&& dunstify --hints string:x-dunst-stack-tag:volume "Volume" "\+10" \
+  exec --no-startup-id \
+	~/.local/bin/pulsevolume.sh +10% \
 	&& $refresh_i3status
 
 
-bindsym XF86AudioLowerVolume \
-  exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% \
-	&& dunstify --hints string:x-dunst-stack-tag:volume "Volume" "\-10" \
+bindsym XF86AudioLowerVolume  \
+  exec --no-startup-id \
+	~/.local/bin/pulsevolume.sh -10% \
 	&& $refresh_i3status
-
 
 
 bindsym XF86AudioMute        \

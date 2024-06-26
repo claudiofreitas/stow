@@ -38,4 +38,4 @@ git commit -a -m "$current"
 popd
 
 # Notify all ok!
-notify-send -e "NixOS rebuilt OK!" --icon=software-update-available
+dunstify --timeout 10000 "NixOS rebuilt OK!"  # --icon=software-update-available

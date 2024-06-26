@@ -22,4 +22,5 @@ exec --no-startup-id "flameshot"
 exec --no-startup-id "picom"
 exec --no-startup-id "fcitx5"
 exec --no-startup-id "pidgin"
+exec --no-startup-id "redshift-gtk"
 
