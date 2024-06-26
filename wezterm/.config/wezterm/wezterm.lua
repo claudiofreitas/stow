@@ -6,6 +6,8 @@ local wezterm = require("wezterm")
 -- end
 
 local config = {
+	audible_bell = "Disabled",
+
 	-- color_scheme = "Tokyo Night Moon",
 	-- color_scheme = "Catppuccin Mocha",
 	colors = {
@@ -73,6 +75,7 @@ local config = {
 	enable_tab_bar = false,
 	show_tabs_in_tab_bar = false,
 	show_new_tab_button_in_tab_bar = false,
+	-- Troubleshoot: `wezterm ls-fonts --list-system | rg monofur -i --passthrough`
 	font = wezterm.font({
 		family = "SauceCodePro Nerd Font",
 		weight = "DemiBold",
@@ -83,10 +86,14 @@ local config = {
 			"zero",
 		},
 	}),
+
+	-- font = wezterm.font("Monofur Nerd Font Propo", {weight = "Bold"}),
+	-- font = wezterm.font("SauceCodePro Nerd Font", {weight = "DemiBold"}),
+
 	freetype_interpreter_version = 40,
 	freetype_load_target = "Normal",
 	freetype_load_flags = "NO_HINTING",
-	font_size = 14,
+	font_size = 15,
 	adjust_window_size_when_changing_font_size = false,
 	-- macos_window_background_blur = 30,
 
@@ -103,7 +110,8 @@ local config = {
 	-- window_decorations = "RESIZE",
 	-- https://wezfurlong.org/wezterm/config/launch.html
 	-- window_decorations = "INTEGRATED_BUTTONS|RESIZE",
-	window_decorations = "RESIZE",
+	-- window_decorations = "RESIZE",
+	window_decorations = "RESIZE|TITLE",
 
 	-- https://wezfurlong.org/wezterm/config/default-keys.html
 	disable_default_key_bindings = true,
