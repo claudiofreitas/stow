@@ -65,3 +65,54 @@ vim.api.nvim_command('nmap <F9> :TSHighlightCapturesUnderCursor<CR>')
 vim.keymap.set('n', '<leader><leader>x', function()
 	vim.api.nvim_command('source %')
 end)
+
+-- In Quickfix list, `dd` will remove current item from list
+-- " When using `dd` in the quickfix list, remove the item from the quickfix list.
+-- function! RemoveQFItem()
+--   let curqfidx = line('.') - 1
+--   let qfall = getqflist()
+--   call remove(qfall, curqfidx)
+--   call setqflist(qfall, 'r')
+--   execute curqfidx + 1 . "cfirst"
+--   :copen
+-- endfunction
+-- :command! RemoveQFItem :call RemoveQFItem()
+-- " Use map <buffer> to only map dd in the quickfix window. Requires +localmap
+-- autocmd FileType qf map <buffer> dd :RemoveQFItem<cr>
+
+-- TODO: After this is tested to work, re-write with variable names that I understand
+-- Function to remove the current item from the quickfix list
+local function remove_qf_item()
+	-- Get the current line number in the quickfix list (1-based index)
+	local quickfixHighlightedLineIndex = vim.fn.line('.')
+	-- print('curqfidx: ' .. curqfidx) -- Debug print
+
+	-- Get the entire quickfix list
+	local qfall = vim.fn.getqflist()
+
+	-- Remove the item at the current index
+	table.remove(qfall, quickfixHighlightedLineIndex)
+
+	-- Set the modified quickfix list
+	vim.fn.setqflist(qfall, 'r')
+
+	-- Move to the next item in the quickfix list
+	-- vim.cmd((quickfixHighlightedLineIndex + 1) .. 'cfirst')
+
+	-- Open the quickfix window
+	vim.cmd('copen')
+end
+
+-- Create a command that calls the remove_qf_item function
+vim.api.nvim_create_user_command('RemoveQFItem', remove_qf_item, {})
+
+-- Set up an autocommand to map 'dd' to the RemoveQFItem command in the quickfix window
+vim.api.nvim_create_autocmd('FileType', {
+	pattern = 'qf',
+	callback = function()
+		vim.api.nvim_buf_set_keymap(0, 'n', 'dd', ':RemoveQFItem<CR>', { noremap = true, silent = true })
+	end,
+})
+
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
