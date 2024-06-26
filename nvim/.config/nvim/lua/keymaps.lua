@@ -39,6 +39,7 @@ vim.api.nvim_set_keymap('n', '<Leader>b', ':Telescope buffers <CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<cr>", {})
 vim.api.nvim_set_keymap('n', '<leader>h', "<cmd>lua require('telescope.builtin').help_tags()<cr>", {})
 vim.api.nvim_set_keymap('n', '<leader>e', "<cmd>lua require('telescope.builtin').oldfiles()<cr>", {})
+vim.api.nvim_set_keymap('n', '<leader>rg', "<cmd>lua require('telescope.builtin').live_grep()<cr>", {})
 
 vim.api.nvim_set_keymap(
 	'n',
