@@ -80,7 +80,7 @@ lspzero.ensure_installed({
 	'astro',
 	'prismals',
 	'bashls',
-	'biome',
+	-- 'biome',
 	-- 'volar',
 })
 
@@ -177,3 +177,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		end
 	end,
 })
+
+-- lspconfig.biome.setup({
+--
+-- })

@@ -170,11 +170,11 @@ local config = {
 		},
 
 		-- Paste (ctrl+v)
-		{
-			mods = "CTRL",
-			key = "v",
-			action = wezterm.action.PasteFrom("Clipboard"),
-		},
+		-- {
+		-- 	mods = "CTRL",
+		-- 	key = "v",
+		-- 	action = wezterm.action.PasteFrom("Clipboard"),
+		-- },
 
 		-- Tmux Previous Window (cmd+left)
 		{
@@ -241,31 +241,31 @@ local config = {
 
 	-- Does not work with my tmux config.
 	-- For some reason tmux consumes the mouse scroll completely, and wezterm doesn't see the event
-	mouse_bindings = {
-		-- Increase font (ctrl+scroll up)
-		{
-			mods = "CTRL",
-			event = {
-				Down = {
-					streak = 1,
-					button = { WheelUp = 1 },
-				},
-			},
-			action = wezterm.action.IncreaseFontSize,
-		},
-
-		-- Increase font (ctrl+scroll up)
-		{
-			mods = "CTRL",
-			event = {
-				Down = {
-					streak = 1,
-					button = { WheelDown = 1 },
-				},
-			},
-			action = wezterm.action.DecreaseFontSize,
-		},
-	},
+	-- mouse_bindings = {
+	-- 	-- Increase font (ctrl+scroll up)
+	-- 	{
+	-- 		mods = "CTRL",
+	-- 		event = {
+	-- 			Down = {
+	-- 				streak = 1,
+	-- 				button = { WheelUp = 1 },
+	-- 			},
+	-- 		},
+	-- 		action = wezterm.action.IncreaseFontSize,
+	-- 	},
+	--
+	-- 	-- Increase font (ctrl+scroll up)
+	-- 	{
+	-- 		mods = "CTRL",
+	-- 		event = {
+	-- 			Down = {
+	-- 				streak = 1,
+	-- 				button = { WheelDown = 1 },
+	-- 			},
+	-- 		},
+	-- 		action = wezterm.action.DecreaseFontSize,
+	-- 	},
+	-- },
 
 	-- https://wezfurlong.org/wezterm/config/mouse.html
 	-- TODO: I could not make this work yet

@@ -179,6 +179,14 @@ pr() {
   gh pr view --web || gh pr create --web
 }
 
+ghpoi-safe() {
+	gh poi --dry-run;
+	selectedOption=$(printf "No\nYes" | fzf --prompt "Run again without --dry-run? "  --height=4 --no-sort --reverse)
+	if [ "${selectedOption:-}" = "Yes" ]; then
+		gh poi;
+	fi
+}
+
 function take() {
 	mkdir -p $@ && cd ${@:$#}
 }
