@@ -23,6 +23,8 @@ get() {
 set() {
   local option=$1
   local value=$2
+	# -g = global
+	# -q = suppresses errors about unknown or ambiguous options
   tmux set-option -gq "$option" "$value"
 }
 
@@ -88,6 +90,8 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 CALENDAR_ICON=""
 CLOCK_ICON="󱑏"
 
+# https://man7.org/linux/man-pages/man1/tmux.1.html#STYLES
+# https://man7.org/linux/man-pages/man1/tmux.1.html#OPTIONS
 set "status-left"  "#[fg=$onedark_green,bg=$onedark_black,nobold,nounderscore,noitalics] [#S] "
 set "status-right" "#{prefix_highlight}#[fg=$onedark_black,bg=$onedark_green,bold] ${CALENDAR_ICON} ${date_format}  ${CLOCK_ICON} ${time_format}  #{online_status}  #($CURRENT_DIR/dotfiles-status.sh)"
 
