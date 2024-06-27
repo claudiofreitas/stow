@@ -15,7 +15,7 @@
 		],
 		"modules-right": [
 			// "wlr/taskbar",
-			"network",
+			// "network",
 			"disk",
 			"privacy",
 			"memory",
