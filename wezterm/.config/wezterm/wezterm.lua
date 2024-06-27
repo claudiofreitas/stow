@@ -113,6 +113,7 @@ local config = {
 	-- window_decorations = "RESIZE",
 	window_decorations = "RESIZE|TITLE",
 
+	-- ------------------------------------------------------------- Key Bindings
 	-- https://wezfurlong.org/wezterm/config/default-keys.html
 	disable_default_key_bindings = true,
 	keys = {
@@ -239,35 +240,69 @@ local config = {
 		},
 	},
 
-	-- Does not work with my tmux config.
-	-- For some reason tmux consumes the mouse scroll completely, and wezterm doesn't see the event
-	-- mouse_bindings = {
-	-- 	-- Increase font (ctrl+scroll up)
-	-- 	{
-	-- 		mods = "CTRL",
-	-- 		event = {
-	-- 			Down = {
-	-- 				streak = 1,
-	-- 				button = { WheelUp = 1 },
-	-- 			},
-	-- 		},
-	-- 		action = wezterm.action.IncreaseFontSize,
-	-- 	},
-	--
-	-- 	-- Increase font (ctrl+scroll up)
-	-- 	{
-	-- 		mods = "CTRL",
-	-- 		event = {
-	-- 			Down = {
-	-- 				streak = 1,
-	-- 				button = { WheelDown = 1 },
-	-- 			},
-	-- 		},
-	-- 		action = wezterm.action.DecreaseFontSize,
-	-- 	},
-	-- },
-
+	-- ----------------------------------------------------------- Mouse Bindings
 	-- https://wezfurlong.org/wezterm/config/mouse.html
+	mouse_bindings = {
+		-- Increase font (ctrl+scroll up)
+		{
+			mods = "CTRL",
+			event = {
+				Down = {
+					streak = 1,
+					button = { WheelUp = 1 },
+				},
+			},
+			action = wezterm.action.IncreaseFontSize,
+		},
+		{
+			mods = "CTRL",
+			event = {
+				Down = {
+					streak = 1,
+					button = { WheelUp = 1 },
+				},
+			},
+			action = wezterm.action.IncreaseFontSize,
+			-- force this to work with tmux/nvim/etc
+			-- https://wezfurlong.org/wezterm/config/mouse.html?h=alt_screen#configuring-mouse-assignments
+			alt_screen = 'Any',
+			-- force this to work with tmux/nvim/etc
+			-- https://wezfurlong.org/wezterm/config/mouse.html?h=mouse_reporting#configuring-mouse-assignments
+			mouse_reporting = true, 
+		},
+
+		-- Decrease font (ctrl+scroll down)
+		{
+			mods = "CTRL",
+			event = {
+				Down = {
+					streak = 1,
+					button = { WheelDown = 1 },
+				},
+			},
+			action = wezterm.action.DecreaseFontSize,
+		},
+		{
+			mods = "CTRL",
+			event = {
+				Down = {
+					streak = 1,
+					button = { WheelDown = 1 },
+				},
+			},
+			action = wezterm.action.DecreaseFontSize,
+			-- force this to work with tmux/nvim/etc
+			-- https://wezfurlong.org/wezterm/config/mouse.html?h=alt_screen#configuring-mouse-assignments
+			alt_screen = 'Any',
+			-- force this to work with tmux/nvim/etc
+			-- https://wezfurlong.org/wezterm/config/mouse.html?h=mouse_reporting#configuring-mouse-assignments
+			mouse_reporting = true,
+		},
+	},
+
+
+
+
 	-- TODO: I could not make this work yet
 	-- disable_default_mouse_bindings = true,
 	-- mouse_bindings = {
