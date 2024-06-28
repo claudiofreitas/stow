@@ -20,6 +20,7 @@ font pango:NotoSans 11
 title_align left
 for_window [all] title_format "%title"
 for_window [all] title_window_icon padding 4px
+for_window [all] floating enable;
 
 default_border pixel 4
 
@@ -128,10 +129,14 @@ bindsym $mod+Down  focus down
 bindsym $mod+Up    focus up
 bindsym $mod+Right focus right
 
-bindsym $mod+Shift+Left  move left
-bindsym $mod+Shift+Down  move down
-bindsym $mod+Shift+Up    move up
-bindsym $mod+Shift+Right move right
+# bindsym $mod+Shift+Left  move left
+# bindsym $mod+Shift+Down  move down
+# bindsym $mod+Shift+Up    move up
+# bindsym $mod+Shift+Right move right
+
+# Experimental:
+bindsym $mod+Shift+Left  exec "sway-move left"
+bindsym $mod+Shift+Right exec "sway-move right"
 
 # ------------------------------------------------------------------ Workspaces
 # Switch to workspace
@@ -165,8 +170,8 @@ bindsym $mod+Shift+0 move container to workspace number 10; workspace 10;
 # You can "split" the current object of your focus with
 # $mod+b or $mod+v, for horizontal and vertical splits
 # respectively.
-bindsym $mod+b splith
-bindsym $mod+v splitv
+# bindsym $mod+b splith
+# bindsym $mod+v splitv
 
 # Switch the current container between different layout styles
 bindsym $mod+s layout stacking
