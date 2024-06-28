@@ -113,6 +113,10 @@
 		"clock": {
 			"format": "<span color='#ff9800'>󰸘</span> {:%Y-%m-%d (%a) <span color='#ff9800'>󱑌</span> %H:%M %Z}",
 			"tooltip-format": "{calendar}",
+			"timezones": [
+				"Asia/Tokyo",
+				"Etc/UTC"
+			],
 			"calendar": {
 				"mode": "year",
 				"mode-mon-col": 2,
@@ -125,7 +129,9 @@
 			},
 			"actions": {
 				"on-scroll-up": "shift_up",
-				"on-scroll-down": "shift_down"
+				"on-scroll-down": "shift_down",
+				"on-click": "tz_up",
+				"on-click-right": "tz_down"
 			}
 		},
 		"user": {
