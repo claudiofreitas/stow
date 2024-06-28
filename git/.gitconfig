@@ -48,6 +48,7 @@
   syntax-theme = OneHalfDark
 
   word-diff-regex = .
+  wrap-right-percent = 0.001
 
 [delta]
   features = defaults
