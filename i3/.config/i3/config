@@ -1,7 +1,10 @@
 # i3 config file (v4)
 # https://i3wm.org/docs/userguide.html
 
-set $mod Mod4
+# I mapped mod5 to CapsLock which is Hyper key
+set $hyper Mod5
+# Mod4 = Super = cmd
+set $superHyper Mod5+Mod4
 
 include keymap
 include autostart
@@ -10,10 +13,8 @@ include autostart
 # is used in the bar {} block below.
 font pango:NotoSans 11
 
-# title_align center
 title_align left
 for_window [all] title_format "%title"
-# for_window [all] title_format "%title [class:%class] [instance:%instance]"
 for_window [all] title_window_icon padding 4px
 
 # Sticky = appear in all workspaces floating
@@ -29,17 +30,23 @@ for_window [class="TelegramDesktop"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="org.gnome.Nautilus"] floating enable
 for_window [class="firefox" window_role="page-info"] floating enable
+for_window [class="Gnome-disks"] floating enable
+for_window [class="gnome-calculator"] floating enable
+for_window [class="Nitrogen"] floating enable
+for_window [class="Dconf-editor"] floating enable
+for_window [class="Plank"] floating enable
+for_window [class="fcitx5-config-qt"] floating enable
 
 default_border normal
 
 set $refresh_i3status killall -SIGUSR1 i3status
 
 # Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+floating_modifier $hyper
 
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
-tiling_drag modifier titlebar
+# tiling_drag modifier titlebar
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -55,44 +62,10 @@ set $ws9 "9"
 set $ws10 "10"
 
 # Automatically assign workspaces
-assign [class="Pidgin"] $ws9
-assign [class="obsidian"] $ws8
+# assign [class="Pidgin"] $ws9
+# assign [class="obsidian"] $ws8
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-	i3bar_command i3bar --transparency
-  status_command i3status
-	position top
-	tray_output primary
-	tray_padding 4 px
-	font pango:SauceCodePro Nerd Font Bold 11
-	# separator_symbol "│"
-	separator_symbol "  "
-	workspace_buttons yes
-	workspace_min_width 60 px
-	strip_workspace_numbers no
-	strip_workspace_name no
-	binding_mode_indicator yes
-	padding 0 4px
-
-	# padding 0 60px
-	# height 20
-
-	colors {
-    #                  border  backgr. text
-		focused_workspace  #111111 #111111 #c53b53
-		active_workspace   #333333 #5f676a #ffffff
-		inactive_workspace #111111 #111111 #888888
-		urgent_workspace   #2f343a #900000 #ffffff
-		binding_mode       #2f343a #900000 #ffffff
-
-		background #111111
-
-		statusline #999999
-		separator  #666666
-	}
-}
+exec_always --no-startup-id $HOME/.local/bin/launch-polybar.sh
 
 focus_follows_mouse no
 mouse_warping output
@@ -108,15 +81,43 @@ mouse_warping output
 # client.background        #ffffff
 
 # class                  border  backgr. text    indicator child_border
-client.focused           #18334D #12131D #ffffff #2e9ef4   #18334D
-client.focused_inactive  #333333 #5f676a #ffffff #484e50   #5f676a
-client.focused_tab_title #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused         #333333 #12131D #626CA4 #292d2e   #222222
+client.focused           #191E4D #12131D #ffffff #2e9ef4   #191E4D
+client.focused_inactive  #222436 #12131D #626CA4 #292d2e   #222436
+client.focused_tab_title #222436 #ff0000 #626CA4 #292d2e   #222436
+client.unfocused         #222436 #12131D #626CA4 #292d2e   #222436
 client.urgent            #2f343a #900000 #ffffff #900000   #900000
 client.placeholder       #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background        #ffffff
 
-gaps inner 4px
-# gaps outer 10px
-smart_gaps on
+
+gaps inner 8px
+# gaps outer 1px
+smart_gaps off
+
+
+
+# ---------------------------
+# |                         |
+# ---------------------------
+# |____________|____________| <- border, text, background
+# |            |            | <- child_border
+# |            |            |
+# |            |            |
+# |            |            |
+# |            |            |
+# |            |            |
+# |            |            |
+# ---------------------------
+
+
+
+
+
+
+
+
+
+
+
+
 

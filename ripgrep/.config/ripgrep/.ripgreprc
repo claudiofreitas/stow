@@ -1,2 +1,5 @@
 # Suppress all error messages related to opening and reading files. Error messages related to the syntax of the pattern given are still shown.
 --no-messages
+
+# Search on files starting with dot and also files inside folders starting with dot.
+--hidden

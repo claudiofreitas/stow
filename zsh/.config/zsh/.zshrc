@@ -41,6 +41,7 @@ appendToPath "/usr/sbin"
 appendToPath "/sbin"
 appendToPath "/usr/local/opt/ruby/bin"
 appendToPath "/usr/local/go/bin"
+appendToPath "$HOME/.npm-global/bin"
 # Rancher (Docker)
 appendToPath "$HOME/.rd/bin"
 
@@ -159,6 +160,8 @@ alias pn="pnpm"
 alias neovide="/Applications/neovide.app/Contents/MacOS/neovide"
 alias tn="tmux-nav.sh"
 alias i3config="$EDITOR $HOME/.config/i3/config"
+alias Sway="sway --config $HOME/.config/i3/config-sway"
+alias fd="fd --hidden --follow"
 
 gr() {
 	cd $(git rev-parse --show-toplevel)

@@ -1,0 +1,31 @@
+#!/usr/bin/env node
+
+const { exec } = require('child_process');
+
+const ALLOWED_ARGUMENTS = ['left', 'right'];
+const SCREEN_WIDTH = 3840.0;
+const SCREEN_HEIGHT = 1600.0;
+const TOP_BAR_HEIGHT = 42.0;
+const LEFT_BAR_WIDTH = 90.0;
+const CENTRAL_GAP = 4.0;
+
+const [_nodePath, _scriptPath, ...arguments] = process.argv;
+if (!ALLOWED_ARGUMENTS.includes(arguments[0])) {
+	console.log(`Argument invalid! Program invoked with argument:\n${arguments[0]}`);
+	process.exit();
+}
+
+const isRight = arguments[0] === 'right'
+
+const windowWidth = SCREEN_WIDTH - LEFT_BAR_WIDTH;
+const windowHeight = SCREEN_HEIGHT - TOP_BAR_HEIGHT;
+
+let windowX = 0;
+let windowY = 0;
+
+if (isRight) {
+	windowX = windowWidth/2 + CENTRAL_GAP/2;
+}
+
+exec(`swaymsg resize set ${windowWidth/2 - CENTRAL_GAP} ${windowHeight}`);
+exec(`swaymsg move position ${windowX} ${windowY}`);

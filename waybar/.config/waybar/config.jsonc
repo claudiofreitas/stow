@@ -1,39 +1,248 @@
-{
-	// https://www.reddit.com/r/hyprland/comments/136gptg/comment/jkie75f
-	"layer": "top",
-	"position": "top",
-	"height": 42,
-	"modules-left": [
-		"sway/workspaces",
-		"sway/mode"
-	],
-	"modules-center": [
-		"sway/window"
-	],
-	"modules-right": [
-		"battery",
-		"clock"
-	],
-	"sway/window": {
-		"max-length": 50
+// https://github.com/Alexays/Waybar/wiki
+[
+	{
+		// https://www.reddit.com/r/hyprland/comments/136gptg/comment/jkie75f
+		"layer": "top",
+		"position": "top",
+		"height": 42,
+		"modules-left": [
+			// "hyprland/workspaces",
+			"sway/workspaces"
+		],
+		"modules-center": [
+			// "hyprland/window",
+			"sway/window"
+		],
+		"modules-right": [
+			// "wlr/taskbar",
+			// "network",
+			"disk",
+			"privacy",
+			"memory",
+			"cpu",
+			"backlight",
+			"tray",
+			// "hyprland/language",
+			"sway/language",
+			"wireplumber",
+			"clock",
+			"user"
+		],
+		"sway/workspaces": {
+			"active-only": false,
+			"show-special": true,
+			"persistent-workspaces": {
+				"1": [],
+				"2": [],
+				"3": [],
+				"4": [],
+				"5": [],
+				"6": [],
+				"7": [],
+				"8": [],
+				"9": [],
+				"10": []
+			}
+		},
+		"hyprland/workspaces": {
+			"active-only": false,
+			"persistent-workspaces": {
+				"*": 10
+			},
+			"format": "{id}",
+			"show-special": true,
+			"on-scroll-up": "hyprctl dispatch workspace e+1",
+			"on-scroll-down": "hyprctl dispatch workspace e-1"
+		},
+		"sway/window": {
+			"icon": true,
+			"icon-size": 14,
+			"rewrite": {
+				"(.*) — Mozilla Firefox": "$1"
+			}
+		},
+		"hyprland/window": {
+			"icon": true,
+			"icon-size": 14,
+			"rewrite": {
+				"(.*) — Mozilla Firefox": "$1"
+			}
+		},
+		"hyprland/language": {
+			"format": "<span color='#ff9800'></span> {}"
+			// "format-en": "en-us"
+		},
+		"wlr/taskbar": {
+			"all-outputs": true
+		},
+		"network": {
+			"format-ethernet": "<span color='#ff9800'>🖧</span> {ifname} [{ipaddr}] ↑{bandwidthUpBytes} ↓{bandwidthDownBytes}",
+			"interval": 5
+		},
+		"tray": {
+			"icon-size": 16,
+			"show-passive-items": true,
+			"smooth-scrolling-threshold": 2.0,
+			"spacing": 2
+		},
+		"disk": {
+			"format": "<span color='#ff9800'>🖴</span> {percentage_used:2d}%",
+			"tooltip-format": "Used: {specific_used:.0f}GB of {specific_total:.0f}GB on {path} ({percentage_used:2d}%)",
+			"unit": "GB"
+		},
+		"memory": {
+			"interval": 2,
+			"format": "<span color='#ff9800'>󰳆</span> {percentage:2d}%  󰣂 {swapPercentage:2d}%",
+			"on-click": "wezterm start -- btop"
+		},
+		"cpu": {
+			"interval": 2,
+			// Format: https://fmt.dev/latest/syntax.html#format-specification-mini-language
+			"format": "<span color='#ff9800'>󰧑</span> {usage:2d}%"
+		},
+		"wireplumber": {
+			"format": "<span color='#ff9800'>{icon}</span> {volume:3d}%",
+			"format-icons": [
+				"󰕿",
+				"󰖀",
+				"󰕾"
+			],
+			"format-muted": "<span color='#A54242'>󰖁</span> {volume:3d}%",
+			"scroll-step": 5.0
+		},
+		"clock": {
+			"format": "<span color='#ff9800'>󰸘</span> {:%Y-%m-%d (%a) <span color='#ff9800'>󱑌</span> %H:%M %Z}",
+			"tooltip-format": "{calendar}",
+			"timezones": [
+				"Asia/Tokyo",
+				"Etc/UTC"
+			],
+			"calendar": {
+				"mode": "year",
+				"mode-mon-col": 2,
+				"weeks-pos": "left",
+				"format": {
+					"months": "{}",
+					"weeks": "W{}",
+					"today": "<span color='#ff9800'><b>{}</b></span>"
+				}
+			},
+			"actions": {
+				"on-scroll-up": "shift_up",
+				"on-scroll-down": "shift_down",
+				"on-click": "tz_up",
+				"on-click-right": "tz_down"
+			}
+		},
+		"user": {
+			// "format": " {user}",
+			"format": "{user}",
+			// "icon": true,
+			"open-on-click": false
+		}
 	},
-	"battery": {
-		"format": "{capacity}% {icon}",
-		"format-icons": [
-			"",
-			"",
-			"",
-			"",
-			""
-		]
-	},
-	"clock": {
-		"format": "📅 {:%Y-%m-%d 🕑 %H:%M}",
-		"format-alt": "{:%a, %d. %b  %H:%M}",
-		"tooltip-format": "{tz_list}",
-		// "tooltip-format": "<tt><small>Aee</small></tt>",
-		"actions": {
-			"on-click-left": "mode"
+	{
+		"layer": "top",
+		"mode": "dock",
+		"position": "right",
+		"ipc": true,
+		"width": 32,
+		"spacing": 24,
+		"modules-center": [
+			"image#anki",
+			"image#firefox",
+			// "image#flameshot", -- find a replacement
+			"image#obsidian",
+			"image#wezterm",
+			"image#telegram",
+			"image#discord",
+			"image#signal",
+			"image#tradingview",
+			"image#nautilus",
+			"image#1password",
+			"custom/wl-gammarelay-temperature",
+			"custom/wl-gammarelay-brightness"
+			// "custom/wl-gammarelay-gamma"
+		],
+		"image#anki": {
+			"path": "/run/current-system/sw/share/pixmaps/anki.png",
+			"size": 32,
+			"tooltip": true,
+			"tooltip-format": "Anki",
+			"on-click": "anki"
+		},
+		"image#firefox": {
+			"path": "/run/current-system/sw/share/icons/hicolor/48x48/apps/firefox.png",
+			"size": 32,
+			"on-click": "firefox"
+		},
+		"image#flameshot": {
+			"path": "/run/current-system/sw/share/icons/hicolor/48x48/apps/flameshot.png",
+			"size": 32,
+			"on-click": "flameshot"
+		},
+		"image#obsidian": {
+			"path": "/run/current-system/sw/share/icons/hicolor/48x48/apps/obsidian.png",
+			"size": 32,
+			"on-click": "obsidian"
+		},
+		"image#wezterm": {
+			"path": "/run/current-system/sw/share/icons/hicolor/128x128/apps/org.wezfurlong.wezterm.png",
+			"size": 32,
+			"on-click": "wezterm"
+		},
+		"image#telegram": {
+			"path": "/run/current-system/sw/share/icons/hicolor/128x128/apps/telegram.png",
+			"size": 32,
+			"on-click": "telegram-desktop"
+		},
+		"image#discord": {
+			"path": "/run/current-system/sw/share/icons/hicolor/256x256/apps/discord.png",
+			"size": 32,
+			"on-click": "discord"
+		},
+		"image#signal": {
+			"path": "/run/current-system/sw/share/icons/hicolor/256x256/apps/signal-desktop.png",
+			"size": 32,
+			"on-click": "signal-desktop"
+		},
+		"image#tradingview": {
+			"path": "/run/current-system/sw/share/icons/tradingview.png",
+			"size": 32,
+			"on-click": "tradingview"
+		},
+		"image#nautilus": {
+			"path": "/run/current-system/sw/share/icons/hicolor/scalable/apps/org.gnome.Nautilus.svg",
+			"size": 32,
+			"on-click": "nautilus"
+		},
+		"image#1password": {
+			"path": "/run/current-system/sw/share/icons/hicolor/256x256/apps/1password.png",
+			"size": 32,
+			"on-click": "1password --silent"
+		},
+		"custom/wl-gammarelay-temperature": {
+			"format": "<span color='#ff9800'></span> {}K",
+			"exec": "wl-gammarelay-rs watch {t}",
+			"on-scroll-up": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n +100",
+			"on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100",
+			"on-click-middle": "busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Temperature q 6500",
+			"on-click-right": "busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Temperature q 3000"
+		},
+		"custom/wl-gammarelay-brightness": {
+			"format": "<span color='#ff9800'></span> {}%",
+			"exec": "wl-gammarelay-rs watch {b}",
+			"on-scroll-up": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d +0.05",
+			"on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d -0.05",
+			"on-click-middle": "busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Brightness d 1.0",
+			"on-click-right": "busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Brightness d 0.8"
+		},
+		"custom/wl-gammarelay-gamma": {
+			"format": "{}% γ",
+			"exec": "wl-gammarelay-rs watch {g}",
+			"on-scroll-up": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateGamma d +0.02",
+			"on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateGamma d -0.02",
+			"on-click-middle": "busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Gamma d 1.0"
 		}
 	}
-}
+]
