@@ -1,0 +1,21 @@
+include zathurarc_tokyo_night
+
+# ------------------------------------------------------------- Colors Override
+set default-bg "#12131d"
+# --------------------------------------------------------------- Configuration
+set recolor true # Starts in dark mode
+
+# Window dimensions on startup. Default: 800 x 600
+set window-width 1000
+set window-height 1500
+
+# # Default value: s
+# # c = display command line
+# # s = display statusbar
+# # h = display horizontal scrollbar
+# # v = display vertical scrollbar
+set guioptions "hv"
+# --------------------------------------------------------------------- Keymaps
+map [normal] f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
+map i recolor
