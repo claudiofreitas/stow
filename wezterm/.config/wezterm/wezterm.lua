@@ -169,6 +169,12 @@ local config = {
 			key = "v",
 			action = wezterm.action.PasteFrom("Clipboard"),
 		},
+		-- Paste (ctrl+shift+v)
+		{
+			mods = "CTRL|SHIFT",
+			key = "v",
+			action = wezterm.action.PasteFrom("Clipboard"),
+		},
 
 		-- Paste (ctrl+v)
 		-- {
