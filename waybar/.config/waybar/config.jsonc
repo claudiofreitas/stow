@@ -16,6 +16,7 @@
 		"modules-right": [
 			// "wlr/taskbar",
 			// "network",
+			"bluetooth",
 			"disk",
 			"privacy",
 			"memory",
@@ -31,6 +32,25 @@
 		"sway/workspaces": {
 			"active-only": false,
 			"show-special": true,
+			"format": "{name} {windows}",
+			"format-window-separator": " ",
+			"window-rewrite-default": "",
+			"window-format": "<span color='#e0e0e0'>{name}</span>",
+			"window-rewrite": {
+				"class<firefox>": "",
+				"discord": "",
+				"class<org.telegram.desktop>": "",
+				"obsidian": "",
+				"Nautilus": "󰪶",
+				"signal": "󰭹",
+				"zathura": "",
+				"GNOME Tweaks": "",
+				"Additional Layout Options": "",
+				"Tmux": "",
+				"zsh": "",
+				// Not working:
+				"class<org.wezfurlong.wezterm>": ""
+			},
 			"persistent-workspaces": {
 				"1": [],
 				"2": [],

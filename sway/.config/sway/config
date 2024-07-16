@@ -4,7 +4,14 @@
 #
 # Read `man 5 sway` for a complete reference.
 
+# Mod4 = Super/Cmd
 set $Cmd Mod4
+
+# CapsLock is Hyper!
+set $Hyper Mod3
+
+# Testing purposes:
+bindsym $Hyper+s exec $term
 
 set $term wezterm
 # Note: pass the final command to swaymsg so that the resulting window can be opened
@@ -73,8 +80,24 @@ for_window [instance="signal"] floating enable;
 # output * background ~/Wallpapers/hyprland-wallpaper2.png fill
 output * background #000000 solid_color
 
+# `man 5 sway-input`
+input "type:keyboard" {
+	repeat_delay 230
+	repeat_rate 50
+  # Transforms CapsLock into Hyper!
+	xkb_layout "caps_hyper"
+	# xkb_layout "us"
+	# xkb_layout "us-hyper"
+	# xkb_layout "us"
+	# xkb_options "caps:super"
+  # Shift_L + Shift_R = CapsLock
+	xkb_options "shift:both_capslock"
+	# xkb_options "ctrl:nocaps"
+	# xkb_options "hyper:nocaps"
+	# xkb_options "custom:hyper_nocaps"
+}
 
-
+# bindsym Mod4+s exec $term
 
 # -------------------------------------------------------------------- Autoexec
 exec_always pkill swayidle && swayidle -w \
@@ -93,11 +116,10 @@ exec "signal-desktop"
 exec_always pkill ags && ags
 
 
-# `man 5 sway-input`
-input "type:keyboard" {
-	repeat_delay 230
-	repeat_rate 50
-}
+
+# input * {
+# 	xkb_layout "us,us(intl)"
+# }
 
 
 # ---------------------------------------------------------------- Key bindings
@@ -116,6 +138,7 @@ bindsym $Cmd+o exec $menu
 # Change normal to inverse to use left mouse button for resizing and right
 # mouse button for dragging.
 floating_modifier $Cmd normal
+# floating_modifier none
 
 # Reload the configuration file
 bindsym $Cmd+Shift+r reload
@@ -128,6 +151,11 @@ bindsym $Cmd+Left  focus left
 bindsym $Cmd+Down  focus down
 bindsym $Cmd+Up    focus up
 bindsym $Cmd+Right focus right
+
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86AudioLowerVolume exec pactl -- set-sink-volume 0 -5%
+bindsym XF86AudioRaiseVolume exec pactl -- set-sink-volume 0 +5%
 
 # bindsym $Cmd+Shift+Left  move left
 # bindsym $Cmd+Shift+Down  move down
