@@ -97,6 +97,10 @@ lspconfig.lua_ls.setup(lspzero.nvim_lua_ls({
 	},
 }))
 
+lspconfig.biome.setup({
+	autostart = false,
+})
+
 lspconfig.tsserver.setup({
 	filetypes = {
 		'javascript',
