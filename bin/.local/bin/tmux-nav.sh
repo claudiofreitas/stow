@@ -1,12 +1,23 @@
 #!/usr/bin/env bash
 
-source "$HOME"/.local/bin/tmux-nav/load-work-sessions.sh
+function sourceIfExists {
+	local debugNotFound=0
+  if [[ -s $1 ]]; then
+		source "$1"
+	else
+		if [[ $debugNotFound = 1 ]]; then
+			echo "$1 not found"
+		fi
+	fi
+}
+
+sourceIfExists "$HOME"/.local/bin/tmux-nav/load-work-sessions.sh
 
 if [[ -z $1 ]]; then
   session=$({ 
 		find ~ -mindepth 1 -maxdepth 1 -type d -o -type l;
 		find ~/repos -mindepth 1 -maxdepth 1 -type d -o -type l;
-		load_tmux_nav_work_sessions;
+		(load_tmux_nav_work_sessions 2> /dev/null;);
 		echo "/tmp";
 	} | fzf)
 else
