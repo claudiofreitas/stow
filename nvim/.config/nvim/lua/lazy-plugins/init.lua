@@ -115,14 +115,15 @@ return {
 					local decode_opts = { luanil = { object = true, array = true } }
 					local ok, data = pcall(vim.json.decode, _output, decode_opts)
 					if not ok then
-						return {
-							{
-								bufnr = _bufnr,
-								lnum = 0,
-								col = 0,
-								message = 'Could not parse linter output due to: ' .. data .. '\noutput: ' .. _output,
-							},
-						}
+						-- return {
+						-- 	{
+						-- 		bufnr = _bufnr,
+						-- 		lnum = 0,
+						-- 		col = 0,
+						-- 		message = 'Could not parse linter output due to: ' .. data .. '\noutput: ' .. _output,
+						-- 	},
+						-- }
+						return {}
 					end
 					-- See https://eslint.org/docs/latest/use/formatters/#json
 					local diagnostics = {}
@@ -202,19 +203,38 @@ return {
 			-- define your formatters
 			formatters_by_ft = {
 				javascript = {
-					{ 'prettierd', 'prettier' },
+					{
+						'biome',
+						-- 'prettierd',
+						-- 'prettier',
+					},
 				},
 				typescript = {
-					{ 'prettierd', 'prettier' },
+					{
+						'biome',
+						-- 'prettierd',
+						-- 'prettier',
+					},
 				},
 				javascriptreact = {
-					{ 'prettierd', 'prettier' },
+					{
+						'biome',
+						-- 'prettierd',
+						-- 'prettier',
+					},
 				},
 				typescriptreact = {
-					{ 'prettierd', 'prettier' },
+					{
+						'biome',
+						-- 'prettierd',
+						-- 'prettier',
+					},
 				},
 				lua = {
 					{ 'stylua' },
+				},
+				nix = {
+					{ 'alejandra' },
 				},
 			},
 			formatters = {
@@ -332,7 +352,7 @@ return {
 				},
 				filesystem = {
 					filtered_items = {
-						visible = true,
+						visible = false,
 					},
 					group_empty_dirs = true,
 				},
@@ -960,6 +980,7 @@ return {
 	{
 		'nvim-neotest/neotest',
 		dependencies = {
+			'nvim-neotest/nvim-nio',
 			'nvim-lua/plenary.nvim',
 			'antoinemadec/FixCursorHold.nvim',
 			'nvim-treesitter/nvim-treesitter',

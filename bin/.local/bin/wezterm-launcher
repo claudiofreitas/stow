@@ -1,0 +1,5 @@
+#!/usr/bin/env zsh
+
+if [ $(echo "yes\nno" | fzf --prompt "Start tmux-nav? " ) = "yes" ]; then
+	tmux-nav.sh;
+fi

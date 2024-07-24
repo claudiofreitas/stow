@@ -80,6 +80,7 @@ lspzero.ensure_installed({
 	'astro',
 	'prismals',
 	'bashls',
+	-- 'biome',
 	-- 'volar',
 })
 
@@ -95,6 +96,10 @@ lspconfig.lua_ls.setup(lspzero.nvim_lua_ls({
 		},
 	},
 }))
+
+lspconfig.biome.setup({
+	autostart = false,
+})
 
 lspconfig.tsserver.setup({
 	filetypes = {
@@ -176,3 +181,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		end
 	end,
 })
+
+-- lspconfig.biome.setup({
+--
+-- })

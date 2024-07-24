@@ -9,7 +9,7 @@
 	email = claudiofreitas3@gmail.com
 
 [alias]
-	s = !git status -s
+	s = status -s
 	l = !git log --pretty=format:'%C(blue)%h%C(red)%d %C(white)%s - %C(cyan)%cn, %C(green)%cr'
 	unstage = reset HEAD --
 
@@ -48,6 +48,7 @@
   syntax-theme = OneHalfDark
 
   word-diff-regex = .
+  wrap-right-percent = 0.001
 
 [delta]
   features = defaults
