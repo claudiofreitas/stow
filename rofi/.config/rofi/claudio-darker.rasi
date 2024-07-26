@@ -1,0 +1,120 @@
+/* vi:ft=scss */
+
+/**
+ * rofi -dump-theme output.
+ * Rofi version: 1.7.5+wayland3
+ **/
+* {
+  border-col: rgba (30, 30, 46, 100 %);
+  blue: rgba (137, 180, 250, 100 %);
+  grey: rgba (108, 112, 134, 100 %);
+  bg-col-light: rgba (30, 30, 46, 100 %);
+  selected-col: rgba (30, 30, 46, 100 %);
+  fg-col2: rgba (243, 139, 168, 100 %);
+  bg-col: rgba (30, 30, 46, 100 %);
+  font: "SauceCodePro Nerd Font 16";
+  fg-col: rgba (205, 214, 244, 100 %);
+  width: 2000;
+}
+
+element-text {
+  background-color: inherit;
+  text-color: inherit;
+}
+
+element-icon {
+  background-color: inherit;
+  size: 25px;
+  text-color: inherit;
+}
+
+mode-switcher {
+  background-color: inherit;
+  spacing: 0;
+  text-color: inherit;
+}
+
+window {
+  background-color: var(bg-col);
+  border-color: var(border-col);
+  height: 360px;
+  border: 3px;
+}
+
+mainbox {
+  background-color: var(bg-col);
+}
+
+inputbar {
+  padding: 2px;
+  background-color: var(bg-col);
+  children: [ "prompt", "entry"];
+  border-radius: 5px;
+}
+
+prompt {
+  padding: 6px;
+  background-color: var(blue);
+  margin: 20px 0px 0px 20px;
+  text-color: var(bg-col);
+  border-radius: 3px;
+}
+
+textbox-prompt-colon {
+  expand: false;
+  str: ":";
+}
+
+entry {
+  padding: 6px;
+  margin: 20px 0px 0px 10px;
+  background-color: var(bg-col);
+  text-color: var(fg-col);
+}
+
+listview {
+  padding: 6px 0px 0px;
+  margin: 10px 0px 0px 20px;
+  background-color: var(bg-col);
+  columns: 2;
+  lines: 5;
+  border: 0px;
+}
+
+element {
+  padding: 5px;
+  background-color: var(bg-col);
+  text-color: var(fg-col);
+}
+
+element selected {
+  background-color: var(selected-col);
+  text-color: var(fg-col2);
+}
+
+button {
+  padding: 10px;
+  background-color: var(bg-col-light);
+  vertical-align: 0.50;
+  horizontal-align: 0.50;
+  text-color: var(grey);
+}
+
+button selected {
+  background-color: var(bg-col);
+  text-color: var(blue);
+}
+
+message {
+  padding: 2px;
+  background-color: var(bg-col-light);
+  margin: 2px;
+  border-radius: 5px;
+}
+
+textbox {
+  padding: 6px;
+  margin: 20px 0px 0px 20px;
+  background-color: var(bg-col-light);
+  text-color: var(blue);
+}
