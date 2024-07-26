@@ -1,0 +1,4 @@
+TEMPERATURE=$(/home/claudio/.local/bin/color-temperature-by-time)
+/run/current-system/sw/bin/bash /home/claudio/.local/bin/gammarelay-set-temperature ${TEMPERATURE}
+echo Temperature set to ${TEMPERATURE}
+
