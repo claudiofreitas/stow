@@ -131,8 +131,8 @@ local config = {
 	-- window_decorations = "RESIZE",
 	-- https://wezfurlong.org/wezterm/config/launch.html
 	-- window_decorations = "INTEGRATED_BUTTONS|RESIZE",
-	-- window_decorations = "RESIZE",
-	window_decorations = "RESIZE|TITLE",
+	window_decorations = "RESIZE",
+	-- window_decorations = "RESIZE|TITLE",
 
 	-- ------------------------------------------------------------- Key Bindings
 	-- https://wezfurlong.org/wezterm/config/default-keys.html
