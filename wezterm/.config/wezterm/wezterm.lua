@@ -76,15 +76,36 @@ local config = {
 	show_tabs_in_tab_bar = false,
 	show_new_tab_button_in_tab_bar = false,
 	-- Troubleshoot: `wezterm ls-fonts --list-system | rg monofur -i --passthrough`
-	font = wezterm.font({
-		family = "SauceCodePro Nerd Font",
-		weight = "DemiBold",
-		stretch = "Normal",
+	-- font = wezterm.font({
+	-- 	family = "Liga SFMono Nerd Font",
+	-- 	weight = "DemiBold",
+	-- 	stretch = "Normal",
+	-- }),
+	font = wezterm.font_with_fallback({
+
+		-- {
+		-- 	family = "Liga SFMono Nerd Font",
+		-- 	weight = "DemiBold",
+		-- 	stretch = "Normal",
+		-- 	harfbuzz_features = {
+		-- 		"zero",
+		-- 	},
+		-- },
+		{
+			family = "SauceCodePro Nerd Font",
+		  weight = "DemiBold",
+		  stretch = "Normal",
+			harfbuzz_features = {
+				"zero",
+			},
+	  },
+
+		-- テスト
 
 		-- https://wezfurlong.org/wezterm/config/font-shaping.html#advanced-font-shaping-options
-		harfbuzz_features = {
-			"zero",
-		},
+		-- harfbuzz_features = {
+		-- 	"zero",
+		-- },
 	}),
 
 	-- font = wezterm.font("Monofur Nerd Font Propo", {weight = "Bold"}),
@@ -93,7 +114,7 @@ local config = {
 	freetype_interpreter_version = 40,
 	freetype_load_target = "Normal",
 	freetype_load_flags = "NO_HINTING",
-	font_size = 15,
+	font_size = 13,
 	adjust_window_size_when_changing_font_size = false,
 	-- macos_window_background_blur = 30,
 
