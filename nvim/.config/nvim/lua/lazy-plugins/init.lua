@@ -755,20 +755,10 @@ return {
 
 	{
 		'folke/which-key.nvim',
+		-- Ref.: https://github.com/folke/which-key.nvim#-usage
 		config = function()
 			vim.o.timeout = true
 			vim.o.timeoutlen = 300
-			require('which-key').setup({
-
-				-- TODO: remove this setup from here
-				-- Ref.: https://github.com/folke/which-key.nvim#-usage
-				-- your configuration comes here
-				-- or leave it empty to use the default settings
-				-- refer to the configuration section below
-			})
-			require('which-key').register({
-				q = ':q',
-			}, { prefix = '<leader>' })
 		end,
 	},
 
