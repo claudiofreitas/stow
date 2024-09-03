@@ -101,6 +101,14 @@ lspconfig.biome.setup({
 	autostart = false,
 })
 
+lspconfig.tailwindcss.setup({
+	autostart = false,
+})
+
+lspconfig.cssmodules_ls.setup({
+	autostart = false,
+})
+
 lspconfig.tsserver.setup({
 	filetypes = {
 		'javascript',
