@@ -8,8 +8,12 @@ local vimgrep_arguments = {
 	unpack(telescope_config.values.vimgrep_arguments),
 }
 table.insert(vimgrep_arguments, '--hidden')
+
 table.insert(vimgrep_arguments, '--glob')
 table.insert(vimgrep_arguments, '!.git/*')
+
+table.insert(vimgrep_arguments, '--glob')
+table.insert(vimgrep_arguments, '!web/src/store/api/gen/*')
 
 -- Telescope
 local actions = require('telescope.actions')
@@ -25,11 +29,42 @@ require('telescope').setup({
 			prompt_position = 'top',
 		},
 		color_devicons = true,
+		vimgrep_arguments = {
+			-- Defaults:
+			'rg',
+			'--color=never',
+			'--no-heading',
+			'--with-filename',
+			'--line-number',
+			'--column',
+			'--smart-case',
+			-- Custom:
+			'--hidden',
+			'--glob',
+			'!.git/*',
+			'--glob',
+			'!**/src/store/api/gen/*',
+		},
 	},
 
 	pickers = {
 		defaults = {
-			vimgrep_arguments = vimgrep_arguments,
+			vimgrep_arguments = {
+				-- Defaults:
+				'rg',
+				'--color=never',
+				'--no-heading',
+				'--with-filename',
+				'--line-number',
+				'--column',
+				'--smart-case',
+				-- Custom:
+				'--hidden',
+				'--glob',
+				'!.git/*',
+				'--glob',
+				'!**/src/store/api/gen/*',
+			},
 		},
 
 		find_files = {
