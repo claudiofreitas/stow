@@ -1,0 +1,39 @@
+// vi: ft=xkb
+partial modifier_keys
+xkb_symbols "hyper_nocaps" {
+	// include "us"
+
+  // copied from 'ctrl:nocaps' option:
+	// replace key <CAPS> { [ Control_L ], type[group1] = "ONE_LEVEL" };
+	// modifier_map Control { <CAPS> };
+
+	replace key <CAPS> { [ Hyper_L ], type[group1] = "ONE_LEVEL" };
+	// replace key <HYPR> { [ Hyper_L ], type[group1] = "ONE_LEVEL" };
+	modifier_map none { ISO_Level5_Shift };
+	modifier_map Mod3 { <CAPS> };
+
+	// modifier_map Shift   { Shift_L, Shift_R };
+  // modifier_map Lock    { Caps_Lock };
+  // modifier_map Control { Control_L, Control_R };
+  // modifier_map Mod1    { Alt_L, Alt_R, Meta_L, Meta_R };
+  // modifier_map Mod2    { Num_Lock };
+  // modifier_map Mod4    { Super_L, Super_R };
+  // 
+  // key <LVL3> {[  ISO_Level3_Shift  ]};
+  // modifier_map Mod5  { <LVL3> };
+  // 
+  // key <LVL5> {[  ISO_Level5_Shift  ]};
+  // modifier_map Mod3  { <LVL5> };
+  // 
+  // key  <ALT> {[  NoSymbol, Alt_L  ]};
+  // modifier_map Mod1  { <ALT> };
+  // 
+  // key <META> {[  NoSymbol, Meta_L  ]};
+  // modifier_map Mod1  { <META> };
+  // 
+  // key <SUPR> {[  NoSymbol, Super_L  ]};
+  // modifier_map Mod4  { <SUPR> };
+  // 
+  // key <HYPR> {[  NoSymbol, Hyper_L  ]};
+  // modifier_map Mod4  { <HYPR> };
+};

@@ -23,25 +23,46 @@ set $menu rofi -show drun | xargs swaymsg exec --
 
 # --------------------------------------------------------------------- Visuals
 
-font pango:NotoSans 11
+# https://docs.gtk.org/Pango/type_func.FontDescription.from_string.html#description
+# font pango:Helvetica Neue LT Std, Normal Semi-Bold 13px
+font pango:System San Fransisco Display, 12px
 title_align left
 for_window [all] title_format "%title"
 for_window [all] title_window_icon padding 4px
 for_window [all] floating enable;
 
-default_border pixel 4
+default_border pixel 2
 
-# class                  border  backgr. text    indicator child_border
-client.focused           #191E4D #12131D #ffffff #2e9ef4   #4d191e
-client.focused_inactive  #222436 #12131D #626CA4 #292d2e   #222436
-client.focused_tab_title #222436 #ff0000 #626CA4 #292d2e   #222436
-client.unfocused         #222436 #12131D #626CA4 #292d2e   #222436
-client.urgent            #2f343a #900000 #ffffff #900000   #900000
+titlebar_border_thickness 2
+titlebar_padding 12 8
+
+set $bgColor       #212121
+set $textColor     #b0bec5
+set $textUnfocused #727272
+set $border        #292929
+set $red           #ff5370
+
+# class                  border    backgr.   text           indicator      child_border
+
+# client.focused           #000000 #12131D   #ffffff        #000000        #000000
+# client.focused_inactive  #000000 #12131D   #626CA4        #000000        #000000
+# client.focused_tab_title #000000 #ff0000   #626CA4        #000000        #000000
+# client.unfocused         #000000 #12131D   #626CA4        #000000        #000000
+# client.urgent            #000000 #900000   #ffffff        #000000        #000000
+
+client.focused           $border   $bgColor  $textColor     $border        $border
+client.focused_inactive  $border   $bgColor  $textColor     $border        $border
+client.focused_tab_title $border   $bgColor  $textColor     $border        $border
+client.unfocused         $border   $bgColor  $textUnfocused $border        $border
+client.urgent            $border   $bgColor  $red           $border        $border
+
 
 # gaps inner 8
 gaps inner 0
 gaps outer 0
 smart_gaps off
+smart_borders on
+
 # ---------------------------
 # |                         |
 # ---------------------------
@@ -61,19 +82,10 @@ smart_gaps off
 mouse_warping output
 focus_follows_mouse no
 
-# nautilus
 for_window [app_id="Nautilus"] floating enable;
-
-# anki
 for_window [app_id="anki"] floating enable;
-
-# 1password -- not working
 for_window [instance="1password"] floating enable;
-
-# telegram -- not working
 for_window [app_id="org.telegram.desktop"] floating enable;
-
-# signal -- not working
 for_window [instance="signal"] floating enable;
 
 # `man 5 sway-output`
@@ -106,14 +118,21 @@ exec_always pkill swayidle && swayidle -w \
 	resume 'swaymsg "output * power on"' \
 	before-sleep 'swaylock --image ~/Wallpapers/hyprland-wallpaper2.png --ignore-empty-password --daemonize'
 
-bindsym $Cmd+Shift+l exec swaymsg "output * power off"
+# bindsym $Cmd+Shift+l exec swaymsg "output * power off"
 
+# set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+# exec "rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob"
+
+exec_always "pkill swayosd-server; swayosd-server --style=$HOME/.config/swayosd/style.scss --top-margin=0.85"
+exec "primary_selection disabled"
+exec "mpd"
 exec "flameshot"
 exec "1password --silent"
 exec "fcitx5"
 exec "mako"
 exec "signal-desktop"
 exec_always pkill ags && ags
+exec_always "sleep 1 && ~/.local/bin/glue"
 
 
 
@@ -131,6 +150,11 @@ bindsym $Cmd+q kill
 
 # Start your launcher
 bindsym $Cmd+o exec $menu
+
+bindsym $Cmd+Shift+B border toggle
+
+bindsym $Cmd+Shift+U urgent enable
+bindsym $Cmd+Shift+Y mark --toggle M
 
 # Drag floating windows by holding down $Cmd and left mouse button.
 # Resize them with right mouse button + $Cmd.
@@ -154,8 +178,20 @@ bindsym $Cmd+Right focus right
 
 bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
-bindsym XF86AudioLowerVolume exec pactl -- set-sink-volume 0 -5%
-bindsym XF86AudioRaiseVolume exec pactl -- set-sink-volume 0 +5%
+
+# bindsym XF86AudioLowerVolume exec pactl -- set-sink-volume 0 -5%
+# bindsym XF86AudioRaiseVolume exec pactl -- set-sink-volume 0 +5%
+# bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+bindsym XF86AudioLowerVolume exec swayosd-client --output-volume -5 --max-volume 200
+bindsym XF86AudioRaiseVolume exec swayosd-client --output-volume 5 --max-volume 200
+bindsym XF86AudioMute exec swayosd-client --output-volume mute-toggle
+
+# bindsym XF86AudioLowerVolume exec "pactl -- set-sink-volume 0 -5% > $WOBSOCK"
+# bindsym XF86AudioRaiseVolume exec pactl -- set-sink-volume 0 +5% > $WOBSOCK
+# bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && pactl get-sink-volume @DEFAULT_SINK@ | awk 'NR==1{print substr($5,1,length($5)-1)}' > $WOBSOCK
+# bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && pactl get-sink-volume @DEFAULT_SINK@ | awk 'NR==1{print substr($5,1,length($5)-1)}' > $WOBSOCK
+# bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && ( [ "$(pactl get-sink-mute @DEFAULT_SINK@)" = "Mute: yes" ] && echo 0 > $WOBSOCK ) || pactl get-sink-volume @DEFAULT_SINK@ | awk 'NR==1{print substr($5,1,length($5)-1)}' > $WOBSOCK
 
 # bindsym $Cmd+Shift+Left  move left
 # bindsym $Cmd+Shift+Down  move down
@@ -165,6 +201,7 @@ bindsym XF86AudioRaiseVolume exec pactl -- set-sink-volume 0 +5%
 # Experimental:
 bindsym $Cmd+Shift+Left  exec "sway-move left"
 bindsym $Cmd+Shift+Right exec "sway-move right"
+bindsym $Cmd+Shift+M exec "sway-move maximize"
 
 # ------------------------------------------------------------------ Workspaces
 # Switch to workspace

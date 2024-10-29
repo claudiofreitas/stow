@@ -1,16 +1,31 @@
+// vim:ft=scss
+
 configuration{
-    modi: "run,window,combi";
-    icon-theme: "Oranchelo";
+    modi: "drun,window,combi";
+    // icon-theme: "Oranchelo";
     show-icons: true;
-    terminal: "alacritty";
+    terminal: "wezterm";
     drun-display-format: "{icon} {name}";
     location: 0;
     disable-history: false;
     hide-scrollbar: true;
-    display-combi: " 🖥️  All ";
-    display-run: " 🏃  Run ";
-    display-window: " 🪟  Window";
+    // display-combi: "🖥️  All ";
+    display-combi: "All";
+    // display-run: "🏃  Binary ";
+    display-run: "Binary";
+    display-drun: "App";
+    // display-window: "🪟  Window";
+    display-window: "Window";
     sidebar-mode: true;
+    scroll-method: 1;
+    // normal-window: true;
+    // dpi: 50;
+    // window-format: "{t} [{c} / {r}]";
+    window-format: "{t}";
+    // combi-display-format: "[<span weight='light' size='small'><i>{mode}</i></span>] {text}";
+    combi-display-format: "{text} [<span weight='light' size='small'><i>{mode}</i></span>]";
+    // combi-display-format: "";
 }
 
-@theme "catppuccin-mocha"
+// @theme "catppuccin-mocha"
+@theme "claudio-darker"

@@ -2,12 +2,33 @@
 /* https://github.com/Alexays/Waybar/blob/master/resources/style.css */
 
 * {
-	font-family: SauceCodePro Nerd Font;
-	font-size: 16px;
+	min-height: 0;
+
+	/* font-family: SauceCodePro Nerd Font; */
+	/* font-size: 14px; */
+	/* font-weight: 700; */
+
+	font-family: Liga SFMono Nerd Font;
+	font-size: 14px;
 	font-weight: 700;
 
-	background-color: #000000;
-	color: #999999;
+	/* font-family: SauceCodePro Nerd Font; */
+	/* font-size: 16px; */
+	/* font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"'; */
+
+	/* font-family: FantasqueSansM Nerd Font Mono; */
+	/* font-size: 15px; */
+	/* min-height: 0; */
+
+	/* font-family: System San Fransisco Display; */
+	/* font-size: 12px; */
+	/* font-weight: 400; */
+	/* font-family: Quicksand Bold; */
+	/* font-family: HelveticaNeueLT Std Ext; */
+	/* font-size: 14px; */
+
+	background-color: #1a1a1a;
+	color: #b0bec5;
 }
 
 .modules-left>widget>*,
@@ -24,14 +45,15 @@
 #workspaces button:hover {
 	box-shadow: inherit;
 	text-shadow: inherit;
-	background: #000000;
+	background: inherit;
 	border: none;
+	border-bottom: 3px solid transparent;
 	/* padding: 0 3px; */
 }
 
-
 #workspaces button.active,
 #workspaces button.focused {
+	background: #212121;
 	border: none;
 	border-bottom: 3px solid #ff9800;
 }
