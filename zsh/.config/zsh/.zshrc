@@ -169,6 +169,15 @@ alias fd="fd --hidden --follow"
 # Temporary, while nvim in work computer is bad
 alias nvim='/Users/claudio/Downloads/nvim-macos-arm64/bin/nvim'
 
+if [ -x "/Users/claudio/Downloads/nvim-macos-arm64/bin/nvim" ]; then
+	alias nvim="/Users/claudio/Downloads/nvim-macos-arm64/bin/nvim"
+elif [ -x "/Users/claudio/.nix-profile/bin/nvim" ]; then
+	alias nvim="/Users/claudio/.nix-profile/bin/nvim"
+# else
+	# Do not alias it
+	# echo "No valid 'nvim' found in specified paths."
+fi
+
 gr() {
 	cd $(git rev-parse --show-toplevel)
 }
