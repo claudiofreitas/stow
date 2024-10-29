@@ -111,7 +111,7 @@ lspconfig.cssmodules_ls.setup({
 	autostart = false,
 })
 
-lspconfig.tsserver.setup({
+lspconfig.ts_ls.setup({
 	filetypes = {
 		'javascript',
 		'javascriptreact',
