@@ -26,6 +26,7 @@ prependToPath "$HOME/.local/n/bin"
 prependToPath "$HOME/.yarn/bin"
 prependToPath "/opt/homebrew/bin"
 prependToPath "/opt/homebrew/opt/jpeg/bin"
+prependToPath "/opt/homebrew/opt/libpq/bin"
 
 # Appending to PATH
 appendToPath "$HOME/.config/yarn/global/node_modules/.bin"
@@ -162,6 +163,9 @@ alias tn="tmux-nav.sh"
 alias i3config="$EDITOR $HOME/.config/i3/config"
 alias Sway="sway --config $HOME/.config/i3/config-sway"
 alias fd="fd --hidden --follow"
+
+# Temporary, while nvim in work computer is bad
+alias nvim='/Users/claudio/Downloads/nvim-macos-arm64/bin/nvim'
 
 gr() {
 	cd $(git rev-parse --show-toplevel)
