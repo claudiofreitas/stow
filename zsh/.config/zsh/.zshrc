@@ -1,3 +1,5 @@
+# set -x
+
 # Zsh Options
 setopt BEEP # activates beep when error (autocomplete fails, etc)
 # current BEEP sound on MacOs: "Jump"
@@ -191,6 +193,17 @@ ghpoi-safe() {
 	fi
 }
 
+vv() {
+  # Assumes all configs exist in directories named ~/.config/nvim-*
+  local config=$(fd --max-depth 1 --glob 'nvim-*' ~/.config | fzf --prompt="Neovim Configs > " --height=~50% --layout=reverse --border --exit-0)
+ 
+  # If I exit fzf without selecting a config, don't open Neovim
+  [[ -z $config ]] && echo "No config selected" && return
+ 
+  # Open Neovim with the selected config
+  NVIM_APPNAME=$(basename $config) nvim $@
+}
+
 function take() {
 	mkdir -p $@ && cd ${@:$#}
 }
@@ -234,4 +247,13 @@ fi
 # Config starship (should be at the end of the .zshrc)
 eval "$(starship init zsh)"
 
+# It seems this is not the correct place to add Nix stuff, but on /etc/zshrc (https://github.com/NixOS/nix/issues/3616)
+# https://github.com/NixOS/nix/issues/3616#issuecomment-1655785404
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  if [ "$(uname)" = "Darwin" ]; then
+    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+  fi
+fi
+# End Nix
 # GTK_THEME=Adwaita-dark

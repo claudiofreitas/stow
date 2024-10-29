@@ -2,12 +2,13 @@
 
 const { exec } = require('child_process');
 
-const ALLOWED_ARGUMENTS = ['left', 'right'];
+const ALLOWED_ARGUMENTS = ['left', 'right', 'maximize'];
 const SCREEN_WIDTH = 3840.0;
 const SCREEN_HEIGHT = 1600.0;
-const TOP_BAR_HEIGHT = 42.0;
-const LEFT_BAR_WIDTH = 90.0;
-const CENTRAL_GAP = 4.0;
+// const TOP_BAR_HEIGHT = 42.0;
+const TOP_BAR_HEIGHT = 29.0;
+const RIGHT_BAR_WIDTH = 46.0;
+const CENTRAL_GAP = 1.0;
 
 const [_nodePath, _scriptPath, ...arguments] = process.argv;
 if (!ALLOWED_ARGUMENTS.includes(arguments[0])) {
@@ -15,17 +16,35 @@ if (!ALLOWED_ARGUMENTS.includes(arguments[0])) {
 	process.exit();
 }
 
-const isRight = arguments[0] === 'right'
+const isRight = arguments[0] === 'right';
+const isMaximize = arguments[0] === 'maximize';
 
-const windowWidth = SCREEN_WIDTH - LEFT_BAR_WIDTH;
-const windowHeight = SCREEN_HEIGHT - TOP_BAR_HEIGHT;
+const availableWidth = SCREEN_WIDTH - RIGHT_BAR_WIDTH;
+const availableHeight = SCREEN_HEIGHT - TOP_BAR_HEIGHT;
 
-let windowX = 0;
-let windowY = 0;
+let windowX = 0.0;
+let windowY = 0.0;
 
-if (isRight) {
-	windowX = windowWidth/2 + CENTRAL_GAP/2;
+let width = 0.0;
+let height = 0.0;
+
+if (!isMaximize) {
+	width = availableWidth/2.0 - CENTRAL_GAP;
+	height = availableHeight;
 }
 
-exec(`swaymsg resize set ${windowWidth/2 - CENTRAL_GAP} ${windowHeight}`);
+if (isRight) {
+	windowX = availableWidth/2.0 + CENTRAL_GAP/2.0;
+} else if (isMaximize) {
+	width = availableWidth;
+	height = availableHeight;
+}
+
+// Round
+windowX = Math.round(windowX);
+windowY = Math.round(windowY);
+width = Math.round(width);
+height = Math.round(height);
+
+exec(`swaymsg resize set ${width} ${height}`);
 exec(`swaymsg move position ${windowX} ${windowY}`);

@@ -25,8 +25,11 @@ git diff -U0 '*.nix'
 echo "NixOS rebuilding..."
 
 # Rebuild, output simplified errors, log trackebacks
-sudo nixos-rebuild switch --flake ~/nixos &>nixos-switch.log \
-	|| (cat nixos-switch.log | grep --color error && exit 1)
+sudo nixos-rebuild switch --flake ~/nixos 2>&1 | tee nixos-switch.log | rg --color=always --passthrough -e "error" -e "warning"
+BUILD_STATUS=${PIPESTATUS[0]}
+if [ $BUILD_STATUS -ne 0 ]; then
+  exit $BUILD_STATUS
+fi
 
 # Get current metadata
 current=$(nixos-rebuild list-generations | grep current)

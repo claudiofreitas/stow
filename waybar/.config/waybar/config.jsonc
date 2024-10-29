@@ -4,7 +4,8 @@
 		// https://www.reddit.com/r/hyprland/comments/136gptg/comment/jkie75f
 		"layer": "top",
 		"position": "top",
-		"height": 42,
+		// "height": 42,
+		"height": 24,
 		"modules-left": [
 			// "hyprland/workspaces",
 			"sway/workspaces"
@@ -16,19 +17,65 @@
 		"modules-right": [
 			// "wlr/taskbar",
 			// "network",
-			"bluetooth",
+			"mpd",
+			// "bluetooth",
 			"disk",
-			"privacy",
 			"memory",
 			"cpu",
-			"backlight",
+			// "group/system-stats",
+			// "backlight",
+			// "group/screen",
+			"custom/wl-gammarelay-temperature",
+			"custom/wl-gammarelay-brightness",
+			// "custom/wl-gammarelay-gamma"
 			"tray",
 			// "hyprland/language",
 			"sway/language",
 			"wireplumber",
-			"clock",
-			"user"
+			"clock"
+			// "user"
 		],
+		"bluetooth": {
+			"format": " {status}",
+			"format-connected": " {device_alias}",
+			"format-connected-battery": " {device_alias} {device_battery_percentage}%",
+			// "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+			"tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+			"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+			"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+			"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+		},
+		"group/system-stats": {
+			"orientation": "inherit",
+			"drawer": {
+				"transition-duration": 50,
+				"transition-left-to-right": false
+			},
+			"modules": [
+				"memory",
+				"disk",
+				"cpu"
+			]
+		},
+		"group/screen": {
+			"orientation": "inherit",
+			"drawer": {
+				"transition-duration": 50,
+				"transition-left-to-right": false
+			},
+			"modules": [
+				"custom/wl-gammarelay-temperature",
+				"custom/wl-gammarelay-brightness"
+			]
+		},
+		"mpd": {
+			"format": "🎧 {filename} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+			"tooltip-format": "{filename} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+			"format-stopped": "󰝛",
+			"on-click": "wezterm start -- ncmpcpp --screen media_library",
+			"unknown-tag": "",
+			"max-length": 20
+		},
 		"sway/workspaces": {
 			"active-only": false,
 			"show-special": true,
@@ -41,13 +88,15 @@
 				"discord": "",
 				"class<org.telegram.desktop>": "",
 				"obsidian": "",
-				"Nautilus": "󰪶",
+				"Nautilus": "󰉓",
+				"Thunar": "󰉓",
 				"signal": "󰭹",
 				"zathura": "",
 				"GNOME Tweaks": "",
 				"Additional Layout Options": "",
 				"Tmux": "",
 				"zsh": "",
+				"btop": "",
 				// Not working:
 				"class<org.wezfurlong.wezterm>": ""
 			},
@@ -106,19 +155,21 @@
 			"spacing": 2
 		},
 		"disk": {
-			"format": "<span color='#ff9800'>🖴</span> {percentage_used:2d}%",
+			"format": "<span color='#ff9800'></span> {percentage_used:2d}%",
 			"tooltip-format": "Used: {specific_used:.0f}GB of {specific_total:.0f}GB on {path} ({percentage_used:2d}%)",
 			"unit": "GB"
 		},
 		"memory": {
 			"interval": 2,
-			"format": "<span color='#ff9800'>󰳆</span> {percentage:2d}%  󰣂 {swapPercentage:2d}%",
-			"on-click": "wezterm start -- btop"
+			// "format": "<span color='#ff9800'>󰳆</span> {percentage:2d}%  󰣂 {swapPercentage:2d}%",
+			"format": "<span color='#ff9800'>🐏</span>{percentage:2d}%",
+			"on-click": "wezterm start -- htop"
 		},
 		"cpu": {
 			"interval": 2,
 			// Format: https://fmt.dev/latest/syntax.html#format-specification-mini-language
-			"format": "<span color='#ff9800'>󰧑</span> {usage:2d}%"
+			// "format": "<span color='#ff9800'>󰧑</span> {usage:2d}%"
+			"format": "<span color='#ff9800'>🧠</span>{usage:2d}%"
 		},
 		"wireplumber": {
 			"format": "<span color='#ff9800'>{icon}</span> {volume:3d}%",
@@ -159,6 +210,29 @@
 			"format": "{user}",
 			// "icon": true,
 			"open-on-click": false
+		},
+		"custom/wl-gammarelay-temperature": {
+			"format": "<span color='#ff9800'></span> {}K",
+			"exec": "wl-gammarelay-rs watch {t}",
+			"on-scroll-up": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n +100",
+			"on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100",
+			"on-click-middle": "busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Temperature q 6500",
+			"on-click-right": "busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Temperature q 3000"
+		},
+		"custom/wl-gammarelay-brightness": {
+			"format": "<span color='#ff9800'></span> {}%",
+			"exec": "wl-gammarelay-rs watch {b}",
+			"on-scroll-up": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d +0.05",
+			"on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d -0.05",
+			"on-click-middle": "busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Brightness d 1.0",
+			"on-click-right": "busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Brightness d 0.8"
+		},
+		"custom/wl-gammarelay-gamma": {
+			"format": "{}% γ",
+			"exec": "wl-gammarelay-rs watch {g}",
+			"on-scroll-up": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateGamma d +0.02",
+			"on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateGamma d -0.02",
+			"on-click-middle": "busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Gamma d 1.0"
 		}
 	},
 	{
@@ -178,11 +252,9 @@
 			"image#discord",
 			"image#signal",
 			"image#tradingview",
+			"image#thunar",
 			"image#nautilus",
-			"image#1password",
-			"custom/wl-gammarelay-temperature",
-			"custom/wl-gammarelay-brightness"
-			// "custom/wl-gammarelay-gamma"
+			"image#1password"
 		],
 		"image#anki": {
 			"path": "/run/current-system/sw/share/pixmaps/anki.png",
@@ -231,6 +303,11 @@
 			"size": 32,
 			"on-click": "tradingview"
 		},
+		"image#thunar": {
+			"path": "/run/current-system/sw/share/icons/hicolor/scalable/apps/org.xfce.thunar.svg",
+			"size": 32,
+			"on-click": "thunar"
+		},
 		"image#nautilus": {
 			"path": "/run/current-system/sw/share/icons/hicolor/scalable/apps/org.gnome.Nautilus.svg",
 			"size": 32,
@@ -240,29 +317,6 @@
 			"path": "/run/current-system/sw/share/icons/hicolor/256x256/apps/1password.png",
 			"size": 32,
 			"on-click": "1password --silent"
-		},
-		"custom/wl-gammarelay-temperature": {
-			"format": "<span color='#ff9800'></span> {}K",
-			"exec": "wl-gammarelay-rs watch {t}",
-			"on-scroll-up": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n +100",
-			"on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateTemperature n -100",
-			"on-click-middle": "busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Temperature q 6500",
-			"on-click-right": "busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Temperature q 3000"
-		},
-		"custom/wl-gammarelay-brightness": {
-			"format": "<span color='#ff9800'></span> {}%",
-			"exec": "wl-gammarelay-rs watch {b}",
-			"on-scroll-up": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d +0.05",
-			"on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateBrightness d -0.05",
-			"on-click-middle": "busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Brightness d 1.0",
-			"on-click-right": "busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Brightness d 0.8"
-		},
-		"custom/wl-gammarelay-gamma": {
-			"format": "{}% γ",
-			"exec": "wl-gammarelay-rs watch {g}",
-			"on-scroll-up": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateGamma d +0.02",
-			"on-scroll-down": "busctl --user -- call rs.wl-gammarelay / rs.wl.gammarelay UpdateGamma d -0.02",
-			"on-click-middle": "busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Gamma d 1.0"
 		}
 	}
 ]

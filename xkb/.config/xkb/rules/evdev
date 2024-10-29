@@ -1,0 +1,4 @@
+! option                  = symbols
+  custom:hyper_nocaps			= +custom(hyper_nocaps)
+
+! include %S/evdev

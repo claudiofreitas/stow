@@ -1,7 +1,8 @@
-#!/usr/bin/env node
+#!/run/current-system/sw/bin/node
 
 // const assert = require('node:assert/strict');
 // import {strict as assert} from 'node:assert';
+// #!/usr/bin/env node
 
 const date = new Date();
 const hours = date.getHours();
@@ -50,7 +51,7 @@ const delta = maxTemp - minTemp;
 
 const temperature = minTemp + delta * deltaFactor(theta, theta0);
 
-console.log(temperature);
+console.log(Math.round(temperature));
 // return temperature;
 
 

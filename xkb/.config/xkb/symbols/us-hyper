@@ -1,0 +1,53 @@
+// vi: ft=xkb
+default partial modifier_keys alphanumeric_keys
+xkb_symbols "basic" {
+	include "us"
+
+	// modifier_map none { ISO_Level5_Shift };
+	// modifier_map none {Num_Lock, Meta_L, Meta_R, Alt_L, Alt_R, Super_L, Super_R, Hyper_L, Hyper_R, ISO_Level5_Shift, <LVL3>, <LVL5> };
+
+	//key <CAPS> { 
+	//	type[group1] = "ONE_LEVEL" ,
+	//	symbols[group1] = [ Hyper_L ],
+	//	actions[group1] = [ NoAction() ]
+	//};
+
+	//modifier_map Mod3 { <HYPR>, <CAPS> };
+  
+	//modifier_map Mod1   { <ALT>,  <LALT> };
+  //modifier_map Mod2   { };
+  //modifier_map Mod3   { <HYPR>, <CAPS> };
+  //modifier_map Mod4   { <SUPR> };
+
+  // Make CapsLock Mod4 and Windows key Mod5
+	key <CAPS> { [ Hyper_L ] };
+	modifier_map Mod4 { Hyper_L };
+
+	key <LWIN> { [ Super_L ] };
+	modifier_map Mod5 { Super_L };
+
+	// modifier_map Shift   { Shift_L, Shift_R };
+  // modifier_map Lock    { Caps_Lock };
+  // modifier_map Control { Control_L, Control_R };
+  // modifier_map Mod1    { Alt_L, Alt_R, Meta_L, Meta_R };
+  // modifier_map Mod2    { Num_Lock };
+  // modifier_map Mod4    { Super_L, Super_R };
+  // 
+  // key <LVL3> {[  ISO_Level3_Shift  ]};
+  // modifier_map Mod5  { <LVL3> };
+  // 
+  // key <LVL5> {[  ISO_Level5_Shift  ]};
+  // modifier_map Mod3  { <LVL5> };
+  // 
+  // key  <ALT> {[  NoSymbol, Alt_L  ]};
+  // modifier_map Mod1  { <ALT> };
+  // 
+  // key <META> {[  NoSymbol, Meta_L  ]};
+  // modifier_map Mod1  { <META> };
+  // 
+  // key <SUPR> {[  NoSymbol, Super_L  ]};
+  // modifier_map Mod4  { <SUPR> };
+  // 
+  // key <HYPR> {[  NoSymbol, Hyper_L  ]};
+  // modifier_map Mod4  { <HYPR> };
+};
