@@ -14,6 +14,16 @@ unalias run-help
 autoload run-help
 alias help="run-help"
 
+# It seems this is not the correct place to add Nix stuff, but on /etc/zshrc (https://github.com/NixOS/nix/issues/3616)
+# https://github.com/NixOS/nix/issues/3616#issuecomment-1655785404
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  if [ "$(uname)" = "Darwin" ]; then
+    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+  fi
+fi
+# End Nix
+
 function prependToPath {
   export PATH="$1:$PATH"
 }
@@ -256,13 +266,4 @@ fi
 # Config starship (should be at the end of the .zshrc)
 eval "$(starship init zsh)"
 
-# It seems this is not the correct place to add Nix stuff, but on /etc/zshrc (https://github.com/NixOS/nix/issues/3616)
-# https://github.com/NixOS/nix/issues/3616#issuecomment-1655785404
-# Nix
-if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-  if [ "$(uname)" = "Darwin" ]; then
-    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-  fi
-fi
-# End Nix
 # GTK_THEME=Adwaita-dark
