@@ -160,7 +160,7 @@ alias pn="pnpm"
 alias neovide="/Applications/neovide.app/Contents/MacOS/neovide"
 alias tn="tmux-nav.sh"
 alias i3config="$EDITOR $HOME/.config/i3/config"
-alias Sway="sway --config $HOME/.config/i3/config-sway"
+alias Sway="sway --config $HOME/.config/sway/config"
 alias fd="fd --hidden --follow"
 
 gr() {
