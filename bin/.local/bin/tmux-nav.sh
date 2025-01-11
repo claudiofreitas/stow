@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 function sourceIfExists {
-	# local debugNotFound=1
+	local debugNotFound=0
   if [[ -s $1 ]]; then
-		source $1
+		source "$1"
 	else
 		if [[ $debugNotFound = 1 ]]; then
 			echo "$1 not found"
@@ -17,7 +17,7 @@ if [[ -z $1 ]]; then
   session=$({ 
 		find ~ -mindepth 1 -maxdepth 1 -type d -o -type l;
 		find ~/repos -mindepth 1 -maxdepth 1 -type d -o -type l;
-		[[ $(type -t load_tmux_nav_work_sessions) == function ]] && load_tmux_nav_work_sessions;
+		(load_tmux_nav_work_sessions 2> /dev/null;);
 		echo "/tmp";
 	} | fzf)
 else

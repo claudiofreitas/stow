@@ -1,3 +1,5 @@
+# set -x
+
 # Zsh Options
 setopt BEEP # activates beep when error (autocomplete fails, etc)
 # current BEEP sound on MacOs: "Jump"
@@ -11,6 +13,16 @@ setopt GLOBDOTS
 unalias run-help
 autoload run-help
 alias help="run-help"
+
+# It seems this is not the correct place to add Nix stuff, but on /etc/zshrc (https://github.com/NixOS/nix/issues/3616)
+# https://github.com/NixOS/nix/issues/3616#issuecomment-1655785404
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  if [ "$(uname)" = "Darwin" ]; then
+    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+  fi
+fi
+# End Nix
 
 function prependToPath {
   export PATH="$1:$PATH"
@@ -26,6 +38,7 @@ prependToPath "$HOME/.local/n/bin"
 prependToPath "$HOME/.yarn/bin"
 prependToPath "/opt/homebrew/bin"
 prependToPath "/opt/homebrew/opt/jpeg/bin"
+prependToPath "/opt/homebrew/opt/libpq/bin"
 
 # Appending to PATH
 appendToPath "$HOME/.config/yarn/global/node_modules/.bin"
@@ -163,6 +176,18 @@ alias i3config="$EDITOR $HOME/.config/i3/config"
 alias Sway="sway --config $HOME/.config/sway/config"
 alias fd="fd --hidden --follow"
 
+# Temporary, while nvim in work computer is bad
+alias nvim='/Users/claudio/Downloads/nvim-macos-arm64/bin/nvim'
+
+if [ -x "/Users/claudio/Downloads/nvim-macos-arm64/bin/nvim" ]; then
+	alias nvim="/Users/claudio/Downloads/nvim-macos-arm64/bin/nvim"
+elif [ -x "/Users/claudio/.nix-profile/bin/nvim" ]; then
+	alias nvim="/Users/claudio/.nix-profile/bin/nvim"
+# else
+	# Do not alias it
+	# echo "No valid 'nvim' found in specified paths."
+fi
+
 gr() {
 	cd $(git rev-parse --show-toplevel)
 }
@@ -185,6 +210,17 @@ ghpoi-safe() {
 	if [ "${selectedOption:-}" = "Yes" ]; then
 		gh poi;
 	fi
+}
+
+vv() {
+  # Assumes all configs exist in directories named ~/.config/nvim-*
+  local config=$(fd --max-depth 1 --glob 'nvim-*' ~/.config | fzf --prompt="Neovim Configs > " --height=~50% --layout=reverse --border --exit-0)
+ 
+  # If I exit fzf without selecting a config, don't open Neovim
+  [[ -z $config ]] && echo "No config selected" && return
+ 
+  # Open Neovim with the selected config
+  NVIM_APPNAME=$(basename $config) nvim $@
 }
 
 function take() {
