@@ -74,6 +74,7 @@ export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yaml"
 ZSH_THEME="claudio"
 DISABLE_UPDATE_PROMPT="true"
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
+export DIRENV_LOG_FORMAT=$'\033[2mdirenv: %s\033[0m'
 
 # ----- Configure HISTORY - https://zsh-manual.netlify.app/options#1624-history
 # https://zsh-manual.netlify.app/parameters?highlight=HISTFILE#156-parameters-used-by-the-shell
@@ -177,7 +178,11 @@ alias Sway="sway --config $HOME/.config/sway/config"
 alias fd="fd --hidden --follow"
 
 # Temporary, while nvim in work computer is bad
-alias nvim='/Users/claudio/Downloads/nvim-macos-arm64/bin/nvim'
+if [ "$(uname)" = "Darwin" ]; then
+	alias nvim='/Users/claudio/Downloads/nvim-macos-arm64/bin/nvim'
+fi
+
+
 
 if [ -x "/Users/claudio/Downloads/nvim-macos-arm64/bin/nvim" ]; then
 	alias nvim="/Users/claudio/Downloads/nvim-macos-arm64/bin/nvim"
@@ -267,3 +272,15 @@ fi
 eval "$(starship init zsh)"
 
 # GTK_THEME=Adwaita-dark
+
+function isBinInPath {
+	builtin whence -p "$1" &> /dev/null
+}
+
+if isBinInPath direnv; then
+	eval "$(direnv hook zsh)"
+fi
+
+if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && [ "$(uname)" = "Linux" ]; then
+	exec ~/startGnome;
+fi
