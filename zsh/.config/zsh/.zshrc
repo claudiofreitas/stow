@@ -14,6 +14,16 @@ unalias run-help
 autoload run-help
 alias help="run-help"
 
+# It seems this is not the correct place to add Nix stuff, but on /etc/zshrc (https://github.com/NixOS/nix/issues/3616)
+# https://github.com/NixOS/nix/issues/3616#issuecomment-1655785404
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  if [ "$(uname)" = "Darwin" ]; then
+    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+  fi
+fi
+# End Nix
+
 function prependToPath {
   export PATH="$1:$PATH"
 }
@@ -64,6 +74,7 @@ export LG_CONFIG_FILE="$HOME/.config/lazygit/config.yaml"
 ZSH_THEME="claudio"
 DISABLE_UPDATE_PROMPT="true"
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/.ripgreprc"
+export DIRENV_LOG_FORMAT=$'\033[2mdirenv: %s\033[0m'
 
 # ----- Configure HISTORY - https://zsh-manual.netlify.app/options#1624-history
 # https://zsh-manual.netlify.app/parameters?highlight=HISTFILE#156-parameters-used-by-the-shell
@@ -167,13 +178,11 @@ alias pn="pnpm"
 alias neovide="/Applications/neovide.app/Contents/MacOS/neovide"
 alias tn="tmux-nav.sh"
 alias i3config="$EDITOR $HOME/.config/i3/config"
-alias Sway="sway --config $HOME/.config/i3/config-sway"
+alias Sway="sway --config $HOME/.config/sway/config"
 alias fd="fd --hidden --follow"
 
-# Temporary, while nvim in work computer is bad
-alias nvim='/Users/claudio/Downloads/nvim-macos-arm64/bin/nvim'
-
 if [ -x "/Users/claudio/Downloads/nvim-macos-arm64/bin/nvim" ]; then
+  # Temporary, while nvim in work computer is bad
 	alias nvim="/Users/claudio/Downloads/nvim-macos-arm64/bin/nvim"
 elif [ -x "/Users/claudio/.nix-profile/bin/nvim" ]; then
 	alias nvim="/Users/claudio/.nix-profile/bin/nvim"
@@ -267,13 +276,16 @@ fi
 # Config starship (should be at the end of the .zshrc)
 eval "$(starship init zsh)"
 
-# It seems this is not the correct place to add Nix stuff, but on /etc/zshrc (https://github.com/NixOS/nix/issues/3616)
-# https://github.com/NixOS/nix/issues/3616#issuecomment-1655785404
-# Nix
-if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-  if [ "$(uname)" = "Darwin" ]; then
-    . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-  fi
-fi
-# End Nix
 # GTK_THEME=Adwaita-dark
+
+function isBinInPath {
+	builtin whence -p "$1" &> /dev/null
+}
+
+if isBinInPath direnv; then
+	eval "$(direnv hook zsh)"
+fi
+
+if [ -z "$DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && [ "$(uname)" = "Linux" ]; then
+	exec ~/startGnome;
+fi

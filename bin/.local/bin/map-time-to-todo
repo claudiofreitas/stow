@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+
+set -x
+
+minutes_since_midnight=$(($(date +"%H") * 60 + $(date +"%M")))
+minutes_since_midnight=240
+
+minutes_in_a_day=$((24 * 60)) # 1440
+pi=$(echo "scale=10; 4 * a(1)" | bc -l) # 4 * arctan(1) = pi
+
+x="${minutes_since_midnight}"
+
+#  x            y
+# [0, 1440] -> [0, 2PI]
+#
+# [240, 1440]-[0, 240]
+#
+# x / 1440 ... x / 1440 * 2PI
+# [0, 1]   ... [0, 2PI]
+#
+# cos(x / 1440 * 2 * pi - 2 * pi / 6)
+# ^--- min when x = 240?
+
+# x * 2 * pi      2 * pi    240
+# ----------  -  ------- * -----
+#   1440            6       240
+
+# x * 2 * pi - 2 * pi * 240    2 * pi * (x - 240)
+# ------------------------- = --------------------
+#   1440                            1440
+
+# So yes, min when x = 240.
+# In the future I would like to make this 240 variable,
+# to be able to set the min time myself.
+
+# theta=$(( 2 * $pi * $(($x - 240)) ))
+# theta=$(( $theta / 1440 ))
+
+
+# theta=$( echo "scale=10; 2 * $pi * ($x - 240) " | bc -l )
+# theta=$( echo "scale=10; $theta / 1440 " | bc -l )
+
+theta=$( echo "scale=10; ( $x * 2 * $pi) / 1440 - ( 2 * $pi / 6 ) " | bc -l )
+# exit 0
+
+sin_theta=$( echo "scale=10; s($theta)" | bc -l )
+
+# I want it to oscilate between 6500 to 3000
+# 3000 + (6500 - 3000) * sin_theta
+
+delta_factor=$( echo "scale=10; ($sin_theta + 1) / 2" | bc -l )
+temperature=$( echo "scale=10; 3000 + (6500 - 3000) * $delta_factor" | bc -l )
+
+echo $temperature
+
+
+
+
+
+
+

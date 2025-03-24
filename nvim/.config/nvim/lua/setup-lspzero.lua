@@ -146,7 +146,7 @@ lspconfig.html.setup({
 })
 
 -- lspconfig.pyright.setup({})
-lspconfig.ruff_lsp.setup({
+lspconfig.ruff.setup({
 	settings = {
 		logLevel = 'info',
 		codeAction = {

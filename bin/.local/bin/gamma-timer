@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+
+set -x
+
+calc() {
+	echo "scale=10; $1" | bc -l
+}
+
+pi=$(calc "4 * a(1)") # 4 * arctan(1) = pi
+
+my_time=$(date +"%H%M")
+hour=${my_time:0:2}
+minute=${my_time:2:2}
+
+
+t=$(calc "$minute + 60 * $hour")
+
+# Maps theta=0 => 0, theta=2pi => 0 using senoid.
+# param $1: $theta
+# param $2: $theta0 (starting point)
+# 
+# Maps:
+#      [ 0, 1pi/2, 2pi/2, 3pi/2, 4pi/2] 
+#   -> [-1,     0,     1,     0,    -1]
+#   -> [ 0,   1/2,     1,   1/2,     0]
+#
+map_to_senoid () {
+	local theta=$1
+	local theta_0=${2:-0}
+
+	echo $(calc "( c($theta + $pi - $theta_0) + 1 ) / 2")
+}
+
+# Tests
+# map_to_senoid $(calc "0")            # = 0
+# map_to_senoid $(calc "1 * $pi / 2")  # = 1/2
+# map_to_senoid $(calc "2 * $pi / 2")  # = 1
+# map_to_senoid $(calc "3 * $pi / 2")  # = 1/2
+# map_to_senoid $(calc "4 * $pi / 2")  # = 0
+
+# test_theta_0=$(calc "$pi / 2")
+# map_to_senoid $(calc "0")           $test_theta_0   # = 0
+# map_to_senoid $(calc "0 * $pi / 2") $test_theta_0   # = 0
+# map_to_senoid $(calc "1 * $pi / 2") $test_theta_0   # = 0
+# map_to_senoid $(calc "2 * $pi / 2") $test_theta_0   # = 1/2
+# map_to_senoid $(calc "3 * $pi / 2") $test_theta_0   # = 1
+# map_to_senoid $(calc "4 * $pi / 2") $test_theta_0   # = 1/2
+# exit
+
+# theta_0=$(calc "240 * 2 * $pi / 1440")
+# delta_factor=$(map_to_senoid "$t" "$theta0")
+
+# param $1: T
+# param $2: T0
+delta_factor () {
+	local T=$1
+	local T0=$2
+
+	local theta=$( calc "$T  * 2 * $pi / 1440")
+	local theta0=$(calc "$T0 * 2 * $pi / 1440")
+	local _delta_factor=$(map_to_senoid "$theta" "$theta0")
+	echo $_delta_factor
+}
+
+# Tests
+# delta_factor "0"    "0"     # = 0
+# delta_factor "360"  "0"     # = 1/2
+# delta_factor "720"  "0"     # = 1
+# delta_factor "1080" "0"     # = 1/2
+# delta_factor "1440" "0"     # = 0
+
+# delta_factor "0"    "360"     # = 0
+# delta_factor "360"  "360"     # = 0
+# delta_factor "720"  "360"     # = 1/2
+# delta_factor "1080" "360"     # = 1
+# delta_factor "1440" "360"     # = 1/2
+
+fac=$( delta_factor "$t" "0" )
+min_temp=3000
+max_temp=6500
+delta=$( calc "$max_temp - $min_temp" )
+temperature=$( calc "$min_temp + $fac * $delta" )
+
+echo $temperature
+
+set +x
