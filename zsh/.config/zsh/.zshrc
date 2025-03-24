@@ -103,6 +103,9 @@ function sourceIfExists {
 	fi
 }
 
+# Activate the command edit-command-line so I can transfer the content to vim and edit there
+autoload edit-command-line; zle -N edit-command-line
+
 # sourceIfExists "$ZSH/oh-my-zsh.sh"
 # Ref.: https://github.com/wincent/wincent/blob/be7fde5bf2/aspects/dotfiles/files/.zshrc#L185
 # On pressing up or down with a word inserted, display history items that starts with that word
@@ -130,6 +133,7 @@ sourceIfExists "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlight
 sourceIfExists "$HOME/.config/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" # NixOS
 sourceIfExists "$ZDOTDIR/extras/grc.zsh" # Generic colorizer
 sourceIfExists "$HOME/.cargo/env"
+sourceIfExists "$HOME/.secret-zshenv"
 eval "$(fzf --zsh)"
 
 # Aliases
@@ -252,6 +256,13 @@ esac
 if [[ -s /opt/homebrew/bin/brew ]]; then
 	eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
+
+# if command -v aider >/dev/null 2>&1; then
+# 	export AIDER_AUTO_COMMITS="false"
+# 	export AIDER_DARK_MODE="true"
+#   export AIDER_SUGGEST_SHELL_COMMANDS="false"
+#   export AIDER_MODEL="claude-3-5-sonnet-20240620"
+# fi
 
 # Config starship (should be at the end of the .zshrc)
 eval "$(starship init zsh)"
