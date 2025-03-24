@@ -6,6 +6,10 @@ return {
 
 	{ dir = '~/repos/stackmap.nvim' },
 
+	{
+		'chrisbra/csv.vim',
+	},
+
 	-- Treesitter
 	{ 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
 	{ 'nvim-treesitter/playground' },
