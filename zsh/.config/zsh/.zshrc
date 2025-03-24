@@ -181,9 +181,9 @@ alias i3config="$EDITOR $HOME/.config/i3/config"
 alias Sway="sway --config $HOME/.config/sway/config"
 alias fd="fd --hidden --follow"
 
-if [ -x "/Users/claudio/Downloads/nvim-macos-arm64/bin/nvim" ]; then
-  # Temporary, while nvim in work computer is bad
-	alias nvim="/Users/claudio/Downloads/nvim-macos-arm64/bin/nvim"
+if [ -x "/opt/homebrew/bin/nvim" ]; then
+	# Work computer
+	alias nvim="/opt/homebrew/bin/nvim"
 elif [ -x "/Users/claudio/.nix-profile/bin/nvim" ]; then
 	alias nvim="/Users/claudio/.nix-profile/bin/nvim"
 # else
