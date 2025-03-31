@@ -4,7 +4,7 @@ return {
 		config = true,
 	},
 
-	{ dir = '~/repos/stackmap.nvim' },
+	-- { dir = '~/repos/stackmap.nvim' },
 
 	{
 		'chrisbra/csv.vim',
