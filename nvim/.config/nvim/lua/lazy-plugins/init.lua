@@ -208,38 +208,30 @@ return {
 			-- define your formatters
 			formatters_by_ft = {
 				javascript = {
-					{
-						'biome',
-						-- 'prettierd',
-						-- 'prettier',
-					},
+					'biome',
+					-- 'prettierd',
+					-- 'prettier',
 				},
 				typescript = {
-					{
-						'biome',
-						-- 'prettierd',
-						-- 'prettier',
-					},
+					'biome',
+					-- 'prettierd',
+					-- 'prettier',
 				},
 				javascriptreact = {
-					{
-						'biome',
-						-- 'prettierd',
-						-- 'prettier',
-					},
+					'biome',
+					-- 'prettierd',
+					-- 'prettier',
 				},
 				typescriptreact = {
-					{
-						'biome',
-						-- 'prettierd',
-						-- 'prettier',
-					},
+					'biome',
+					-- 'prettierd',
+					-- 'prettier',
 				},
 				lua = {
-					{ 'stylua' },
+					'stylua',
 				},
 				nix = {
-					{ 'alejandra' },
+					'alejandra',
 				},
 			},
 			formatters = {
