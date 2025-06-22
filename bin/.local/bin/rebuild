@@ -6,8 +6,14 @@
 # Exits on error
 set -e
 
+# Enable Debug
+# set -x
+
+# NIXOS_DIRECTORY=~/nixos
+NIXOS_DIRECTORY=/mount/ssd-crucial/nixos
+
 # cd into the configuration directory
-pushd ~/nixos
+pushd $NIXOS_DIRECTORY
 
 # if git diff --quiet '*.nix'; then
 # 	echo "No changes detected, exiting."
@@ -25,20 +31,25 @@ git diff -U0 '*.nix'
 echo "NixOS rebuilding..."
 
 # Rebuild, output simplified errors, log trackebacks
-sudo nixos-rebuild switch --flake ~/nixos 2>&1 | tee nixos-switch.log | rg --color=always --passthrough -e "error" -e "warning"
+sudo nixos-rebuild switch --flake $NIXOS_DIRECTORY 2>&1 | tee nixos-switch.log | rg --color=always --passthrough -e "error" -e "warning"
 BUILD_STATUS=${PIPESTATUS[0]}
 if [ $BUILD_STATUS -ne 0 ]; then
+  echo "Failed. Will not commit."
   exit $BUILD_STATUS
 fi
 
 # Get current metadata
-current=$(nixos-rebuild list-generations | grep current)
+current=$(nixos-rebuild list-generations --json | jq '.[] | select (.current == true) | "\(.generation) \(.date) \(.nixosVersion) \(.kernelVersion)"')
 
 # Commit all changes with the generation metadata
 git commit -a -m "$current"
 
 # Back to where you were
 popd
+
+# Disable Debug
+# set +x
+
 
 # Notify all ok!
 # dunstify --timeout 10000 "NixOS rebuilt OK!"  # --icon=software-update-available
