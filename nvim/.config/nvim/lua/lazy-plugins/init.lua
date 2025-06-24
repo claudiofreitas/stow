@@ -4,7 +4,7 @@ return {
 		config = true,
 	},
 
-	{ dir = '~/repos/stackmap.nvim' },
+	-- { dir = '~/repos/stackmap.nvim' },
 
 	{
 		'chrisbra/csv.vim',
@@ -521,10 +521,10 @@ return {
 		end,
 	},
 
-	{
-		dir = '~/repos/claudio-darker.lua',
-		-- config = "vim.cmd('colorscheme claudio-darker')",
-	},
+	-- {
+	-- 	dir = '~/repos/claudio-darker.lua',
+	-- 	-- config = "vim.cmd('colorscheme claudio-darker')",
+	-- },
 
 	{
 		'marko-cerovac/material.nvim',
