@@ -10,7 +10,7 @@ set -e
 # set -x
 
 # NIXOS_DIRECTORY=~/nixos
-NIXOS_DIRECTORY=/mount/ssd-crucial/nixos
+NIXOS_DIRECTORY=~/repos/frost
 
 # cd into the configuration directory
 pushd $NIXOS_DIRECTORY
