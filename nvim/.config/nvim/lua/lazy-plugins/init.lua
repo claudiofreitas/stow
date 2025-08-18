@@ -10,6 +10,17 @@ return {
 		'chrisbra/csv.vim',
 	},
 
+	{
+		-- https://github.com/linrongbin16/gitlinker.nvim
+		'linrongbin16/gitlinker.nvim',
+		cmd = 'GitLink',
+		opts = {},
+		keys = {
+			{ '<leader>gy', '<cmd>GitLink<cr>', mode = { 'n', 'v' }, desc = 'Yank git link' },
+			{ '<leader>gY', '<cmd>GitLink!<cr>', mode = { 'n', 'v' }, desc = 'Open git link' },
+		},
+	},
+
 	-- Treesitter
 	{ 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
 	{ 'nvim-treesitter/playground' },
