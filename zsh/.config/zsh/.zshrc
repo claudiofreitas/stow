@@ -159,7 +159,7 @@ alias gcm="git commit -m"
 alias gl="source $HOME/.local/bin/pretty_git_log.bash && pretty_git_log"
 alias v="nvim"
 alias tempo="curl 'wttr.in/Koto?format=\"%l++%c++%t++%w++%p\"'"
-alias ls="exa --long --header --git --links --time-style=long-iso --icons -a"
+alias ls="exa --long --header --git --time-style=long-iso --icons -a"
 alias luamake="$HOME/repos/lua-language-server/3rd/luamake/luamake"
 alias dirsize="du -sh * 2> /dev/null | gsort -h"
 alias tmuxconf="$EDITOR $HOME/.tmux.conf"
@@ -180,6 +180,10 @@ alias tn="tmux-nav.sh"
 alias i3config="$EDITOR $HOME/.config/i3/config"
 alias Sway="sway --config $HOME/.config/sway/config"
 alias fd="fd --hidden --follow"
+
+if [[ -f "./.zshrc_work_aliases" ]]; then
+	source ./.zshrc_work_aliases
+fi
 
 if [ -x "/opt/homebrew/bin/nvim" ]; then
 	# Work computer

@@ -2,3 +2,4 @@
 /.zsh_sessions
 extras/
 .zcompdump
+.zshrc_work_aliases
