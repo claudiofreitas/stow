@@ -162,7 +162,7 @@ alias tempo="curl 'wttr.in/Koto?format=\"%l++%c++%t++%w++%p\"'"
 alias ls="exa --long --header --git --time-style=long-iso --icons -a"
 alias luamake="$HOME/repos/lua-language-server/3rd/luamake/luamake"
 alias dirsize="du -sh * 2> /dev/null | gsort -h"
-alias tmuxconf="$EDITOR $HOME/.tmux.conf"
+alias tmuxconf="$EDITOR $HOME/.config/tmux/tmux.conf"
 alias zshrc="$EDITOR $HOME/.config/zsh/.zshrc"
 alias yabairc="$EDITOR $HOME/stow/yabai/.config/yabai/yabairc"
 alias skhdrc="$EDITOR $HOME/stow/skhd/.config/skhd/skhdrc"
@@ -190,9 +190,10 @@ if [ -x "/opt/homebrew/bin/nvim" ]; then
 	alias nvim="/opt/homebrew/bin/nvim"
 elif [ -x "/Users/claudio/.nix-profile/bin/nvim" ]; then
 	alias nvim="/Users/claudio/.nix-profile/bin/nvim"
-# else
-	# Do not alias it
-	# echo "No valid 'nvim' found in specified paths."
+else
+	# Call nvim enabling some tools like 'npm' and 'unzip' only for this environment.
+	# Do not install those globally to not conflict with other places.
+	alias nvim="nix develop ~/repos/nvim-environment --command nvim"
 fi
 
 gr() {

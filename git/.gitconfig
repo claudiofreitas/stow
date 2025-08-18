@@ -6,7 +6,7 @@
 
 [user]
 	name = Claudio Freitas
-	email = claudiofreitas3@gmail.com
+	email = claudio@claudiofreitas.com
 
 [alias]
 	s = status -s
@@ -14,7 +14,8 @@
 	unstage = reset HEAD --
 
 [delta "defaults"]
-	side-by-side = true
+  side-by-side = true
+  tabs = 2
 
   # Minus/Removed
 	#minus-style = "#ffff00" "#ffff00"

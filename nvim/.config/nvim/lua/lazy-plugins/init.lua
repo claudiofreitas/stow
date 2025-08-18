@@ -524,10 +524,10 @@ return {
 		end,
 	},
 
-	{
-		dir = '~/repos/claudio-darker.lua',
-		-- config = "vim.cmd('colorscheme claudio-darker')",
-	},
+	-- {
+	-- 	dir = '~/repos/claudio-darker.lua',
+	-- 	-- config = "vim.cmd('colorscheme claudio-darker')",
+	-- },
 
 	{
 		'marko-cerovac/material.nvim',
