@@ -181,9 +181,7 @@ alias i3config="$EDITOR $HOME/.config/i3/config"
 alias Sway="sway --config $HOME/.config/sway/config"
 alias fd="fd --hidden --follow"
 
-if [[ -f "./.zshrc_work_aliases" ]]; then
-	source ./.zshrc_work_aliases
-fi
+sourceIfExists ".zshrc_work_aliases"
 
 if [ -x "/opt/homebrew/bin/nvim" ]; then
 	# Work computer
