@@ -29,7 +29,7 @@ local command = {
 
 local function get_lsp_clients()
 	local empty_msg = 'No Active LSP'
-	local lsp_clients = vim.lsp.get_active_clients()
+	local lsp_clients = vim.lsp.get_clients()
 	if next(lsp_clients) == nil then
 		return empty_msg
 	end
