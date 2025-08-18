@@ -49,6 +49,7 @@
 
   word-diff-regex = .
   wrap-right-percent = 0.001
+	tabs = 2
 
 [delta]
   features = defaults
