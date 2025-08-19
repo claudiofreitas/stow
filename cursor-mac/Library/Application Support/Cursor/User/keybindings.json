@@ -1,0 +1,35 @@
+// Place your key bindings in this file to override the defaults
+[
+    {
+        "key": "cmd+i",
+        "command": "composerMode.agent"
+    },
+    {
+        "key": "cmd+1",
+        "command": "workbench.action.toggleSidebarVisibility"
+    },
+    {
+        "key": "cmd+2",
+        "command": "workbench.action.toggleAuxiliaryBar"
+    },
+    {
+        "key": "cmd+p",
+        "command": "-workbench.action.quickOpen"
+    },
+    {
+        "key": "shift+cmd+o",
+        "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "alt+shift+f",
+        "command": "-editor.action.formatDocument"
+    },
+    {
+        "key": "alt+cmd+l",
+        "command": "editor.action.formatDocument"
+    },
+    {
+        "key": "cmd+e",
+        "command": "composerMode.background"
+    }
+]
